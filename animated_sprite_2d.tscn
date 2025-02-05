@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbb734ncrcfag"]
+
+[ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://bois.png" id="1_ldm7d"]
+[ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://pirre.png" id="2_aed4m"]
+[ext_resource type="Script" path="res://animated_sprite_2d.gd" id="2_uq3c6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pb7qe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ldm7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_aed4m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j4air"]
+size = Vector2(32, 32)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(159.5, 89.5)
+scale = Vector2(2.4375, 2.4375)
+sprite_frames = SubResource("SpriteFrames_pb7qe")
+frame = 1
+frame_progress = 0.672011
+script = ExtResource("2_uq3c6")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 5.12821
+offset_top = -16.2051
+offset_right = 45.1282
+offset_bottom = 6.79487
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_j4air")
+
+[node name="Label2" type="Label" parent="."]
+offset_left = -16.6154
+offset_top = 7.58974
+offset_right = 23.3846
+offset_bottom = 30.5897
+scale = Vector2(0.81619, 0.552749)
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

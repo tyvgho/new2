@@ -1,0 +1,148 @@
+[gd_scene load_steps=15 format=3 uid="uid://cbmunrfvtr6i8"]
+
+[ext_resource type="Script" path="res://script/player.gd" id="1_butml"]
+[ext_resource type="PackedScene" uid="uid://cyxdvxtasn3pr" path="res://scéne/entiter/pereso_moche.tscn" id="2_7ls07"]
+[ext_resource type="PackedScene" uid="uid://o6oo1oam76f5" path="res://scéne/entiter/projectille_launcher.tscn" id="2_bsiu0"]
+[ext_resource type="Texture2D" uid="uid://kbt0gf4t8jqi" path="res://Sans titre.png" id="2_nkays"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57dbw"]
+atlas = ExtResource("2_nkays")
+region = Rect2(0, 0, 160, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nd45y"]
+atlas = ExtResource("2_nkays")
+region = Rect2(0, 31, 160, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i07vq"]
+atlas = ExtResource("2_nkays")
+region = Rect2(0, 62, 160, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cbe6"]
+atlas = ExtResource("2_nkays")
+region = Rect2(0, 93, 160, 31)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feq72"]
+atlas = ExtResource("2_nkays")
+region = Rect2(0, 124, 160, 31)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nqrnu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_57dbw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nd45y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i07vq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cbe6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feq72")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4aqcu"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_b7jr7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_un5l4"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5u6vl"]
+
+[node name="player" type="RigidBody3D"]
+gravity_scale = 3.0
+lock_rotation = true
+script = ExtResource("1_butml")
+
+[node name="twistPivot" type="Node3D" parent="."]
+
+[node name="PichtPivot" type="Node3D" parent="twistPivot"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+
+[node name="pereso_moche" parent="twistPivot/PichtPivot" instance=ExtResource("2_7ls07")]
+transform = Transform3D(-0.122322, -5.5724e-05, 2.24767e-05, -5.57167e-05, 0.122322, 3.67891e-05, -2.24948e-05, 3.67798e-05, -0.122322, 0.000435829, 0.849332, 0.174309)
+
+[node name="Camera3D" type="Camera3D" parent="twistPivot/PichtPivot"]
+transform = Transform3D(0.999849, 0.0044944, -0.0167733, -0.0044944, 0.99999, 3.7536e-05, 0.0167733, 3.78489e-05, 0.999859, 0.0609579, 0.644813, -0.198526)
+
+[node name="Control" type="Control" parent="twistPivot/PichtPivot/Camera3D"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="twistPivot/PichtPivot/Camera3D/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -218.0
+offset_top = 148.0
+offset_right = 102.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 20.0
+value = 20.0
+
+[node name="AnimatedSprite3D" type="AnimatedSprite2D" parent="twistPivot/PichtPivot/Camera3D/Control"]
+position = Vector2(509, 540)
+scale = Vector2(1.63052, 1.62052)
+sprite_frames = SubResource("SpriteFrames_nqrnu")
+animation = &"new_animation"
+
+[node name="attack" type="Area3D" parent="twistPivot/PichtPivot"]
+transform = Transform3D(1.1, 0, 0, 0, 1.06252, -0.284701, 0, 0.284701, 1.06252, 0, 0.183818, -1.18417)
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="twistPivot/PichtPivot/attack"]
+shape = SubResource("BoxShape3D_4aqcu")
+
+[node name="projectilleLauncher" parent="twistPivot/PichtPivot" instance=ExtResource("2_bsiu0")]
+transform = Transform3D(1, 0, 0, 0, 1.09971, 0, 0, 2.98023e-08, 0.627884, 0, 0.443069, -0.814931)
+
+[node name="sol" type="Area3D" parent="twistPivot/PichtPivot"]
+transform = Transform3D(1.1, 0, 0, 0, 1.06252, -0.284701, 0, 0.284701, 1.06252, 0, 0, 0)
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="twistPivot/PichtPivot/sol"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, -0.332549, 0)
+shape = SubResource("CapsuleShape3D_b7jr7")
+
+[node name="demange" type="Area3D" parent="twistPivot/PichtPivot"]
+transform = Transform3D(1.1, 0, 0, 0, 1.06252, -0.284701, 0, 0.284701, 1.06252, 0, -0.0521225, -0.0139662)
+collision_mask = 13
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="twistPivot/PichtPivot/demange"]
+transform = Transform3D(0.905621, 0, 0, 0, 0.905621, 0, 0, 0, 0.905621, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_un5l4")
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.96046e-08, -1.78814e-07)
+shape = SubResource("CapsuleShape3D_5u6vl")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0911705, 1.27928, -0.356332)
+
+[connection signal="projectile_fired" from="." to="twistPivot/PichtPivot/projectilleLauncher" method="_on_character_body_3d_projectile_fired"]
+[connection signal="body_entered" from="twistPivot/PichtPivot/sol" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="twistPivot/PichtPivot/sol" to="." method="_on_area_3d_body_exited"]
+[connection signal="area_entered" from="twistPivot/PichtPivot/demange" to="." method="_on_demange_area_entered"]
+[connection signal="area_exited" from="twistPivot/PichtPivot/demange" to="." method="_on_demange_area_exited"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

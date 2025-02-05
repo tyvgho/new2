@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=3 uid="uid://bva28dqq2pfp5"]
+
+[ext_resource type="Script" path="res://script/character_body_3d.gd" id="1_vq08b"]
+[ext_resource type="PackedScene" uid="uid://o6oo1oam76f5" path="res://scéne/entiter/projectille_launcher.tscn" id="2_7k3yg"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e0u1w"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_bwlb2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5x12m"]
+
+[sub_resource type="Skin" id="Skin_ohjcl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxq8r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5bmde"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pmpcd"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_vq08b")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_e0u1w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_bwlb2")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="projectilleLauncher" parent="." instance=ExtResource("2_7k3yg")]
+transform = Transform3D(1, 0, 0, 0, 1.13645, 0, 0, 0, 1, -0.0142074, 0.316438, -1.41292)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.324789, 0, 0, 0, 0.324789, 0, 0, 0, 0.324789, -0.183649, 0.476509, -0.476356)
+mesh = SubResource("SphereMesh_5x12m")
+skeleton = NodePath("../projectilleLauncher")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.324789, 0, 0, 0, 0.324789, 0, 0, 0, 0.324789, 0.223734, 0.476509, -0.450806)
+mesh = SubResource("SphereMesh_5x12m")
+skin = SubResource("Skin_ohjcl")
+surface_material_override/0 = SubResource("StandardMaterial3D_dxq8r")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 12
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00676942, 0.0117823, 0.0064621)
+shape = SubResource("CapsuleShape3D_5bmde")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.450018, 0, 0, 0, 0.434684, -0.116473, 0, 0.116473, 0.434684, -0.06942, 1.14226, 0.0163236)
+modulate = Color(0, 0.705882, 0, 1)
+billboard = 1
+texture = SubResource("ViewportTexture_pmpcd")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+
+[node name="ProgressBar" type="ProgressBar" parent="Sprite3D/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -13.5
+offset_right = 160.0
+offset_bottom = 13.5
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 20.0
+value = 20.0
+show_percentage = false
+
+[connection signal="projectile_fired" from="." to="projectilleLauncher" method="_on_character_body_3d_projectile_fired"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_demange_area_entered"]
+[connection signal="area_exited" from="Area3D" to="." method="_on_demange_area_exited"]
