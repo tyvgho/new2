@@ -103,10 +103,12 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_twgk1")
 
 [node name="StaticBody3D" type="StaticBody3D"]
+collision_layer = 13
+collision_mask = 65
 script = ExtResource("1_eotlc")
 
 [node name="Area3D" type="Area3D" parent="."]
-collision_mask = 13
+collision_mask = 77
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(3.41561, 0, 0, 0, 3.41561, 0, 0, 0, 3.41561, 0, 0, 0)

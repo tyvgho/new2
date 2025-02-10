@@ -12,8 +12,10 @@ var vie = 10
 var in_attacks_area_player = false
 var player_distance = Vector3.ZERO
 var good_distance = 0
+
 signal projectile_fired
 @onready var timer = $Timer
+@onready var animation = $AnimationPlayer
 
 func  _ready() -> void:
 	$Sprite3D/SubViewport/ProgressBar.max_value = vie
@@ -32,11 +34,18 @@ func _physics_process(delta: float) -> void:
 		velocity = (player_position - global_transform.origin).normalized() * speed
 		velocity.y += graviter
 		move_and_slide()
+		if moob_type == "cactus":
+			animation.play("rampe_001")
 	else :
 		if moob_type =="cactus" and can_attacking == true:
+			can_attacking = false
+			animation.play("Actions réservées]")
+			await animation.animation_finished
 			emit_signal("projectile_fired")
 			timer.start(3)
-			can_attacking = false
+			animation.play("Actions réservées]_001")
+
+
 		velocity = Vector3(0,-3,0)
 		move_and_slide()
 	if Global.player_is_attacking == true and in_attacks_area_player == true :
@@ -46,7 +55,6 @@ func damang(nb_damang):
 	$Sprite3D/SubViewport/ProgressBar.value = vie
 	vie -= nb_damang
 	if vie < 0:
-		print("mort")
 		queue_free()
 func attack():
 	is_attacking = true

@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://bmkcitdcndmel"]
+
+[ext_resource type="Script" path="res://script/iteme_3D.gd" id="1_lp82r"]
+[ext_resource type="Script" path="res://script/arbre_mesh_change.gd" id="2_5ntsv"]
+[ext_resource type="ArrayMesh" uid="uid://dmjvfkxy06ry5" path="res://modelle3D/meche/iteme_pierre.tres" id="3_sl8oy"]
+[ext_resource type="ArrayMesh" uid="uid://cjxrr1rlicxhr" path="res://modelle3D/meche/iteme_viande.tres" id="4_1g206"]
+[ext_resource type="ArrayMesh" uid="uid://w4jdfreufl0q" path="res://modelle3D/meche/iteme_bois.tres" id="5_bf8cq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ai5gd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4q66i"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(0.363037, 0, 0, 0, 0.363037, 0, 0, 0, 0.363037, 0, 0, 0)
+collision_layer = 64
+script = ExtResource("1_lp82r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ai5gd")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 141
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_4q66i")
+
+[node name="modelle_arbre" type="MeshInstance3D" parent="."]
+skeleton = NodePath("")
+script = ExtResource("2_5ntsv")
+tree_meshes = Array[Mesh]([ExtResource("3_sl8oy"), ExtResource("5_bf8cq"), ExtResource("4_1g206")])
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

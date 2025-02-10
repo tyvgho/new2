@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("sprint"):
 		speed = 10
 	else :
-		speed = 5
+		speed = 1.7
 	#var input = Input.get_action_strength("ui_up")
 	var input := Vector3.ZERO
 	input.x = Input.get_axis("move_left","move-right")*speed
@@ -57,12 +57,10 @@ func _process(delta: float) -> void:
 		Global.player_is_attacking = false
 	if Input.is_action_just_pressed("e"):
 		if inventair_ouver == false :
-			print("open")
 			inventair_instance = inventair.instantiate()
 			add_child(inventair_instance)
 			inventair_ouver = true
 		else:
-			print("close")
 			remove_child(inventair_instance)
 			inventair_instance.queue_free()
 			inventair_instance = null
@@ -76,12 +74,11 @@ func _process(delta: float) -> void:
 		
 	if Input.is_action_just_pressed("ui_down"):
 		var main_object = Global.player_main_object
-		print(main_object)
 		if main_object <4:
 			main_object +=1
 		else:
 			main_object -= 4
-		$twistPivot/PichtPivot/Camera3D/AnimatedSprite3D.frame = main_object
+		$twistPivot/PichtPivot/Camera3D/Control/AnimatedSprite3D.frame = main_object
 		Global.player_main_object = main_object
 	if Input.is_action_just_pressed("tire"):
 		emit_signal("projectile_fired")
@@ -91,12 +88,13 @@ func _on_timer_timeout():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion :
+		
 		twist_input = - event.relative.x * mouse_sensitivity
 		pitch_input = - event.relative.y * mouse_sensitivity
 
 func damage(nb):
 	Global.player_vie -= nb
-	$twistPivot/PichtPivot/Camera3D/Sprite3D/SubViewport/ProgressBar.value = Global.player_vie
+	$twistPivot/PichtPivot/Camera3D/Control/ProgressBar.value = Global.player_vie
 	if Global.player_vie < 0:
 		queue_free()
 
@@ -117,7 +115,6 @@ func _on_demange_area_exited(area: Area3D) -> void:
 		in_attacks_area_entité == false
 
 func _on_timer_2_timeout() -> void:
-	print(can_attack)
 	if can_attack == true :
 		Global.player_is_attacking = true
 		can_attack = false

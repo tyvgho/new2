@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://cbmunrfvtr6i8"]
+[gd_scene load_steps=16 format=3 uid="uid://cbmunrfvtr6i8"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_butml"]
 [ext_resource type="PackedScene" uid="uid://cyxdvxtasn3pr" path="res://scéne/entiter/pereso_moche.tscn" id="2_7ls07"]
 [ext_resource type="PackedScene" uid="uid://o6oo1oam76f5" path="res://scéne/entiter/projectille_launcher.tscn" id="2_bsiu0"]
 [ext_resource type="Texture2D" uid="uid://kbt0gf4t8jqi" path="res://Sans titre.png" id="2_nkays"]
+[ext_resource type="Script" path="res://script/control.gd" id="3_edy6t"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57dbw"]
 atlas = ExtResource("2_nkays")
@@ -57,6 +58,8 @@ animations = [{
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5u6vl"]
 
 [node name="player" type="RigidBody3D"]
+collision_layer = 129
+collision_mask = 13
 gravity_scale = 3.0
 lock_rotation = true
 script = ExtResource("1_butml")
@@ -79,6 +82,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_edy6t")
 
 [node name="ProgressBar" type="ProgressBar" parent="twistPivot/PichtPivot/Camera3D/Control"]
 layout_mode = 1
@@ -124,6 +128,7 @@ shape = SubResource("CapsuleShape3D_b7jr7")
 
 [node name="demange" type="Area3D" parent="twistPivot/PichtPivot"]
 transform = Transform3D(1.1, 0, 0, 0, 1.06252, -0.284701, 0, 0.284701, 1.06252, 0, -0.0521225, -0.0139662)
+collision_layer = 128
 collision_mask = 13
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="twistPivot/PichtPivot/demange"]

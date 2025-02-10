@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://oi1xtti6838u"]
+
+[ext_resource type="PackedScene" uid="uid://cxx3xmg58drmd" path="res://modelle3D/itéme.glb" id="1_4ge3b"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="itéme" parent="." instance=ExtResource("1_4ge3b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.681613, 0, 1.59274)

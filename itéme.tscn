@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk3enl7deixi7"]
+
+[ext_resource type="PackedScene" uid="uid://cxx3xmg58drmd" path="res://modelle3D/itéme.glb" id="1_rbo5i"]
+
+[node name="itéme" instance=ExtResource("1_rbo5i")]
