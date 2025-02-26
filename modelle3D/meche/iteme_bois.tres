@@ -1,4 +1,4 @@
-[gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://w4jdfreufl0q"]
+[gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://d1ogkji5cmgq3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u6c4"]
 resource_name = "Matériau"
@@ -12,7 +12,7 @@ cull_mode = 2
 albedo_color = Color(0.90634, 0.802323, 0.416445, 1)
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_bevsq"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_xybu3"]
 _surfaces = [{
 "aabb": AABB(-1, -1, -1, 2, 2, 2),
 "format": 34896613377,
@@ -64,4 +64,4 @@ _surfaces = [{
 "vertex_data": PackedByteArray("/38AAAAA/z//f///AAD/v/iYAAB1Av8/+Jj//3UC/7/7sAAAvgn/P/uw//++Cf+/HMcAAJIV/z8cx///khX/v4HaAAB9Jf8/gdr//30l/79s6gAA4jj/P2zq///iOP+/QPYAAANP/z9A9v//A0//v4n9AAAGZ/8/if3//wZn/7///wAA/3//P///////f/+/if0AAPiY/z+J/f//+Jj/v0D2AAD7sP8/QPb///uw/79s6gAAHMf/P2zq//8cx/+/gdoAAIHa/z+B2v//gdr/vxzHAABs6v8/HMf//2zq/7/7sAAAQPb/P/uw//9A9v+/+JgAAIn9/z/4mP//if3/v/9/AAD///8//3///////78GZwAAif3/PwZn//+J/f+/A08AAED2/z8DT///QPb/v+I4AABs6v8/4jj//2zq/799JQAAgdr/P30l//+B2v+/khUAABzH/z+SFf//HMf/v74JAAD7sP8/vgn///uw/791AgAA+Jj/P3UC///4mP+/AAAAAP9//z8AAP///3//v3UCAAAGZ/8/dQL//wZn/7++CQAAA0//P74J//8DT/+/khUAAOI4/z+SFf//4jj/v30lAAB9Jf8/fSX//30l/7/iOAAAkhX/P+I4//+SFf+/A08AAL4J/z8DT///vgn/vwZnAAB1Av8/Bmf//3UC/78AAP9/////fwAA/3/+//9/AAD/f////38AAP9//v//fwAA/3/+//9/AAD/f/7//38AAP9/////fwAA/3/+//9/AAD/f////38AAP9//v//fwAA/3/+//9/AAD/f/7//38AAP9//v//fwAA/3/+//9/AAD/f////38AAP9//v//fwAA/3////9/AAD/f/7//38AAP9/////fwAA/3/+//9/AAD/f/7//38AAP9//v//fwAA/3////9/AAD/f/7//38AAP9/////fwAA/3/+//9/AAD/f/7//38AAP9//v//fwAA/3/+//9/AAD/f/7//38AAP9/////fwAA/3/+//9/")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_bevsq")
+shadow_mesh = SubResource("ArrayMesh_xybu3")

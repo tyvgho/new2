@@ -163,12 +163,13 @@ script = ExtResource("2_oiomw")
 
 [node name="resource" type="Node3D" parent="obejet"]
 
-[node name="cailloux" parent="obejet/resource" instance=ExtResource("4_n5jkb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.502373, 0)
-objet_type = "pierre"
-
-[node name="StaticBody3D" parent="obejet/resource" instance=ExtResource("5_g04gp")]
+[node name="arbre" parent="obejet/resource" instance=ExtResource("5_g04gp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.163348, 17.9386)
 objet_type = "arbre"
+
+[node name="pierre" parent="obejet/resource" instance=ExtResource("4_n5jkb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.980479, 0)
+objet_type = "pierre"
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="obejet"]
 transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 1.56673, 1.58255, -15.6817)
@@ -242,5 +243,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66426, 3.0989, 0)
 moob_type = "cactus"
 
 [node name="CharacterBody3D3" parent="." instance=ExtResource("9_6v428")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.7279, 10.643, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.0758, 36.4692)
 moob_type = "wendigo"

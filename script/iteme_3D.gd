@@ -5,17 +5,18 @@ var quantiter = 0
 var nb = 0
 @onready var apparence = $modelle_arbre
 func initialize(nouveau_nombre,new_position,new_type):
+	print(new_type,"a",new_position,nouveau_nombre)
 	self.item_type = new_type
 	self.quantiter = nouveau_nombre
 	self.position = new_position
 	if item_type == "pierre":
-		loote = ["pierre",quantiter]
+		loote = {"name": "pierre", "count":quantiter}
 		nb = 0
-	elif item_type == "boit":
-		loote = ["boit",quantiter]
+	elif item_type == "bois":
+		loote = {"name": "bois", "count": 5}
 		nb = 1
 	elif item_type == "steak":
-		loote = ["steak",quantiter]
+		loote = {"name":"steak","count":quantiter}
 		nb = 2
 	apparence.set_tree(nb)
 func _physics_process(delta: float) -> void:
@@ -27,5 +28,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
 	if area.collision_layer == 128 or area.collision_layer == 4:
-		Global.player_invetér_give(loote)
+		Global.player_inventaire_give(loote)
 		queue_free()

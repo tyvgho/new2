@@ -1,34 +1,36 @@
 extends StaticBody3D
 
-@export_enum("pierre", "arbre") var objet_type : String
-var obeject
+@export_enum("pierre", "arbre") var objet_type: String
+@export var vie: int = 80  # Permet d'éditer la vie directement dans l'inspecteur
+
 var player_inventaire = Global.player_inventaire
-var vie = 80 
-var loote = ["",0]
-var give_place := 0
-const object = preload("res://scéne/entiter/itéme.tscn")
+var loote = {"name":"", "count": 0}  # Initialisation correcte
+const OBJECT_SCENE = preload("res://scéne/entiter/itéme.tscn")
 
-func  _ready() -> void:
+func _ready() -> void:
+	# Initialise le loot en fonction du type d'objet
 	if objet_type == "pierre":
-		loote = ["pierre",0]
+		loote = {"name": "pierre", "count": 5}
 	elif objet_type == "arbre":
-		print(position)
-		loote = ["boit",0]
+		loote = {"name": "bois", "count": 5}  # Correction ici
 
-func déga(nb):
+# Applique des dégâts à l'objet
+func déga(nb: int) -> void:
+	print(loote)
 	vie -= nb
-	if vie >= 0:
-		loote[1] = nb 
-		var object_i = object.instantiate()
-		add_child(object_i)
-		object_i.initialize(loote[1],global_position+Vector3(0,5,0),loote[0])
-		print(global_position,position)
-	if vie <= 0:
+	if vie > 0:
+		print("z")
+		# Crée un objet looté à chaque coup
+		loote["count"] = nb  # Ajuste la quantité lootée
+		var object_instance = OBJECT_SCENE.instantiate()
+		get_parent().add_child(object_instance)  # Ajout correct dans la scène principale
+		object_instance.initialize(loote["count"], global_position + Vector3(0, 5, 0),loote["name"])
+	else:
+		# Détruit l'objet quand sa vie tombe à 0
 		queue_free()
 
-
-func new(area: Area3D) -> void:
+# Déclenché lorsqu'une zone (comme une arme) entre en collision
+func _on_body_entered(area: Area3D) -> void:
 	print(area.collision_layer)
-	if area.collision_layer == 8:
-		print("aa")
+	if area.collision_layer == 8:  # Vérifie la couche de collision
 		déga(2)

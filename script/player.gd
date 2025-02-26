@@ -16,6 +16,7 @@ var inventair_instance = null
 const inventair = preload("res://scéne/map/invetér_player.tscn")
 var inventair_ouver = false
 
+@onready var constructoin = $twistPivot/PichtPivot/plasse_constructoin
 @onready var twist_pivot = $twistPivot
 @onready var picht_pivot = $twistPivot/PichtPivot
 @onready var timer = $Timer2
@@ -27,10 +28,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	construction_mov()
 	if Input.is_action_pressed("sprint"):
 		speed = 10
 	else :
-		speed = 1.7
+		speed = 3
 	#var input = Input.get_action_strength("ui_up")
 	var input := Vector3.ZERO
 	input.x = Input.get_axis("move_left","move-right")*speed
@@ -56,6 +58,7 @@ func _process(delta: float) -> void:
 	else :
 		Global.player_is_attacking = false
 	if Input.is_action_just_pressed("e"):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		if inventair_ouver == false :
 			inventair_instance = inventair.instantiate()
 			add_child(inventair_instance)
@@ -98,7 +101,6 @@ func damage(nb):
 	if Global.player_vie < 0:
 		queue_free()
 
-
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	can_jump = true
 func _on_area_3d_body_exited(body: Node3D) -> void:
@@ -118,3 +120,9 @@ func _on_timer_2_timeout() -> void:
 	if can_attack == true :
 		Global.player_is_attacking = true
 		can_attack = false
+
+func construction_mov() :
+	if Input.is_action_just_pressed("molette_up"):
+		constructoin.position.z += 1
+	elif Input.is_action_just_pressed("molette_bas"):
+		constructoin.position.z -= 1
