@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://mnwoluiyw7y1"]
+
+[ext_resource type="Script" path="res://Scripts/map_object.gd" id="1_7lm4a"]
+[ext_resource type="ArrayMesh" uid="uid://ba2lyvq2hqxwg" path="res://model3D/Chêne.obj" id="2_2s8fn"]
+[ext_resource type="Script" path="res://Scripts/arbre_mesh_change.gd" id="3_brb34"]
+[ext_resource type="ArrayMesh" uid="uid://cy36sjtqytanh" path="res://model3D/new_array_mesh.tres" id="4_4quai"]
+
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_p5jus"]
+points = PackedVector3Array(-1.34482, 2.96329, -0.0568097, 1.60995, 3.32449, 0.806698, 1.62058, 3.03335, 0.81136, 1.11419, 3.25031, -1.29148, -0.114536, 4.67955, 0.37293, 0.604883, 3.03387, 1.8248, -0.287, 2.46868, -1.60465, -1.03469, 3.61041, -1.18691, 0.325935, 2.23849, 0.235961, -1.1118, 3.0414, 1.01417, 1.0834, 3.89037, -1.10535, 1.53393, 2.75062, -0.127376, 0.169904, 4.67891, -0.409718, -1.10638, 3.53923, 0.939237, 1.08298, 3.60947, 1.63441, -0.892988, 2.61833, 0.797144, 1.09892, 2.75422, 1.58812, -1.27354, 2.81819, -0.995967, -0.0567258, 2.23849, -1.14424, -1.23667, 3.6096, -0.895397, 1.429, 3.67888, 0.718848, 0.518709, 3.53871, 1.69676, 1.61324, 3.32409, -0.200835, 1.25096, 2.89213, -1.06449, 0.24005, 4.66785, 0.300307, 0.735623, 3.89295, -1.18451, -0.321195, 4.59153, -0.261246, 1.38485, 2.61154, 0.587789, 0.381831, 2.6916, 1.50204, 1.29089, 3.81926, -0.610884, 1.39897, 3.32377, 1.53182, 1.37778, 2.61659, -0.124411)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a1ve2"]
+points = PackedVector3Array(-0.287135, -0.0624156, -0.300679, 0.249821, 2.23826, 0.313044, 0.326528, 2.23826, 0.236329, -0.287135, 2.23826, -0.99099, 0.249821, -0.139454, -0.300679, -0.287135, 2.23826, 0.313044, 0.173113, 0.01439, 0.313044, 0.0196967, 2.23826, -0.99099, -0.287135, -0.0624156, 0.236329, 0.326528, 2.23826, -0.0705329, 0.249821, -0.139454, 0.236329, -0.287135, 0.0909627, 0.313044, -0.210427, -0.139454, -0.300679, 0.249821, 2.08465, -0.377267, -0.287135, 2.16145, -0.99099, 0.0196967, 2.16145, -0.99099, 0.326528, 2.08465, 0.236329, 0.249821, 1.77789, -0.377267, -0.210427, 0.01439, 0.313044, 0.249821, 2.00808, 0.313044, 0.326528, 2.16145, -0.0705329)
+
+[node name="StaticBody3D" type="StaticBody3D"]
+collision_mask = 13
+script = ExtResource("1_7lm4a")
+
+[node name="modelle_arbre" type="MeshInstance3D" parent="."]
+skeleton = NodePath("")
+script = ExtResource("3_brb34")
+tree_meshes = Array[Mesh]([ExtResource("2_2s8fn"), ExtResource("4_4quai")])
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 12
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_p5jus")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_a1ve2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_2s8fn")
+skeleton = NodePath("../modelle_arbre")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_p5jus")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_a1ve2")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_body_entered"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://deyr2eqe7eco7"]
+
+[ext_resource type="Script" path="res://Scènes/map/Inventaire_Player.gd" id="1_kokl1"]
+[ext_resource type="Texture2D" uid="uid://colmsqy8c2ikq" path="res://Inventaire.png" id="2_uxctc"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_kokl1")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -386.0
+offset_top = -45.0
+offset_right = 738.0
+offset_bottom = 663.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.635294)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(132, 325)
+scale = Vector2(1.5625, 1.25)
+
+[node name="Inventére" type="Sprite2D" parent="."]
+position = Vector2(147, 303)
+scale = Vector2(2.57819, 2.57819)
+texture = ExtResource("2_uxctc")

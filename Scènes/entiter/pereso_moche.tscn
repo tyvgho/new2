@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyxdvxtasn3pr"]
+
+[ext_resource type="PackedScene" uid="uid://be7pxy4a1k33a" path="res://Temporaire/pereso_moche.glb" id="1_bjpc5"]
+[ext_resource type="Script" path="res://Temporaire/animation_player.gd" id="2_v3bxk"]
+
+
+[node name="pereso_moche" instance=ExtResource("1_bjpc5")]
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/1/rotation = Quaternion(0.620806, 0.273882, 0.692293, -0.2456)
+bones/2/rotation = Quaternion(-0.205461, -0.127108, -0.158351, 0.957368)
+bones/3/rotation = Quaternion(-0.0485583, -0.0754577, -0.11065, 0.9898)
+bones/5/rotation = Quaternion(-0.364365, -0.0442917, -0.27193, 0.889568)
+bones/6/rotation = Quaternion(-0.0197349, -0.0032318, 0.227421, 0.973591)
+bones/7/rotation = Quaternion(0.0811882, -0.0308005, 0.996154, -0.0117417)
+bones/8/rotation = Quaternion(-0.154058, 0.0357613, 0.160962, 0.974207)
+bones/9/rotation = Quaternion(-0.273305, -0.00824549, -0.103846, 0.95627)
+bones/11/rotation = Quaternion(0.239909, 0.165792, -0.177943, 0.939837)
+bones/12/rotation = Quaternion(-0.0454894, 0.0619774, 0.174303, 0.981686)
+
+[node name="AnimationPlayer" parent="." index="1"]
+script = ExtResource("2_v3bxk")

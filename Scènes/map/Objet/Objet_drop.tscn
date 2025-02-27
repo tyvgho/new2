@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://bss0kp0mkv4h4"]
+
+[ext_resource type="Script" path="res://Scripts/construction.gd" id="1_bmkwd"]
+[ext_resource type="Script" path="res://Scripts/arbre_mesh_change.gd" id="2_ey56p"]
+[ext_resource type="ArrayMesh" uid="uid://d1ogkji5cmgq3" path="res://model3D/Meshes/iteme_bois.tres" id="3_jgkoi"]
+[ext_resource type="ArrayMesh" uid="uid://dmjvfkxy06ry5" path="res://model3D/Meshes/iteme_pierre.tres" id="4_ml4cr"]
+[ext_resource type="ArrayMesh" uid="uid://rsprcjp8v5ok" path="res://model3D/Meshes/tabledecraft.tres" id="5_mcvop"]
+
+
+[node name="StaticBody3D" type="StaticBody3D"]
+script = ExtResource("1_bmkwd")
+
+[node name="modelle_obejt" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00694966, -2.38419e-07, 0.00379634)
+skeleton = NodePath("")
+script = ExtResource("2_ey56p")
+tree_meshes = Array[Mesh]([ExtResource("3_jgkoi"), ExtResource("4_ml4cr"), ExtResource("5_mcvop"), ExtResource("5_mcvop")])
