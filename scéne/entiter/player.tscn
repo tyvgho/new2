@@ -1,54 +1,47 @@
-[gd_scene load_steps=17 format=3 uid="uid://cbmunrfvtr6i8"]
+[gd_scene load_steps=14 format=3 uid="uid://cbmunrfvtr6i8"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_butml"]
 [ext_resource type="PackedScene" uid="uid://cyxdvxtasn3pr" path="res://scéne/entiter/pereso_moche.tscn" id="2_7ls07"]
 [ext_resource type="PackedScene" uid="uid://o6oo1oam76f5" path="res://scéne/entiter/projectille_launcher.tscn" id="2_bsiu0"]
-[ext_resource type="Texture2D" uid="uid://kbt0gf4t8jqi" path="res://Sans titre.png" id="2_nkays"]
-[ext_resource type="Script" path="res://script/control.gd" id="3_edy6t"]
+[ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://iteme_inventair/texture/pirre.png" id="3_6lkx2"]
 [ext_resource type="Script" path="res://scéne/entiter/attack.gd" id="5_13ts5"]
+[ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://iteme_inventair/texture/bois.png" id="5_jnq0w"]
+[ext_resource type="Texture2D" uid="uid://c2mwp17uhv3pv" path="res://iteme_inventair/texture/table_de_craft.png" id="5_na827"]
+[ext_resource type="Texture2D" uid="uid://bmu130uea6acm" path="res://iteme_inventair/texture/viande.png" id="6_i4asp"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_57dbw"]
-atlas = ExtResource("2_nkays")
-region = Rect2(0, 0, 160, 31)
+[sub_resource type="GDScript" id="GDScript_02a6n"]
+script/source = "extends ItemList
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nd45y"]
-atlas = ExtResource("2_nkays")
-region = Rect2(0, 31, 160, 31)
+@export var texture_vid : Texture2D
+@export var texture_bois : Texture2D
+@export var texture_pierre :Texture2D
+@export var texture_table_de_craft : Texture2D
+@export var texture_viand : Texture2D
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i07vq"]
-atlas = ExtResource("2_nkays")
-region = Rect2(0, 62, 160, 31)
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var bras_rapid = Global.player_aute_bar
+	for i in range(len(bras_rapid)):
+		if bras_rapid[i][\"name\"] == \"\":
+			add_item(\"\",texture_vid,true)
+		if bras_rapid[i][\"name\"] == \"bois\":
+			add_item(str(bras_rapid[i][\"count\"]),texture_bois,true)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7cbe6"]
-atlas = ExtResource("2_nkays")
-region = Rect2(0, 93, 160, 31)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_feq72"]
-atlas = ExtResource("2_nkays")
-region = Rect2(0, 124, 160, 31)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_nqrnu"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_57dbw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nd45y")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i07vq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7cbe6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_feq72")
-}],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
-}]
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"e\"):
+		var bras_rapid = Global.player_aute_bar
+		clear()
+		for i in range(len(bras_rapid)):
+			print(bras_rapid[i][\"name\"])
+			if bras_rapid[i][\"name\"] == \"\":
+				add_item(\"      \",texture_vid,true)
+			if bras_rapid[i][\"name\"] == \"bois\":
+				add_item(str(bras_rapid[i][\"count\"]),texture_bois,true)
+			if bras_rapid[i][\"name\"] == \"pierre\":
+				add_item(str(bras_rapid[i][\"count\"]),texture_pierre,true)
+"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4aqcu"]
 
@@ -83,7 +76,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_edy6t")
+mouse_filter = 2
 
 [node name="ProgressBar" type="ProgressBar" parent="twistPivot/PichtPivot/Camera3D/Control"]
 layout_mode = 1
@@ -101,11 +94,36 @@ grow_vertical = 2
 max_value = 20.0
 value = 20.0
 
-[node name="AnimatedSprite3D" type="AnimatedSprite2D" parent="twistPivot/PichtPivot/Camera3D/Control"]
-position = Vector2(509, 540)
-scale = Vector2(1.63052, 1.62052)
-sprite_frames = SubResource("SpriteFrames_nqrnu")
-animation = &"new_animation"
+[node name="PanelContainer" type="PanelContainer" parent="twistPivot/PichtPivot/Camera3D/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.445
+anchor_top = 0.842
+anchor_right = 0.445
+anchor_bottom = 0.842
+offset_left = -124.64
+offset_top = -32.616
+offset_right = 151.36
+offset_bottom = 16.384
+
+[node name="ColorRect" type="ColorRect" parent="twistPivot/PichtPivot/Camera3D/Control/PanelContainer"]
+layout_mode = 2
+color = Color(0.356863, 0.784314, 1, 1)
+
+[node name="ItemList" type="ItemList" parent="twistPivot/PichtPivot/Camera3D/Control/PanelContainer"]
+texture_filter = 1
+layout_mode = 2
+mouse_filter = 2
+auto_height = true
+item_count = 1
+max_columns = 5
+icon_mode = 0
+fixed_icon_size = Vector2i(40, 40)
+script = SubResource("GDScript_02a6n")
+texture_bois = ExtResource("5_jnq0w")
+texture_pierre = ExtResource("3_6lkx2")
+texture_table_de_craft = ExtResource("5_na827")
+texture_viand = ExtResource("6_i4asp")
 
 [node name="attack" type="Area3D" parent="twistPivot/PichtPivot"]
 transform = Transform3D(1.1, 0, 0, 0, 1.06252, -0.284701, 0, 0.284701, 1.06252, 0, 0.183818, -1.18417)

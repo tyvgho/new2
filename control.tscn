@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://xwcyc7kd85cd"]
+
+[ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://iteme_inventair/texture/bois.png" id="1_pmpcs"]
+
+[sub_resource type="GDScript" id="GDScript_v5idn"]
+script/source = "extends ItemList
+
+@export var textur_bois: Texture2D
+
+func _ready() -> void:
+	# Ajoute l'élément une seule fois au démarrage
+	for i in range(20):
+		add_item(\"Bonjour\", textur_bois, true)
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 641.0
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer"]
+custom_minimum_size = Vector2(400, 1)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="ItemList" type="ItemList" parent="PanelContainer/PanelContainer2"]
+texture_filter = 1
+layout_mode = 2
+item_count = 1
+max_columns = 5
+icon_mode = 0
+icon_scale = 2.0
+item_0/text = "aa"
+item_0/icon = ExtResource("1_pmpcs")
+script = SubResource("GDScript_v5idn")
+textur_bois = ExtResource("1_pmpcs")
