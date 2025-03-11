@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbmunrfvtr6i8"]
+[gd_scene load_steps=17 format=3 uid="uid://cbmunrfvtr6i8"]
 
-[ext_resource type="Script" path="res://Scripts/player.gd" id="1_butml"]
+[ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scènes/entiter/player_new.gd" id="1_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://cyxdvxtasn3pr" path="res://Scènes/entiter/pereso_moche.tscn" id="2_7ls07"]
 [ext_resource type="PackedScene" uid="uid://o6oo1oam76f5" path="res://Scènes/entiter/projectille_launcher.tscn" id="2_bsiu0"]
 [ext_resource type="Texture2D" uid="uid://kbt0gf4t8jqi" path="res://Sans titre.png" id="2_nkays"]
-[ext_resource type="Script" path="res://Scènes/entiter/attack.gd" id="5_13ts5"]
+[ext_resource type="PackedScene" uid="uid://hkupo7e8holj" path="res://Item_Inventaire/hotbar.tscn" id="4_3hbnb"]
+[ext_resource type="Script" uid="uid://b5qa7t6jw8duu" path="res://Scènes/entiter/attack.gd" id="5_13ts5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_57dbw"]
 atlas = ExtResource("2_nkays")
@@ -57,12 +58,10 @@ animations = [{
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5u6vl"]
 
-[node name="player" type="RigidBody3D"]
+[node name="player" type="CharacterBody3D"]
 collision_layer = 129
 collision_mask = 13
-gravity_scale = 3.0
-lock_rotation = true
-script = ExtResource("1_butml")
+script = ExtResource("1_3hbnb")
 
 [node name="twistPivot" type="Node3D" parent="."]
 
@@ -73,7 +72,8 @@ transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 
 transform = Transform3D(-0.122322, -5.5724e-05, 2.24767e-05, -4.79961e-05, 0.118144, 0.0316948, -3.61489e-05, 0.0316948, -0.118144, 0.000435829, 0.849332, 0.174309)
 
 [node name="Camera3D" type="Camera3D" parent="twistPivot/PichtPivot"]
-transform = Transform3D(0.999849, 0.0044944, -0.0167733, -0.0044944, 0.99999, 3.7536e-05, 0.0167733, 3.78489e-05, 0.999859, 0.0609579, 0.644813, -0.198526)
+transform = Transform3D(0.999849, 0.0044944, -0.0167733, -0.0044944, 0.99999, 3.7536e-05, 0.0167733, 3.78489e-05, 0.999859, 0, 0.7, 0)
+current = true
 
 [node name="Control" type="Control" parent="twistPivot/PichtPivot/Camera3D"]
 layout_mode = 3
@@ -101,10 +101,18 @@ max_value = 20.0
 value = 20.0
 
 [node name="AnimatedSprite3D" type="AnimatedSprite2D" parent="twistPivot/PichtPivot/Camera3D/Control"]
+visible = false
 position = Vector2(575.165, 552.915)
 scale = Vector2(2.371, 2.356)
 sprite_frames = SubResource("SpriteFrames_nqrnu")
 animation = &"new_animation"
+
+[node name="Hotbar" parent="twistPivot/PichtPivot/Camera3D/Control" instance=ExtResource("4_3hbnb")]
+layout_mode = 1
+offset_left = 358.0
+offset_top = 505.0
+offset_right = 358.0
+offset_bottom = 505.0
 
 [node name="attack" type="Area3D" parent="twistPivot/PichtPivot"]
 transform = Transform3D(1.1, 0, 0, 0, 1.06252, -0.284701, 0, 0.284701, 1.06252, 0, 0.183818, -1.18417)

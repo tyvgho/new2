@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://begmig8smmiwp"]
+[gd_scene load_steps=6 format=3 uid="uid://begmig8smmiwp"]
 
-[ext_resource type="Script" path="res://Scripts/ItemSlot.gd" id="1_06yv8"]
+[ext_resource type="Script" uid="uid://dhh7wmwg7q3xj" path="res://Scripts/ItemSlot.gd" id="1_06yv8"]
 [ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://Item_Inventaire/bois.png" id="2_1ja3o"]
+[ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://pierre.png" id="2_7fuv6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fuv6"]
 bg_color = Color(0.16, 0.16, 0.16, 1)
@@ -28,10 +29,8 @@ anchor_right = 0.0694444
 anchor_bottom = 0.123457
 tooltip_text = "Bois"
 script = ExtResource("1_06yv8")
-item_name = null
-item_quantity = null
-texture_np = null
-label_np = null
+item_texture = ExtResource("2_7fuv6")
+item_quantity = 67
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="Panel" parent="."]

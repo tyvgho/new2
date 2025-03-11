@@ -1,3 +1,4 @@
+@tool
 class_name ItemSlot extends Control
 
 @export var assign_item : InventoryItem :
@@ -22,12 +23,12 @@ class_name ItemSlot extends Control
 @export var item_quantity : int :
 	set(value):
 		item_quantity = value
-		if get_node(label_np): # Evite les erreurs dans l'éditeur
+		if get_node(label_np) and label_quantity: # Evite les erreurs dans l'éditeur
 			label_quantity.text = str(item_quantity)
 
-@export_node_path("TextureRect") var texture_np : NodePath
+@export_node_path("TextureRect") var texture_np : NodePath = ^"TextureBorder/TextureRect"
 @onready var texture_rect : TextureRect = get_node(texture_np)
-@export_node_path("Label") var label_np : NodePath
+@export_node_path("Label") var label_np : NodePath = ^"Separator/Label"
 @onready var label_quantity : Label = get_node(label_np)
 
 

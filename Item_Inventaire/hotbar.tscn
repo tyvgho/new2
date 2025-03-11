@@ -10,6 +10,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 305.0
+offset_top = 115.0
+offset_right = 305.0
+offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -32,15 +36,35 @@ columns = 5
 
 [node name="Item" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")
 
 [node name="Item2" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")
 
 [node name="Item3" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")
 
 [node name="Item4" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")
 
 [node name="Item5" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")

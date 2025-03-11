@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://kuinvphd8xue" path="res://icon.svg" id="1_c7sms"]
 [ext_resource type="PackedScene" uid="uid://b6i1f8138slxy" path="res://Scènes/map/Objet/phare.tscn" id="1_mflfi"]
 [ext_resource type="PackedScene" uid="uid://cbmunrfvtr6i8" path="res://Scènes/entiter/player.tscn" id="2_nslow"]
-[ext_resource type="Script" path="res://Scènes/map/directional_light_3d.gd" id="2_oiomw"]
+[ext_resource type="Script" uid="uid://bt6xcbcxqab1d" path="res://Scènes/map/directional_light_3d.gd" id="2_oiomw"]
 [ext_resource type="PackedScene" uid="uid://dw23pqlemekxd" path="res://Scènes/map/Objet/Roche.tscn" id="4_n5jkb"]
 [ext_resource type="PackedScene" uid="uid://mnwoluiyw7y1" path="res://Scènes/map/Objet/Arbre.tscn" id="5_g04gp"]
 [ext_resource type="PackedScene" uid="uid://bva28dqq2pfp5" path="res://Scènes/entiter/monste/cactus.tscn" id="8_7fsxe"]
@@ -235,7 +235,6 @@ transform = Transform3D(27.4801, 0, 0, 0, 27.4801, 0, 0, 0, 27.4801, -805.191, 3
 
 [node name="player" parent="." instance=ExtResource("2_nslow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46377, 1.94748, -2.7528)
-linear_damp = 3.0
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("8_tu5uj")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.10098, 2.93674, 5.20383)

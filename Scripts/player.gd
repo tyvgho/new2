@@ -23,8 +23,6 @@ var inventair_ouver = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	$twistPivot/PichtPivot/Camera3D.position = Vector3(0,0.7,0)
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -121,6 +119,8 @@ func _on_timer_2_timeout() -> void:
 		Global.player_is_attacking = true
 		can_attack = false
 
+# E
+### TT
 func construction_mov() :
 	if Input.is_action_just_pressed("molette_up"):
 		constructoin.position.z += 1
