@@ -17,19 +17,19 @@ class_name ItemSlot extends Control
 @export var item_texture : Texture2D:
 	set(value):
 		item_texture = value
-		if get_node(texture_np): # Evite les erreurs dans l'éditeur
+		if get_node_or_null(texture_np): # Evite les erreurs dans l'éditeur
 			texture_rect.texture = item_texture 
 
 @export var item_quantity : int :
 	set(value):
 		item_quantity = value
-		if get_node(label_np) and label_quantity: # Evite les erreurs dans l'éditeur
+		if get_node_or_null(label_np) and label_quantity: # Evite les erreurs dans l'éditeur
 			label_quantity.text = str(item_quantity)
 
 @export_node_path("TextureRect") var texture_np : NodePath = ^"./TextureBorder/TextureRect"
-@onready var texture_rect : TextureRect = get_node(texture_np)
+@onready var texture_rect : TextureRect = get_node_or_null(texture_np)
 @export_node_path("Label") var label_np : NodePath = ^"./Separator/Label"
-@onready var label_quantity : Label = get_node(label_np)
+@onready var label_quantity : Label = get_node_or_null(label_np)
 
 
 # Called when the node enters the scene tree for the first time.

@@ -280,6 +280,7 @@ func add_grass(pos : Vector3, normal : Vector3, scale : Vector3, rotated : float
 		for trans_prev in _buffer_add:
 			if trans.origin.distance_to(trans_prev.origin) <= sgt_dist_min:
 				return
+	#print_rich("[color=green][SUCCESS][/color] Placement of grass debuging ",pos,normal,scale,rotated)
 	_buffer_add.append(trans)
 
 
