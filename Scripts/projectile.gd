@@ -18,9 +18,6 @@ func _physics_process(delta: float) -> void:
 		remote_tranform.global_transform = global_transform
 		remote_tranform.remote_path = remote_tranform.get_path_to(self)
 		remote_tranform.tree_exited.connect(cleanup)
+
 func cleanup() -> void:
 	queue_free()
-
-
-func _on_area_3d_area_entered(area: Area3D) -> void:
-	pass

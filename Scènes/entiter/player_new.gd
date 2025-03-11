@@ -58,11 +58,13 @@ func _process(delta: float) -> void:
 	)
 	twist_input = 0.0
 	pitch_input = 0.0
+	
 	if Input.is_action_just_pressed("attacks"):
 		can_attack = true
 		timer.start()
 	else :
 		Global.player_is_attacking = false
+		
 	if Input.is_action_just_pressed("e"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		if inventair_ouver == false :

@@ -154,7 +154,7 @@ transform = Transform3D(0.815774, 0, 0, 0, 0.815774, 0, 0, 0, 0.815774, 0.024694
 environment = SubResource("Environment_ihvqc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.463977, 0.767166, -0.442924, 2.75283e-09, 0.5, 0.866025, 0.885847, 0.401816, -0.231989, 6.24572, 5.35837, -7.34409)
+transform = Transform3D(-0.173648, 0.865466, 0.46991, 0, -0.477159, 0.878817, 0.984808, 0.152605, 0.0828578, 6.24572, 193.949, -7.34409)
 light_color = Color(1, 1, 0.658824, 1)
 shadow_enabled = true
 script = ExtResource("2_oiomw")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5y5obsxc1nbf"]
+[gd_scene load_steps=13 format=3 uid="uid://b5y5obsxc1nbf"]
 
 [ext_resource type="Script" uid="uid://dpenyi8ftug1e" path="res://world.gd" id="1_f3sb7"]
 [ext_resource type="Material" uid="uid://4tjr37ap822b" path="res://world_water.tres" id="1_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://cbmunrfvtr6i8" path="res://Scènes/entiter/player.tscn" id="3_tlwt5"]
+[ext_resource type="Script" uid="uid://dnwjmyxebmppo" path="res://generate_trees.gd" id="4_aqk2v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -66,3 +67,6 @@ mesh = SubResource("PlaneMesh_fj7yv")
 
 [node name="player" parent="." instance=ExtResource("3_tlwt5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 204.484, 98.9553, 213.4)
+
+[node name="Node3D" type="Node3D" parent="."]
+script = ExtResource("4_aqk2v")

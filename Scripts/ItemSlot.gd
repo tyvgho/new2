@@ -26,9 +26,9 @@ class_name ItemSlot extends Control
 		if get_node(label_np) and label_quantity: # Evite les erreurs dans l'éditeur
 			label_quantity.text = str(item_quantity)
 
-@export_node_path("TextureRect") var texture_np : NodePath = ^"TextureBorder/TextureRect"
+@export_node_path("TextureRect") var texture_np : NodePath = ^"./TextureBorder/TextureRect"
 @onready var texture_rect : TextureRect = get_node(texture_np)
-@export_node_path("Label") var label_np : NodePath = ^"Separator/Label"
+@export_node_path("Label") var label_np : NodePath = ^"./Separator/Label"
 @onready var label_quantity : Label = get_node(label_np)
 
 
