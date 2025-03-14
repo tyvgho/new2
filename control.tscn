@@ -1,16 +1,76 @@
-[gd_scene load_steps=3 format=3 uid="uid://xwcyc7kd85cd"]
+[gd_scene load_steps=3 format=3 uid="uid://my65wxxg720s"]
 
-[ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://iteme_inventair/texture/bois.png" id="1_pmpcs"]
+[ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://Item_Inventaire/pierre.png" id="1_0fbet"]
 
-[sub_resource type="GDScript" id="GDScript_v5idn"]
+[sub_resource type="GDScript" id="GDScript_0fbet"]
 script/source = "extends ItemList
 
-@export var textur_bois: Texture2D
+var texture_pierre : Texture2D = load(\"res://iteme_inventair/pirre.png\")
+var texture_bois : Texture2D = load(\"res://iteme_inventair/bois.png\")
+var texture_table_craft : Texture2D = load(\"res://iteme_inventair/table_de_craft.png\")
+var texture_viande : Texture2D = load(\"res://iteme_inventair/viande.png\")
 
+var tout_les_items = [
+	Item.new(texture_pierre, \"Pierre\", 4),
+	Item.new(texture_bois, \"Bois\", 32),
+	Item.new(texture_table_craft, \"Table de craft\", 1),
+	Item.new(texture_viande, \"Viande\", 14)
+]
+
+
+class Item extends Resource:
+	var texture : Texture2D
+	var nom : String
+	var quantite : int
+	
+	func _init(texture : Texture2D, nom : String, quantite : int) -> void:
+		self.texture = texture
+		self.nom = nom
+		self.quantite = quantite
+	
+	func _to_string() -> String:
+		return \"[\" + str(self.nom) + \" : \" + str(self.quantite) + \"]\"
+		
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Ajoute l'élément une seule fois au démarrage
-	for i in range(20):
-		add_item(\"Bonjour\", textur_bois, true)
+	clear()
+	for item in tout_les_items:
+		ajouter_item_danslaliste(item)
+
+	
+func ajouter_item_danslaliste(item : Item):
+	self.add_item(item.nom, item.texture, true)
+
+
+func _on_item_selected(index: int) -> void:
+	pass
+
+
+func _on_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
+	print(\"Item : \", tout_les_items[index])
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class_name Item extends Resource:
 "
 
 [node name="Control" type="Control"]
@@ -21,24 +81,64 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
-layout_mode = 0
-offset_right = 1154.0
-offset_bottom = 641.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
 
-[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer"]
-custom_minimum_size = Vector2(400, 1)
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(248.34, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 80
+
+[node name="Panel" type="Panel" parent="MarginContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+custom_minimum_size = Vector2(494, 0)
 layout_mode = 2
 size_flags_horizontal = 8
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="ItemList" type="ItemList" parent="PanelContainer/PanelContainer2"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/PanelContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="MarginContainer/PanelContainer/MarginContainer2/PanelContainer"]
 texture_filter = 1
 layout_mode = 2
-item_count = 1
+select_mode = 1
+auto_width = true
+auto_height = true
+item_count = 4
 max_columns = 5
+fixed_column_width = 90
 icon_mode = 0
-icon_scale = 2.0
-item_0/text = "aa"
-item_0/icon = ExtResource("1_pmpcs")
-script = SubResource("GDScript_v5idn")
-textur_bois = ExtResource("1_pmpcs")
+fixed_icon_size = Vector2i(40, 40)
+item_0/text = "64"
+item_0/icon = ExtResource("1_0fbet")
+item_1/text = "Pierre"
+item_1/icon = ExtResource("1_0fbet")
+item_2/text = "Bois"
+item_2/icon = ExtResource("1_0fbet")
+script = SubResource("GDScript_0fbet")
+
+[connection signal="item_clicked" from="MarginContainer/PanelContainer/MarginContainer2/PanelContainer/ItemList" to="MarginContainer/PanelContainer/MarginContainer2/PanelContainer/ItemList" method="_on_item_clicked"]
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer2/PanelContainer/ItemList" to="MarginContainer/PanelContainer/MarginContainer2/PanelContainer/ItemList" method="_on_item_selected"]

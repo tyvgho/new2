@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://bbb734ncrcfag"]
 
-[ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://iteme_inventair/texture/bois.png" id="1_ldm7d"]
-[ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://iteme_inventair/texture/pirre.png" id="2_aed4m"]
-[ext_resource type="Script" path="res://animated_sprite_2d.gd" id="2_uq3c6"]
-[ext_resource type="Texture2D" uid="uid://bmu130uea6acm" path="res://iteme_inventair/texture/viande.png" id="3_lq3jw"]
-[ext_resource type="Texture2D" uid="uid://c2mwp17uhv3pv" path="res://iteme_inventair/texture/table_de_craft.png" id="3_vvayu"]
+[ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://Item_Inventaire/bois.png" id="1_ldm7d"]
+[ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://Item_Inventaire/pierre.png" id="2_aed4m"]
+[ext_resource type="Script" uid="uid://byvubily25o5g" path="res://Scripts/animated_sprite_2d.gd" id="2_uq3c6"]
+[ext_resource type="Texture2D" uid="uid://bmu130uea6acm" path="res://Item_Inventaire/viande.png" id="3_lq3jw"]
+[ext_resource type="Texture2D" uid="uid://c2mwp17uhv3pv" path="res://Item_Inventaire/table_de_craft.png" id="3_vvayu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6a58q"]
 atlas = ExtResource("3_vvayu")
@@ -53,7 +53,7 @@ texture_filter = 1
 position = Vector2(159.5, 89.5)
 scale = Vector2(2.4375, 2.4375)
 sprite_frames = SubResource("SpriteFrames_pb7qe")
-animation = &"bois"
+animation = &"table_craft"
 script = ExtResource("2_uq3c6")
 
 [node name="Label" type="Label" parent="."]
@@ -73,6 +73,9 @@ offset_top = 7.58974
 offset_right = 23.3846
 offset_bottom = 30.5897
 scale = Vector2(0.81619, 0.552749)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ldm7d")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

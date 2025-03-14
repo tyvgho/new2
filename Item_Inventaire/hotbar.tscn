@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://hkupo7e8holj"]
+
+[ext_resource type="PackedScene" uid="uid://begmig8smmiwp" path="res://Item_Inventaire/item_dans_inventaire.tscn" id="1_bjf5h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8i1s"]
+bg_color = Color(0, 0.6, 0.6, 0.341176)
+
+[node name="Hotbar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 305.0
+offset_top = 115.0
+offset_right = 305.0
+offset_bottom = 115.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8i1s")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Item" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")
+
+[node name="Item2" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")
+
+[node name="Item3" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")
+
+[node name="Item4" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")
+
+[node name="Item5" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+layout_mode = 2
+tooltip_text = ""
+item_quantity = 0
+texture_np = NodePath("")
+label_np = NodePath("")

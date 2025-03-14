@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://begmig8smmiwp"]
+
+[ext_resource type="Script" uid="uid://dhh7wmwg7q3xj" path="res://Scripts/ItemSlot.gd" id="1_06yv8"]
+[ext_resource type="Texture2D" uid="uid://dthp4b2c2p7e1" path="res://bois.png" id="2_06yv8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fuv6"]
+bg_color = Color(0.16, 0.16, 0.16, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.114897, 0.114897, 0.114897, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_47iff"]
+font_size = 32
+shadow_size = 3
+shadow_color = Color(0, 0, 0, 0.784314)
+
+[node name="Item" type="Control"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 3
+anchor_right = 0.0694444
+anchor_bottom = 0.123457
+tooltip_text = "Bois"
+script = ExtResource("1_06yv8")
+item_texture = ExtResource("2_06yv8")
+item_quantity = -9
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Panel" parent="."]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7fuv6")
+
+[node name="TextureBorder" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="TextureBorder"]
+texture_filter = 3
+layout_mode = 2
+texture = ExtResource("2_06yv8")
+
+[node name="Separator" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -45.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="Separator"]
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "-9"
+label_settings = SubResource("LabelSettings_47iff")
+horizontal_alignment = 2
+vertical_alignment = 2
