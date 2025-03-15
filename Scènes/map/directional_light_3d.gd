@@ -8,4 +8,4 @@ extends DirectionalLight3D
 func _process(delta: float) -> void:
 	rotation_degrees.x = tick % 360
 	days = tick / 360
-	tick += 1
+	#tick += 1

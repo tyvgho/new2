@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cyxdvxtasn3pr"]
 
-[ext_resource type="PackedScene" uid="uid://be7pxy4a1k33a" path="res://Temporaire/pereso_moche.glb" id="1_bjpc5"]
-[ext_resource type="Script" path="res://Temporaire/animation_player.gd" id="2_v3bxk"]
-
+[ext_resource type="PackedScene" uid="uid://be7pxy4a1k33a" path="res://Temp/pereso_moche.glb" id="1_bjpc5"]
+[ext_resource type="Script" uid="uid://ch0xhw0so2t4t" path="res://Temp/animation_player.gd" id="2_v3bxk"]
 
 [node name="pereso_moche" instance=ExtResource("1_bjpc5")]
 

@@ -1,12 +1,17 @@
 @tool
-class_name ItemSlot extends Control
+class_name ItemSlot extends TextureButton
+
+var focused := false
+var hovered := false
+var holded := false
 
 @export var assign_item : InventoryItem :
 	set(value):
 		assign_item = (value as InventoryItem)
-		item_name = (assign_item.item as UniqueItem).name
-		item_texture = (assign_item.item as UniqueItem).texture
-		item_quantity = assign_item.quantity
+		if value != null:
+			item_name = (assign_item.item as UniqueItem).name
+			item_texture = (assign_item.item as UniqueItem).texture
+			item_quantity = assign_item.quantity
 
 @export var item_name : String : # Variable item_name créee par l'inspecteur
 	set(value):
@@ -32,12 +37,28 @@ class_name ItemSlot extends Control
 @export_node_path("Label") var label_np : NodePath = ^"./Separator/Label"
 @onready var label_quantity : Label = get_node_or_null(label_np)
 
+func _ready():
+	if assign_item != null:
+		item_name = (assign_item.item as UniqueItem).name
+		item_texture = (assign_item.item as UniqueItem).texture
+		item_quantity = assign_item.quantity
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
+
+func _on_focus_entered() -> void:
+	print("Focus Entered")
+func _on_focus_exited() -> void:
+	print("Focus Exited")
+
+
+func _on_mouse_exited() -> void:
+	print("Mouse Exited")
+func _on_mouse_entered() -> void:
+	print("Mouse Entered")
+
+func _on_button_down() -> void:
+	print("Button Down")
+
+

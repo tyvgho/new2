@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=4 uid="uid://bva28dqq2pfp5"]
 
-[ext_resource type="Script" path="res://Scripts/character_body_3d.gd" id="1_vq08b"]
+[ext_resource type="Script" uid="uid://d2t7x8crqhbwr" path="res://Scripts/mob.gd" id="1_vq08b"]
 [ext_resource type="PackedScene" uid="uid://o6oo1oam76f5" path="res://Scènes/entiter/projectille_launcher.tscn" id="2_7k3yg"]
 
 

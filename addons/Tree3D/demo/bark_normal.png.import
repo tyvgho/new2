@@ -3,20 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://v038onueic8b"
-path.s3tc="res://.godot/imported/bark_normal.png-7b0d88a7fe42ff04d5bb8a1caf0c0f1a.s3tc.ctex"
+path="res://.godot/imported/bark_normal.png-7b0d88a7fe42ff04d5bb8a1caf0c0f1a.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://addons/Tree3D/demo/bark_normal.png"
-dest_files=["res://.godot/imported/bark_normal.png-7b0d88a7fe42ff04d5bb8a1caf0c0f1a.s3tc.ctex"]
+dest_files=["res://.godot/imported/bark_normal.png-7b0d88a7fe42ff04d5bb8a1caf0c0f1a.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

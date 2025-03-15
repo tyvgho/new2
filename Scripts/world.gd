@@ -3,6 +3,7 @@ extends MeshInstance3D
 @export var balle : RigidBody3D
 @export var object_per_loading_refresh : int = 50
 @export var loading : LoadingScreen
+@export var player : Player
 @export_category("Grass")
 @export var grass : MultiMeshInstance3D
 @export_range(0.0, 1.0) var density : float = 1.0
@@ -36,6 +37,8 @@ func _process(_delta):
 			balle.rotation_degrees = Vector3.ZERO
 		else:
 			push_error("No ball found")
+	if grass and player:
+		grass.set_player_position(player.global_position)
 
 func generate_terrain():
 	# Clean previous collision by erasing child
@@ -84,7 +87,7 @@ func load_scene():
 	if loading:
 		loading.visible = true
 	var map_total_height = get_aabb().size.y
-	generate_grass(-int(get_aabb().size.y/2), map_total_height, get_aabb(), 1.0/density)
+	await generate_grass(-int(get_aabb().size.y/2), map_total_height, get_aabb(), 1.0/density)
 	await get_tree().create_timer(1.0).timeout
 	if loading:
 		loading.visible = false
@@ -106,11 +109,12 @@ func generate_grass(start_height : int, map_height : int, map_aabb : AABB, spaci
 				col.global_position = Vector3(x, start_height + map_height,z) + variation
 				col.target_position = Vector3(0, -map_height, 0)  + variation
 				col.force_raycast_update()
-				var grass_position = (col.get_collision_point() if col.is_colliding() else Vector3(x, 0, z))
-				var grass_normal = col.get_collision_normal() if col.is_colliding() else Vector3.UP
-				var random_rotation = randf_range(0, 2*PI)
-				#print("Grass: ", grass_position, grass_normal, Vector3.ONE, random_rotation)
-				grass.add_grass(grass_position, grass_normal, Vector3.ONE, random_rotation)
+				if col.is_colliding():
+					var grass_position = (col.get_collision_point() if col.is_colliding() else Vector3(x, 0, z)) - Vector3(0, 0.33, 0)
+					var grass_normal = col.get_collision_normal() if col.is_colliding() else Vector3.UP
+					var random_rotation = randf_range(0, 2*PI)
+					#print("Grass: ", grass_position, grass_normal, Vector3.ONE, random_rotation)
+					grass.add_grass(grass_position, grass_normal, Vector3.ONE, random_rotation)
 				object_count += 1
 				if object_count >= next_update:
 					if loading:

@@ -6,6 +6,7 @@ var recupere = false
 var nombre = 1
 var type = "aaaa"
 @onready var animated_sprite = $"."
+@export var sprite : Sprite2D
 @onready var label = $Label
 @onready var obeject_name = $Label2
 signal objet_deplace(objet,nouvelle_position,ancienne_position)

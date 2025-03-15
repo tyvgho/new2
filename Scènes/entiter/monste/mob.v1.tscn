@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://drojwwrhpxrw"]
 
-[ext_resource type="Script" path="res://Scripts/character_body_3d.gd" id="1_haruw"]
+[ext_resource type="Script" uid="uid://d2t7x8crqhbwr" path="res://Scripts/mob.gd" id="1_haruw"]
 [ext_resource type="PackedScene" uid="uid://cyxdvxtasn3pr" path="res://Scènes/entiter/pereso_moche.tscn" id="2_b7saq"]
 
 

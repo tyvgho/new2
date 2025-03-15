@@ -1,18 +1,199 @@
-[gd_scene load_steps=5 format=3 uid="uid://ttjcur0cb6dj"]
+[gd_scene load_steps=10 format=3 uid="uid://ttjcur0cb6dj"]
 
 [ext_resource type="PackedScene" uid="uid://begmig8smmiwp" path="res://Item_Inventaire/item_dans_inventaire.tscn" id="1_p3t1a"]
+[ext_resource type="Script" uid="uid://djdlowj656t5i" path="res://Item_Inventaire/Script/inv.gd" id="1_pfl63"]
 
 [sub_resource type="SystemFont" id="SystemFont_s3pgy"]
-font_names = PackedStringArray("DejaVu Sans")
-hinting = 2
+font_names = PackedStringArray("Consolas")
 multichannel_signed_distance_field = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s3pgy"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_p3t1a"]
+font = SubResource("SystemFont_s3pgy")
+font_size = 32
+outline_size = 2
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
 
-[node name="Control" type="Control"]
+[sub_resource type="LabelSettings" id="LabelSettings_s3pgy"]
+font = SubResource("SystemFont_s3pgy")
+font_color = Color(0.381703, 0.381703, 0.381703, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_qovhq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pivot_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6v6e8"]
+resource_name = "hide"
+step = 0.0166
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pivot_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_pfl63"]
+resource_name = "show"
+step = 0.0166
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:pivot_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.0166667, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qovhq"]
+_data = {
+&"RESET": SubResource("Animation_qovhq"),
+&"hide": SubResource("Animation_6v6e8"),
+&"show": SubResource("Animation_pfl63")
+}
+
+[node name="Inventaire" type="Control"]
 layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(576, 324)
+script = ExtResource("1_pfl63")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,21 +203,18 @@ grow_vertical = 2
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
+anchor_left = 0.15
 anchor_top = 0.1
-anchor_right = 0.9
+anchor_right = 0.85
 anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="TabBar" type="TabContainer" parent="PanelContainer"]
+[node name="TabContainer" type="TabContainer" parent="PanelContainer"]
 layout_mode = 2
-theme_override_fonts/font = SubResource("SystemFont_s3pgy")
-theme_override_font_sizes/font_size = 24
-theme_override_styles/tab_focus = SubResource("StyleBoxFlat_s3pgy")
 current_tab = 0
-all_tabs_in_front = true
-tab_focus_mode = 1
 
-[node name="Inventory" type="MarginContainer" parent="PanelContainer/TabBar"]
+[node name="Inventory" type="MarginContainer" parent="PanelContainer/TabContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 25
 theme_override_constants/margin_top = 25
@@ -44,207 +222,280 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 metadata/_tab_index = 0
 
-[node name="Label" type="Label" parent="PanelContainer/TabBar/Inventory"]
+[node name="Control" type="Control" parent="PanelContainer/TabContainer/Inventory"]
 layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/TabContainer/Inventory/Control"]
+custom_minimum_size = Vector2(426, 258)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420899
+anchor_top = 0.38032
+anchor_right = 0.984391
+anchor_bottom = 0.970709
+offset_left = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer" groups=["inventaire"]]
+custom_minimum_size = Vector2(416, 248)
+layout_mode = 2
+columns = 5
+
+[node name="Item" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item2" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item3" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item4" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item5" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item6" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item7" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item8" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item9" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item10" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item11" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+
+[node name="Item12" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
+layout_mode = 2
+item_quantity = 2
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/TabContainer/Inventory/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420635
+anchor_top = 0.356979
+anchor_right = 0.984127
+anchor_bottom = 0.382151
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/TabContainer/Inventory/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420635
+anchor_right = 0.984127
+anchor_bottom = 0.359268
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "PIGEON"
 label_settings = SubResource("LabelSettings_p3t1a")
 
-[node name="Control" type="Control" parent="PanelContainer/TabBar/Inventory"]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 0
 
-[node name="Control" type="Control" parent="PanelContainer/TabBar/Inventory/Control"]
+[node name="Label2" type="Label" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Pigeon mythique de qualité, vous avez le choix entre avoir votre propre animal de compagnie dans cette aventure ou de le cuissiner pour goûter à la gastronomie française du Moyen-Âge "
+label_settings = SubResource("LabelSettings_s3pgy")
+autowrap_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/TabContainer/Inventory/Control"]
 layout_mode = 1
-anchor_left = 0.375
-anchor_top = 0.05
-anchor_right = 0.95
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.4
 anchor_bottom = 0.95
-offset_bottom = 3.05176e-05
-
-[node name="Panel" type="Panel" parent="PanelContainer/TabBar/Inventory/Control/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/TabBar/Inventory/Control/Control"]
+[node name="Table de Craft" type="MarginContainer" parent="PanelContainer/TabContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+metadata/_tab_index = 1
+
+[node name="Control" type="Control" parent="PanelContainer/TabContainer/Table de Craft"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/TabContainer/Table de Craft/Control"]
+custom_minimum_size = Vector2(426, 258)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.420899
+anchor_top = 0.38032
+anchor_right = 0.984391
+anchor_bottom = 0.970709
+offset_left = 3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
-columns = 6
+metadata/_edit_use_anchors_ = true
 
-[node name="Item" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer" groups=["inventaire"]]
+custom_minimum_size = Vector2(416, 248)
+layout_mode = 2
+columns = 5
+
+[node name="Item" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item2" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item2" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item15" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item3" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item16" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item4" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item17" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item5" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item18" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item6" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item19" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item7" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item20" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item8" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item21" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item9" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item22" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item10" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item23" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item11" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item24" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Item12" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_p3t1a")]
 layout_mode = 2
-tooltip_text = ""
+item_quantity = 2
 texture_np = NodePath("TextureBorder/TextureRect")
 label_np = NodePath("Separator/Label")
 
-[node name="Item25" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/TabContainer/Table de Craft/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420635
+anchor_top = 0.356979
+anchor_right = 0.984127
+anchor_bottom = 0.382151
+metadata/_edit_use_anchors_ = true
 
-[node name="Item26" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
+[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/TabContainer/Table de Craft/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420635
+anchor_right = 0.984127
+anchor_bottom = 0.359268
+metadata/_edit_use_anchors_ = true
 
-[node name="Item27" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2"]
 layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="Item28" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer"]
 layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
 
-[node name="Item29" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Label" type="Label" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
+size_flags_vertical = 0
+text = "PIGEON"
+label_settings = SubResource("LabelSettings_p3t1a")
 
-[node name="Item3" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer"]
 layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
+size_flags_vertical = 0
 
-[node name="Item4" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
+[node name="Label2" type="Label" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
+size_flags_vertical = 0
+text = "Pigeon mythique de qualité, vous avez le choix entre avoir votre propre animal de compagnie dans cette aventure ou de le cuissiner pour goûter à la gastronomie française du Moyen-Âge "
+label_settings = SubResource("LabelSettings_s3pgy")
+autowrap_mode = 3
 
-[node name="Item5" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/TabContainer/Table de Craft/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.4
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Item6" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
-
-[node name="Item7" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
-
-[node name="Item8" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
-
-[node name="Item9" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
-
-[node name="Item10" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
-
-[node name="Item11" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
-
-[node name="Item12" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
-
-[node name="Item13" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
-
-[node name="Item14" parent="PanelContainer/TabBar/Inventory/Control/Control/GridContainer" instance=ExtResource("1_p3t1a")]
-layout_mode = 2
-tooltip_text = ""
-texture_np = NodePath("TextureBorder/TextureRect")
-label_np = NodePath("Separator/Label")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qovhq")
+}

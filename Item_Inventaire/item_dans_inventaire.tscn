@@ -1,35 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://begmig8smmiwp"]
+[gd_scene load_steps=6 format=3 uid="uid://begmig8smmiwp"]
 
 [ext_resource type="Script" uid="uid://dhh7wmwg7q3xj" path="res://Scripts/ItemSlot.gd" id="1_06yv8"]
-[ext_resource type="Texture2D" uid="uid://dthp4b2c2p7e1" path="res://bois.png" id="2_06yv8"]
+[ext_resource type="StyleBox" uid="uid://cvcg8svfvko7" path="res://Item_Inventaire/Autre/IDI_Survole.tres" id="3_1ja3o"]
+[ext_resource type="Script" uid="uid://fngxva8vtll2" path="res://Item_Inventaire/Script/Item_Preview.gd" id="3_7fuv6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7fuv6"]
-bg_color = Color(0.16, 0.16, 0.16, 1)
-border_width_left = 10
-border_width_top = 10
-border_width_right = 10
-border_width_bottom = 10
-border_color = Color(0.114897, 0.114897, 0.114897, 1)
-border_blend = true
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
+[sub_resource type="SystemFont" id="SystemFont_xdeyh"]
+font_names = PackedStringArray("Rubik")
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_47iff"]
+font = SubResource("SystemFont_xdeyh")
 font_size = 32
 shadow_size = 3
 shadow_color = Color(0, 0, 0, 0.784314)
 
-[node name="Item" type="Control"]
+[node name="Item" type="TextureButton"]
 custom_minimum_size = Vector2(80, 80)
-layout_mode = 3
+anchors_preset = -1
 anchor_right = 0.0694444
 anchor_bottom = 0.123457
-tooltip_text = "Bois"
+offset_right = 4.57764e-05
+button_mask = 7
 script = ExtResource("1_06yv8")
-item_texture = ExtResource("2_06yv8")
-item_quantity = -9
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="Panel" parent="."]
@@ -38,9 +30,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -0.000137329
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_7fuv6")
+pivot_offset = Vector2(114, 71)
+theme_override_styles/panel = ExtResource("3_1ja3o")
 
 [node name="TextureBorder" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -57,7 +51,6 @@ theme_override_constants/margin_bottom = 5
 [node name="TextureRect" type="TextureRect" parent="TextureBorder"]
 texture_filter = 3
 layout_mode = 2
-texture = ExtResource("2_06yv8")
 
 [node name="Separator" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -76,10 +69,80 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
 [node name="Label" type="Label" parent="Separator"]
+visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-text = "-9"
+text = "1"
 label_settings = SubResource("LabelSettings_47iff")
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(78, -29)
+script = ExtResource("3_7fuv6")
+
+[node name="Background" type="Panel" parent="Sprite2D"]
+custom_minimum_size = Vector2(80, 80)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+offset_right = 39.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(114, 71)
+theme_override_styles/panel = ExtResource("3_1ja3o")
+
+[node name="TextureBorder" type="MarginContainer" parent="Sprite2D"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 9.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="TextureRect" type="TextureRect" parent="Sprite2D/TextureBorder"]
+texture_filter = 3
+layout_mode = 2
+
+[node name="Separator" type="MarginContainer" parent="Sprite2D"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 39.0
+offset_bottom = 44.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="Sprite2D/Separator"]
+visible = false
+texture_filter = 1
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "1"
+label_settings = SubResource("LabelSettings_47iff")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
