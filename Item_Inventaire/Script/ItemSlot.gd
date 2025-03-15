@@ -9,7 +9,7 @@ var holded := false
 	set(value):
 		assign_item = (value as InventoryItem)
 		if value != null:
-			item_name = (assign_item.item as UniqueItem).name
+			item_name = str((assign_item.item as UniqueItem).name)
 			item_texture = (assign_item.item as UniqueItem).texture
 			item_quantity = assign_item.quantity
 

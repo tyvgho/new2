@@ -22,7 +22,7 @@ func refresh_gui():
 func clear_inventory():
 	inventory.resize(total_slots)
 	for i in range(total_slots):
-		inventory[i] = InventoryItem.new(empty_item, 0)
+		inventory[i] = InventoryItem.new(UniqueItem.empty_item, 0)
 	refresh_gui()
 
 ## Equivalent of Shift+Click in Minecraft

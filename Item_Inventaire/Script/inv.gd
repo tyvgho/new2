@@ -1,6 +1,8 @@
-extends Control
+## Script qui gère l'inventaire du joueur et de HUD des éléments comme la table de craft
+class_name PlayerInventory extends Control
 
 var inventory = [] : set = _set_inventory
+@export var anim : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,3 +21,9 @@ func update_inventory():
 		for item in inventory:
 			inv.add_child(item)
 
+func _process(delta):
+	if Input.is_action_just_pressed("e"):
+		if visible:
+			anim.play("hide")
+		else:
+			anim.play("show")

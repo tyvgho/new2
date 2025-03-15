@@ -30,6 +30,10 @@ directories/dtl_directory={}
 
 project/assembly_name="new"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/User/Documents/Godot Project/Movie/movie.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/simplegrasstextured/plugin.cfg")

@@ -6,7 +6,7 @@
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="2_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://cbmunrfvtr6i8" path="res://Scènes/entiter/player.tscn" id="3_tlwt5"]
 [ext_resource type="Script" uid="uid://dnwjmyxebmppo" path="res://Scripts/generate_trees.gd" id="4_aqk2v"]
-[ext_resource type="Texture2D" uid="uid://b61a2v0f2iihu" path="res://Temporaire/PERFECTION2.png" id="4_ioo17"]
+[ext_resource type="Texture2D" uid="uid://b61a2v0f2iihu" path="res://Temp/PERFECTION2.png" id="4_ioo17"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="4_wse8f"]
 [ext_resource type="PackedScene" uid="uid://yqsun10iqvll" path="res://Scènes/loading_screen.tscn" id="5_036b0"]
 

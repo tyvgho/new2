@@ -5,6 +5,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_s3pgy"]
 font_names = PackedStringArray("Consolas")
+subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
 [sub_resource type="LabelSettings" id="LabelSettings_p3t1a"]
@@ -182,7 +183,7 @@ _data = {
 &"show": SubResource("Animation_pfl63")
 }
 
-[node name="Inventaire" type="Control"]
+[node name="Inventaire" type="Control" node_paths=PackedStringArray("anim")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -191,6 +192,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 324)
 script = ExtResource("1_pfl63")
+anim = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
