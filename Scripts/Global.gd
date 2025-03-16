@@ -13,19 +13,32 @@ var player_aute_bar := [
 	{"name": "", "count": 0}
 ]
 
+var bois = preload("res://Item_Inventaire/Items/Bois.tres")
+var pierre = preload("res://Item_Inventaire/Items/Pierre.tres")
+
 var player_main_object := 0
 var player_inventaire = {}  # Utilisation d'un Dictionary
+var inventaire_player = [
+	InventoryItem.new(bois, 10),
+	InventoryItem.new(pierre, 10),
+	InventoryItem.new(bois, 5),
+	InventoryItem.new(pierre, 1),
+	InventoryItem.new(bois, 2),
+]
 var max_slots = 30
 var stack = 64  # Quantité max par stack
+var holded_item = null
+
 
 func _ready() -> void:
 	# Initialise l'inventaire avec des slots vides
 	for i in range(max_slots):
 		player_inventaire[i] = casse_vide.duplicate()
 
-func player_inventaire_give(loote: Dictionary):
-	print(loote, len(player_inventaire))
 
+func player_inventair_give(loote: Dictionary):
+	print(loote, len(player_inventaire))
+	"""
 	var found = false
 	var give_place = -1
 
@@ -44,3 +57,4 @@ func player_inventaire_give(loote: Dictionary):
 		player_inventaire[give_place] = loote.duplicate()
 
 	print("Inventaire mis à jour:", player_inventaire)
+	"""

@@ -1,15 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbmunrfvtr6i8"]
+[gd_scene load_steps=6 format=3 uid="uid://cbmunrfvtr6i8"]
 
 [ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scènes/entiter/player_new.gd" id="1_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://cyxdvxtasn3pr" path="res://Scènes/entiter/pereso_moche.tscn" id="2_7ls07"]
 [ext_resource type="PackedScene" uid="uid://hkupo7e8holj" path="res://Item_Inventaire/hotbar.tscn" id="4_3hbnb"]
+[ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Inv.tscn" id="4_82oue"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5u6vl"]
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("Inventaire_I")]
 collision_layer = 129
 collision_mask = 13
 script = ExtResource("1_3hbnb")
+Inventaire_I = NodePath("twistPivot/PichtPivot/Camera3D/UI/Inventaire")
 
 [node name="twistPivot" type="Node3D" parent="."]
 
@@ -49,11 +51,15 @@ max_value = 20.0
 value = 20.0
 
 [node name="Hotbar" parent="twistPivot/PichtPivot/Camera3D/UI" instance=ExtResource("4_3hbnb")]
+visible = false
 layout_mode = 1
 offset_left = 358.0
 offset_top = 505.0
 offset_right = 358.0
 offset_bottom = 505.0
+
+[node name="Inventaire" parent="twistPivot/PichtPivot/Camera3D/UI" instance=ExtResource("4_82oue")]
+layout_mode = 1
 
 [node name="Timer2" type="Timer" parent="."]
 wait_time = 0.5

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://8tbl3ceyi8rt"]
+
+[ext_resource type="Script" uid="uid://dwtl6gk6ww4nn" path="res://Scènes/map/Table de craft.gd" id="1_b2myr"]
+[ext_resource type="PackedScene" uid="uid://cu1x3b20l71qe" path="res://Scènes/map/workbench.tscn" id="2_016ch"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b2myr"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_016ch"]
+sky_material = SubResource("ProceduralSkyMaterial_b2myr")
+
+[sub_resource type="Environment" id="Environment_wo3fv"]
+background_mode = 2
+sky = SubResource("Sky_016ch")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wo3fv"]
+size = Vector3(1, 1.52466, 1.5681)
+
+[node name="Node3D" type="StaticBody3D"]
+script = ExtResource("1_b2myr")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_wo3fv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38685, 0)
+billboard = 2
+shaded = true
+text = "Etablie
+"
+
+[node name="workbench" parent="." instance=ExtResource("2_016ch")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.759644, 0.00495148)
+shape = SubResource("BoxShape3D_wo3fv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-3.69402e-08, -0.534618, 0.845094, -2.33689e-08, 0.845094, 0.534618, -1, 0, -4.37114e-08, 1.35945, 1.67381, 0)

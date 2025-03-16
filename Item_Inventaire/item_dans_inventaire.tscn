@@ -1,8 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://begmig8smmiwp"]
+[gd_scene load_steps=9 format=3 uid="uid://begmig8smmiwp"]
 
 [ext_resource type="Script" uid="uid://dhh7wmwg7q3xj" path="res://Item_Inventaire/Script/ItemSlot.gd" id="1_06yv8"]
+[ext_resource type="Resource" uid="uid://cvr7di7xcj2i3" path="res://Item_Inventaire/Items/Pierre.tres" id="2_47iff"]
 [ext_resource type="StyleBox" uid="uid://cvcg8svfvko7" path="res://Item_Inventaire/Autre/IDI_Survole.tres" id="3_1ja3o"]
-[ext_resource type="Script" uid="uid://fngxva8vtll2" path="res://Item_Inventaire/Script/Item_Preview.gd" id="3_7fuv6"]
+[ext_resource type="Script" uid="uid://bh2uei0kr7gtu" path="res://Item_Inventaire/Script/InventoryItem.gd" id="3_16x5t"]
+[ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://Item_Inventaire/Textures/pierre.png" id="4_1d7t0"]
+
+[sub_resource type="Resource" id="Resource_24qqq"]
+script = ExtResource("3_16x5t")
+item = ExtResource("2_47iff")
+quantity = 0
+metadata/_custom_type_script = "uid://bh2uei0kr7gtu"
 
 [sub_resource type="SystemFont" id="SystemFont_xdeyh"]
 font_names = PackedStringArray("Rubik")
@@ -20,8 +28,12 @@ anchors_preset = -1
 anchor_right = 0.0694444
 anchor_bottom = 0.123457
 offset_right = 4.57764e-05
+tooltip_text = "Pierre"
 button_mask = 7
 script = ExtResource("1_06yv8")
+assign_item = SubResource("Resource_24qqq")
+item_name = "Pierre"
+item_texture = ExtResource("4_1d7t0")
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="Panel" parent="."]
@@ -51,6 +63,7 @@ theme_override_constants/margin_bottom = 5
 [node name="TextureRect" type="TextureRect" parent="TextureBorder"]
 texture_filter = 3
 layout_mode = 2
+texture = ExtResource("4_1d7t0")
 
 [node name="Separator" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -73,70 +86,7 @@ visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
-text = "1"
-label_settings = SubResource("LabelSettings_47iff")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(78, -29)
-script = ExtResource("3_7fuv6")
-
-[node name="Background" type="Panel" parent="Sprite2D"]
-custom_minimum_size = Vector2(80, 80)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -40.0
-offset_right = 39.0
-offset_bottom = 39.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(114, 71)
-theme_override_styles/panel = ExtResource("3_1ja3o")
-
-[node name="TextureBorder" type="MarginContainer" parent="Sprite2D"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 9.0
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="TextureRect" type="TextureRect" parent="Sprite2D/TextureBorder"]
-texture_filter = 3
-layout_mode = 2
-
-[node name="Separator" type="MarginContainer" parent="Sprite2D"]
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -1.0
-offset_top = -1.0
-offset_right = 39.0
-offset_bottom = 44.0
-grow_horizontal = 0
-grow_vertical = 0
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 0
-
-[node name="Label" type="Label" parent="Sprite2D/Separator"]
-visible = false
-texture_filter = 1
-custom_minimum_size = Vector2(40, 40)
-layout_mode = 2
-text = "1"
+text = "0"
 label_settings = SubResource("LabelSettings_47iff")
 horizontal_alignment = 2
 vertical_alignment = 2

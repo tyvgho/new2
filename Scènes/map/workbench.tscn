@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cu1x3b20l71qe"]
+
+[ext_resource type="PackedScene" uid="uid://dn1ik5hf8ccmg" path="res://Scènes/entiter/workbench.glb" id="1_pj0ww"]
+
+[node name="workbench" instance=ExtResource("1_pj0ww")]

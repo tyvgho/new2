@@ -27,16 +27,16 @@ func _process(_delta):
 	if Input.is_action_just_pressed("left_click"):
 		print("Reloading Terrain")
 		generate_terrain()
-	if Input.is_action_just_pressed("tire"):
-		print("Teleporting Ball")
-		if balle:
-			balle.global_position = get_viewport().get_camera_3d().global_position
-			balle.set_deferred("linear_velocity", Vector2.ZERO)
-			balle.set_deferred("angular_velocity", 0)
-			balle.set_deferred("constant_force", Vector2.ZERO)
-			balle.rotation_degrees = Vector3.ZERO
-		else:
-			push_error("No ball found")
+	# if Input.is_action_just_pressed("tire"):
+	# 	print("Teleporting Ball")
+	# 	if balle:
+	# 		balle.global_position = get_viewport().get_camera_3d().global_position
+	# 		balle.set_deferred("linear_velocity", Vector2.ZERO)
+	# 		balle.set_deferred("angular_velocity", 0)
+	# 		balle.set_deferred("constant_force", Vector2.ZERO)
+	# 		balle.rotation_degrees = Vector3.ZERO
+	# 	else:
+	# 		push_error("No ball found")
 	if grass and player:
 		grass.set_player_position(player.global_position)
 

@@ -19,6 +19,7 @@ var inventair_ouver = false
 @onready var constructoin = $twistPivot/PichtPivot/plasse_constructoin
 @onready var twist_pivot = $twistPivot
 @onready var picht_pivot = $twistPivot/PichtPivot
+@export var Inventaire_I : PlayerInventory
 @onready var timer = $Timer2
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -62,16 +63,20 @@ func _process(delta: float) -> void:
 		Global.player_is_attacking = false
 		
 	if Input.is_action_just_pressed("e"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		if inventair_ouver == false :
-			inventair_instance = inventair.instantiate()
-			add_child(inventair_instance)
-			inventair_ouver = true
-		else:
-			remove_child(inventair_instance)
-			inventair_instance.queue_free()
-			inventair_instance = null
-			inventair_ouver = false
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		Inventaire_I.visible = not Inventaire_I.visible
+
+
+		# if inventair_ouver == false :
+		# 	inventair_instance = inventair.instantiate()
+		# 	add_child(inventair_instance)
+		# 	inventair_ouver = true
+		# else:
+		# 	remove_child(inventair_instance)
+		# 	inventair_instance.queue_free()
+		# 	inventair_instance = null
+		# 	inventair_ouver = false
+		
 	if Input.is_action_just_pressed("vue"):
 		print(Global.player_inventaire)
 		if $twistPivot/PichtPivot/Camera3D.position == Vector3(0,1.6,3):
