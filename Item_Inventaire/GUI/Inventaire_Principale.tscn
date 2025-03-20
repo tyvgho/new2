@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnu6yk3okg6xw"]
+
+[ext_resource type="Script" uid="uid://b154ca82c0th7" path="res://Item_Inventaire/Script/item_container.gd" id="1_t4m1p"]
+
+[sub_resource type="SystemFont" id="SystemFont_s3pgy"]
+font_names = PackedStringArray("Consolas")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_p3t1a"]
+font = SubResource("SystemFont_s3pgy")
+font_size = 32
+outline_size = 2
+shadow_size = 8
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_s3pgy"]
+font = SubResource("SystemFont_s3pgy")
+font_color = Color(0.381703, 0.381703, 0.381703, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Inventory" type="MarginContainer"]
+custom_minimum_size = Vector2(806.4, 487.4)
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+metadata/_tab_index = 0
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+custom_minimum_size = Vector2(426, 258)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420899
+anchor_top = 0.38032
+anchor_right = 0.984391
+anchor_bottom = 0.970709
+offset_left = 3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="Control/PanelContainer/MarginContainer" groups=["inventaire"]]
+custom_minimum_size = Vector2(416, 248)
+layout_mode = 2
+columns = 5
+script = ExtResource("1_t4m1p")
+
+[node name="HSeparator" type="HSeparator" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420635
+anchor_top = 0.356979
+anchor_right = 0.984127
+anchor_bottom = 0.382151
+metadata/_edit_use_anchors_ = true
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.420635
+anchor_right = 0.984127
+anchor_bottom = 0.359268
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer2"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/PanelContainer2/MarginContainer"]
+layout_mode = 2
+
+[node name="InvItemName" type="Label" parent="Control/PanelContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+text = "PIGEON"
+label_settings = SubResource("LabelSettings_p3t1a")
+
+[node name="HSeparator" type="HSeparator" parent="Control/PanelContainer2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="InvItemDesc" type="Label" parent="Control/PanelContainer2/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Pigeon mythique de qualité, vous avez le choix entre avoir votre propre animal de compagnie dans cette aventure ou de le cuissiner pour goûter à la gastronomie française du Moyen-Âge "
+label_settings = SubResource("LabelSettings_s3pgy")
+autowrap_mode = 3
+
+[node name="VSeparator" type="VSeparator" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.4
+anchor_right = 0.4
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true

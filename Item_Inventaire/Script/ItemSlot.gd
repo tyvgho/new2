@@ -80,4 +80,6 @@ func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if get_parent() is InventoryGUI:
+				update_item()
 				(get_parent() as InventoryGUI).item_clicked.emit(assign_item, get_index(),event.button_index)
+				

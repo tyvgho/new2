@@ -22,6 +22,7 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 @tool
+class_name Grass
 extends MultiMeshInstance3D
 
 ## Define your custom mesh per grass, you can open a .obj, .mesh, etc, or can 

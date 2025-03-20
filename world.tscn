@@ -98,12 +98,13 @@ shadow_enabled = true
 shadow_bias = 0.01
 script = ExtResource("1_ioo17")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("balle", "loading", "grass")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("balle", "loading", "player", "grass")]
 skeleton = NodePath("")
 script = ExtResource("1_f3sb7")
 balle = NodePath("../RigidBody3D")
 object_per_loading_refresh = 100
 loading = NodePath("../Control")
+player = NodePath("../player")
 grass = NodePath("SimpleGrassTextured")
 grass_randomness = 3.0
 size = 128

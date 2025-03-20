@@ -32,25 +32,6 @@ func _on_item_clicked(item : InventoryItem, index : int, click_type : int = MOUS
 	else:
 		Global.holded_item = set_item_at_pos_clever(Global.holded_item if Global.holded_item != null else InventoryItem.empty_item, index)
 	(get_child(index) as ItemSlot).update_item()
-	# # Si le joueur ne tiens pas d'item
-	# if item.item == UniqueItem.empty_item:
-	# 	if Global.holded_item != null:
-	# 		set_item_at_pos(Global.holded_item, index)
-	# 		Global.holded_item = null
-	# # Si il tient quelque chose
-	# elif item.item != UniqueItem.empty_item and Global.holded_item == null:
-	# 	Global.holded_item = item
-	# 	set_item_at_pos(InventoryItem.new(UniqueItem.empty_item, 0), index)
-
-	# # Si il tient quelque chose et que le slot est occupé
-	# elif item.item != UniqueItem.empty_item and Global.holded_item != null:
-	# 	var holded_item = Global.holded_item
-	# 	Global.holded_item = item
-	# 	set_item_at_pos(holded_item, index)
-	
-	# # Si il tient rien et que le slot est vide
-	# else:
-	# 	empty_slot_clicked.emit(index)
 
 func refresh_gui():
 	for child in get_children():

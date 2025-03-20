@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ttjcur0cb6dj"]
+[gd_scene load_steps=11 format=3 uid="uid://ttjcur0cb6dj"]
 
-[ext_resource type="Script" uid="uid://djdlowj656t5i" path="res://Item_Inventaire/Script/inv.gd" id="1_pfl63"]
-[ext_resource type="Script" uid="uid://b154ca82c0th7" path="res://Item_Inventaire/Script/grid_container.gd" id="2_qovhq"]
+[ext_resource type="Script" uid="uid://djdlowj656t5i" path="res://Item_Inventaire/Script/player_inventory.gd" id="1_bpfiy"]
+[ext_resource type="PackedScene" uid="uid://cnu6yk3okg6xw" path="res://Item_Inventaire/GUI/Inventaire_Principale.tscn" id="2_p8sma"]
+[ext_resource type="Script" uid="uid://b154ca82c0th7" path="res://Item_Inventaire/Script/item_container.gd" id="3_rw8cy"]
 
 [sub_resource type="SystemFont" id="SystemFont_s3pgy"]
 font_names = PackedStringArray("Consolas")
@@ -191,7 +192,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(576, 324)
-script = ExtResource("1_pfl63")
+script = ExtResource("1_bpfiy")
 anim = NodePath("AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="."]
@@ -216,99 +217,8 @@ grow_vertical = 2
 layout_mode = 2
 current_tab = 0
 
-[node name="Inventory" type="MarginContainer" parent="PanelContainer/TabContainer"]
+[node name="Inventory" parent="PanelContainer/TabContainer" instance=ExtResource("2_p8sma")]
 layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
-metadata/_tab_index = 0
-
-[node name="Control" type="Control" parent="PanelContainer/TabContainer/Inventory"]
-layout_mode = 2
-
-[node name="PanelContainer" type="PanelContainer" parent="PanelContainer/TabContainer/Inventory/Control"]
-custom_minimum_size = Vector2(426, 258)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.420899
-anchor_top = 0.38032
-anchor_right = 0.984391
-anchor_bottom = 0.970709
-offset_left = 3.05176e-05
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 5
-
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer/MarginContainer" groups=["inventaire"]]
-custom_minimum_size = Vector2(416, 248)
-layout_mode = 2
-columns = 5
-script = ExtResource("2_qovhq")
-
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/TabContainer/Inventory/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.420635
-anchor_top = 0.356979
-anchor_right = 0.984127
-anchor_bottom = 0.382151
-metadata/_edit_use_anchors_ = true
-
-[node name="PanelContainer2" type="PanelContainer" parent="PanelContainer/TabContainer/Inventory/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.420635
-anchor_right = 0.984127
-anchor_bottom = 0.359268
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2"]
-layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer"]
-layout_mode = 2
-
-[node name="InvItemName" type="Label" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 0
-text = "PIGEON"
-label_settings = SubResource("LabelSettings_p3t1a")
-
-[node name="HSeparator" type="HSeparator" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-
-[node name="InvItemDesc" type="Label" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-size_flags_vertical = 0
-text = "Pigeon mythique de qualité, vous avez le choix entre avoir votre propre animal de compagnie dans cette aventure ou de le cuissiner pour goûter à la gastronomie française du Moyen-Âge "
-label_settings = SubResource("LabelSettings_s3pgy")
-autowrap_mode = 3
-
-[node name="VSeparator" type="VSeparator" parent="PanelContainer/TabContainer/Inventory/Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.4
-anchor_right = 0.4
-anchor_bottom = 0.95
-grow_horizontal = 2
-grow_vertical = 2
-metadata/_edit_use_anchors_ = true
 
 [node name="Table de Craft" type="MarginContainer" parent="PanelContainer/TabContainer"]
 visible = false
@@ -346,7 +256,7 @@ theme_override_constants/margin_bottom = 5
 custom_minimum_size = Vector2(416, 248)
 layout_mode = 2
 columns = 5
-script = ExtResource("2_qovhq")
+script = ExtResource("3_rw8cy")
 
 [node name="HSeparator" type="HSeparator" parent="PanelContainer/TabContainer/Table de Craft/Control"]
 layout_mode = 1

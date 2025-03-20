@@ -1,13 +1,10 @@
 ## Script qui gère l'inventaire du joueur et de HUD des éléments comme la table de craft
 class_name PlayerInventory extends Control
 
-var bois = preload("res://Item_Inventaire/Items/Bois.tres")
-var pierre = preload("res://Item_Inventaire/Items/Pierre.tres")
-
 var inventory = Global.inventaire_player : set = _set_inventory
 
 var total_slots = 5*3
-@export var holded_item_instance : Item_Preview = preload("res://Item_Inventaire/hovered_item.tscn").instantiate()
+@export var holded_item_instance : Item_Preview = preload("res://Item_Inventaire/held_item.tscn").instantiate()
 @export var anim : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
@@ -27,16 +24,16 @@ func _set_inventory(value):
 		inv.refresh_gui()
 
 func _on_item_clicked(item : InventoryItem, _index : int, _click_type : int = MOUSE_BUTTON_LEFT):
-	%InvItemName.text = item.item.name
-	%InvItemDesc.text = item.item.description
+	$"PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer/Label".text = item.item.name if item.item else ""
+	$"PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer/Label2".text = item.item.description if item.item else ""
 
 func _process(_delta):
 	if holded_item_instance:
 		holded_item_instance.visible = Global.holded_item != null
 		holded_item_instance.item = Global.holded_item
 
-	if Input.is_action_just_pressed("e"):
-		if visible:
-			anim.play("hide")
-		else:
-			anim.play("show")
+func open_inventory(_tab : int = 0):
+	anim.play("show")
+
+func close_inventory():
+	anim.play("hide")

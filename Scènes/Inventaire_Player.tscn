@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://deyr2eqe7eco7"]
 
-[ext_resource type="Script" uid="uid://cq7wnbqy5u7ey" path="res://Item_Inventaire/Script/Inventaire_Player.gd" id="1_kokl1"]
+[ext_resource type="Script" uid="uid://cq7wnbqy5u7ey" path="res://Item_Inventaire/Script/Inventaire_Player_quentin.gd" id="1_kokl1"]
 [ext_resource type="Texture2D" uid="uid://colmsqy8c2ikq" path="res://Inventaire.png" id="2_uxctc"]
 
 [sub_resource type="Animation" id="Animation_1ewfj"]

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dpityi1r28a7i"
 path.s3tc="res://.godot/imported/wood_floor_nor_gl_4k.jpg-c5159159405b4ac78a63a3bfd509f4b0.s3tc.ctex"
+path.etc2="res://.godot/imported/wood_floor_nor_gl_4k.jpg-c5159159405b4ac78a63a3bfd509f4b0.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Temp/wood_floor_4k.gltf/textures/wood_floor_nor_gl_4k.jpg"
-dest_files=["res://.godot/imported/wood_floor_nor_gl_4k.jpg-c5159159405b4ac78a63a3bfd509f4b0.s3tc.ctex"]
+dest_files=["res://.godot/imported/wood_floor_nor_gl_4k.jpg-c5159159405b4ac78a63a3bfd509f4b0.s3tc.ctex", "res://.godot/imported/wood_floor_nor_gl_4k.jpg-c5159159405b4ac78a63a3bfd509f4b0.etc2.ctex"]
 
 [params]
 

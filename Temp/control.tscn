@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxqp52c5svfal"]
 
 [ext_resource type="Texture2D" uid="uid://dfxyqligobvbm" path="res://Temp/sceenshot.png" id="1_x5u2r"]
-[ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Inv.tscn" id="2_7obef"]
+[ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Player_Inventory.tscn" id="2_7obef"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

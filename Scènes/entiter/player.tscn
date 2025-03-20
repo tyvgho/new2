@@ -1,11 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbmunrfvtr6i8"]
+[gd_scene load_steps=7 format=3 uid="uid://cbmunrfvtr6i8"]
 
 [ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scènes/entiter/player_new.gd" id="1_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://cyxdvxtasn3pr" path="res://Scènes/entiter/pereso_moche.tscn" id="2_7ls07"]
 [ext_resource type="PackedScene" uid="uid://hkupo7e8holj" path="res://Item_Inventaire/hotbar.tscn" id="4_3hbnb"]
-[ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Inv.tscn" id="4_82oue"]
+[ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Player_Inventory.tscn" id="4_82oue"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5u6vl"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_82oue"]
+radius = 1.0
+height = 2.0
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("Inventaire_I")]
 collision_layer = 129
@@ -23,6 +27,7 @@ transform = Transform3D(-0.122322, -5.5724e-05, 2.24767e-05, -4.79961e-05, 0.118
 
 [node name="Camera3D" type="Camera3D" parent="twistPivot/PichtPivot"]
 transform = Transform3D(0.999849, 0.0044944, -0.0167733, -0.0044944, 0.99999, 3.7536e-05, 0.0167733, 3.78489e-05, 0.999859, 0, 0.7, 0)
+cull_mask = 983039
 current = true
 
 [node name="UI" type="Control" parent="twistPivot/PichtPivot/Camera3D"]
@@ -71,4 +76,11 @@ shape = SubResource("CapsuleShape3D_5u6vl")
 [node name="Node3D" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0911705, 1.27928, -0.356332)
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.728805, 0)
+layers = 65536
+mesh = SubResource("SphereMesh_82oue")
+
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+
+[editable path="twistPivot/PichtPivot/pereso_moche"]

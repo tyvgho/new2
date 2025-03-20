@@ -5,9 +5,14 @@ extends MeshInstance3D
 @export var loading : LoadingScreen
 @export var player : Player
 @export_category("Grass")
-@export var grass : MultiMeshInstance3D
+@export var grass : Grass
 @export_range(0.0, 1.0) var density : float = 1.0
 @export_range(0.0, 3.0) var grass_randomness : float = 0.5
+@export_category("Trees")
+@export var trees : Array[PackedScene]
+@export var variation : float = 0.5
+@export var tree_height_spawnrate : Curve
+@export var tree_randomness : float = 0.5
 @export_category("Generator")
 @export var size : int = 256
 @export var max_height : int = 20
@@ -27,18 +32,8 @@ func _process(_delta):
 	if Input.is_action_just_pressed("left_click"):
 		print("Reloading Terrain")
 		generate_terrain()
-	# if Input.is_action_just_pressed("tire"):
-	# 	print("Teleporting Ball")
-	# 	if balle:
-	# 		balle.global_position = get_viewport().get_camera_3d().global_position
-	# 		balle.set_deferred("linear_velocity", Vector2.ZERO)
-	# 		balle.set_deferred("angular_velocity", 0)
-	# 		balle.set_deferred("constant_force", Vector2.ZERO)
-	# 		balle.rotation_degrees = Vector3.ZERO
-	# 	else:
-	# 		push_error("No ball found")
-	if grass and player:
-		grass.set_player_position(player.global_position)
+	if grass and player and grass is Grass:
+		SimpleGrass.set_player_position(player.global_position)
 
 func generate_terrain():
 	# Clean previous collision by erasing child
@@ -127,6 +122,45 @@ func generate_grass(start_height : int, map_height : int, map_aabb : AABB, spaci
 			loading.total = max_object_count
 		grass._update_multimesh()
 		grass.update_all_material()
+	else:
+		push_error("Grass not found")
+	await get_tree().process_frame
+	remove_child(col)
+	col.queue_free()
+
+func generate_trees(start_height : int, map_height : int, map_aabb : AABB, spacing : float):
+	var col = RayCast3D.new()
+	col.enabled = true
+	col.collide_with_bodies = true
+	col.collision_mask = 1
+	add_child(col)
+	#print("Generating trees")
+	var object_count = 0
+	var next_update = object_count + object_per_loading_refresh
+	var max_object_count = int((map_aabb.size.x/spacing) * (map_aabb.size.z/spacing))
+	if trees:
+		for x in range(0,map_aabb.size.x,spacing):
+			for z in range(0,map_aabb.size.z,spacing):
+				var variation = Vector3(randf_range(-tree_randomness*spacing, tree_randomness*spacing), 0, randf_range(-tree_randomness*spacing, tree_randomness*spacing))
+				col.global_position = Vector3(x, start_height + map_height,z) + variation
+				col.target_position = Vector3(0, -map_height, 0)  + variation
+				col.force_raycast_update()
+				if col.is_colliding():
+					var tree_position = (col.get_collision_point() if col.is_colliding() else Vector3(x, 0, z)) - Vector3(0, 0.33, 0)
+					var tree_normal = col.get_collision_normal() if col.is_colliding() else Vector3.UP
+					var random_rotation = randf_range(0, 2*PI)
+					#print("Grass: ", grass_position, grass_normal, Vector3.ONE, random_rotation)
+					trees.pick_random().instance().global_position = tree_position
+				object_count += 1
+				if object_count >= next_update:
+					if loading:
+						loading.current = object_count
+						loading.total = max_object_count
+					next_update += object_per_loading_refresh
+					await get_tree().process_frame
+		if loading:
+			loading.current = object_count
+			loading.total = max_object_count
 	else:
 		push_error("Grass not found")
 	await get_tree().process_frame
