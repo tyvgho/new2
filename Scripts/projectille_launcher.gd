@@ -3,6 +3,7 @@ extends Node3D
 @onready var timer : Timer = $Timer
 
 func _on_character_body_3d_projectile_fired() -> void:
+	pass
 	var attack = PROJECTILE.instantiate()
 	add_child(attack)
 	attack.global_transform = global_transform

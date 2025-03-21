@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://kfwutgjh3ilf"]
+
+[ext_resource type="PackedScene" uid="uid://xlh124sak8bp" path="res://model3D/outie.glb" id="1_3xfb6"]
+
+[node name="outie" instance=ExtResource("1_3xfb6")]

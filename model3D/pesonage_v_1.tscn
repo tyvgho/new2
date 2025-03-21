@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvyvxph0uum11"]
+
+[ext_resource type="PackedScene" uid="uid://dh5x3jgm1hi6e" path="res://model3D/pesonage-v1.glb" id="1_x2ldi"]
+
+[node name="pesonage-v1" instance=ExtResource("1_x2ldi")]

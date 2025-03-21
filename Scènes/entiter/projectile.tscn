@@ -1,7 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://lcjrvfoxdm8u"]
 
-[ext_resource type="Script" path="res://Scripts/projectile.gd" id="1_hrloy"]
-
+[ext_resource type="Script" uid="uid://f70esqvmnv46" path="res://Scripts/projectile.gd" id="1_hrloy"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_6fjl1"]
 top_radius = 0.0

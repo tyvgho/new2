@@ -6,6 +6,7 @@ var can_sprint := true
 var is_sprinting := false
 var can_open_inventory := true
 var can_move_camera := true
+var overrite_animation := false
 
 @export_category("Stats")
 var health = 100
@@ -31,7 +32,7 @@ var current_camera_fov = default_camera_fov
 @onready var constructoin = $twistPivot/PichtPivot/plasse_constructoin
 @onready var twist_pivot = $twistPivot
 @onready var picht_pivot = $twistPivot/PichtPivot
-@onready var animation : AnimationPlayer = $twistPivot/PichtPivot/pereso_moche/AnimationPlayer
+@onready var animation : AnimationPlayer = $"twistPivot/pesonage-v1/AnimationPlayer"
 @export var Inventaire_I : PlayerInventory
 @onready var timer = $Timer2
 # Called when the node enters the scene tree for the first time.
@@ -49,10 +50,10 @@ func _process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity") * delta * 5
 	
-	if input and can_move:
-		animation.play("ArmatureAction_001",-1 ,4 if is_sprinting else 1.5)
-	else:
-		animation.stop(true)
+	if input and can_move and not overrite_animation :
+		animation.play("cour" if is_sprinting else "marche" ,0.5 ,2)
+	elif not overrite_animation:
+		animation.play("imobile",0.5)
 	velocity = twist_pivot.basis * Vector3(input.x, velocity.y, input.z)
 	
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -75,6 +76,12 @@ func _process(delta: float) -> void:
 			$twistPivot/PichtPivot/Camera3D.position = Vector3(0,1.6,3)
 		
 	if Input.is_action_just_pressed("tire"):
+		if velocity == Vector3.ZERO:
+			force_animation("frape")
+		elif is_sprinting:
+			force_animation("cours_frape")
+		else :
+			force_animation("marche_frape")
 		emit_signal("projectile_fired")
 	Global.player_potion = position
 	move_and_slide()
@@ -107,6 +114,12 @@ func _sprint_process(_delta : float):
 		is_sprinting = false
 	var cam = get_viewport().get_camera_3d()
 	cam.fov = lerpf(cam.fov, current_camera_fov, _delta * 10)
+
+func force_animation(animation_to_play : StringName):
+	overrite_animation = true
+	animation.play(animation_to_play)
+	await animation.animation_finished
+	overrite_animation = false
 
 func _inventaire_process(_delta : float):
 	if Input.is_action_just_pressed("e") and can_open_inventory:

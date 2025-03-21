@@ -1,10 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://o6oo1oam76f5"]
+[gd_scene load_steps=3 format=3 uid="uid://o6oo1oam76f5"]
 
-[ext_resource type="Script" path="res://Scripts/projectille_launcher.gd" id="1_j3jbp"]
-
+[ext_resource type="Script" uid="uid://n7ggl6eiewv0" path="res://Scripts/projectille_launcher.gd" id="1_j3jbp"]
+[ext_resource type="PackedScene" uid="uid://lcjrvfoxdm8u" path="res://Scènes/entiter/projectile.tscn" id="2_ekg8x"]
 
 [node name="projectilleLauncher" type="Node3D"]
 script = ExtResource("1_j3jbp")
+PROJECTILE = ExtResource("2_ekg8x")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
