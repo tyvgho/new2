@@ -1659,7 +1659,7 @@ mesh = SubResource("ArrayMesh_skx70")
 skin = SubResource("Skin_p2xqi")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="twistPivot/pesonage-v1/Armature/Skeleton3D"]
-transform = Transform3D(-0.969953, -0.133746, -0.203234, -0.156204, 0.982777, 0.098742, 0.186527, 0.127521, -0.974139, -1.12255, 1.94577, 4.55884)
+transform = Transform3D(-0.969953, -0.133746, -0.203233, -0.156204, 0.982777, 0.0987424, 0.186526, 0.127521, -0.974139, -1.12256, 1.94577, 4.55884)
 bone_name = "Os.001_R.002"
 bone_idx = 7
 
