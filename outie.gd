@@ -1,50 +1,44 @@
 extends Node3D
 
-var current_tool = {"type": "", "material": ""}
+var current_tool = ""
 
 # Dictionnaire des outils disponibles (chaque outil est un MeshInstance3D)
 @onready var tools = {
-	"pickaxe": {
-		"wood": $"Cube_008",
-		"stone": $"Cube_011",
-		"iron": $"Cube",
-		"mithril": $"Cube_005"
-	},
-	"sword": {
-		"wood": $"Cube_006",
-		"stone": $"Cube_009",
-		"iron": $"Cube_002",
-		"mithril": $"Cube_003"
-	},
-	"axe": {
-		"wood": $"Cube_007",
-		"stone": $"Cube_010",
-		"iron": $"Cube_001",
-		"mithril": $"Cube_004"
-	}
+	"pioche bois":$Cube_008,
+	"pioche pierre":$Cube_011,
+	"pioche fer":$Cube,
+	"pioche mithril": $Cube_005,
+	"epee bois": $Cube_006,
+	"epee pierre": $Cube_009,
+	"epee fer": $Cube_002,
+	"epee mithril": $Cube_003,
+	"hache bois": $Cube_007,
+	"hache pierre": $Cube_010,
+	"hache fer": $Cube_001,
+	"hache mithril": $Cube_004
 }
 
+
 # Liste des outils pour changer d'arme avec "E"
-var tool_types = ["pickaxe", "sword", "axe"]
-var materials = ["wood", "stone", "iron", "mithril"]
+var tool_types = ["pioche", "epee", "hache"]
+var materials = ["bois", "pierre", "fer", "mithril"]
 var current_tool_index = 0
 var current_material_index = 0
 func _ready() -> void:
 	# Masquer tous les outils au début
 	for tool_type in tools:
-		for material in tools[tool_type]:
-			tools[tool_type][material].visible = false
+			tools[tool_type].visible = false
 
-func show_tool(tool_type: String, material: String):
+func show_tool(tool_key: String):
 	# Vérifie si l'outil demandé existe
-	if tool_type in tools and material in tools[tool_type]:
+	if tool_key in tools:
 		# Cacher l'outil précédent s'il existe
-		if current_tool["type"] != "" and current_tool["material"] != "":
-			tools[current_tool["type"]][current_tool["material"]].visible = false
-
+		if current_tool != "" and current_tool in tools:
+			
+			tools[current_tool].visible = false
 		# Afficher le nouvel outil
-		tools[tool_type][material].visible = true
-		current_tool = {"type": tool_type, "material": material}
+		tools[tool_key].visible = true
+		current_tool = tool_key
 
 func _input(event):
 	# Changer d'outil avec "E"
@@ -60,5 +54,6 @@ func change_tool():
 	current_material_index = (current_material_index + 1) % materials.size()
 	var new_material = materials[current_material_index]
 
-	show_tool(new_tool, new_material)
-	#print("Équipé :", new_tool, "en", new_material)
+	var new_tool_key = new_tool + " " + new_material
+	show_tool(new_tool_key)
+	print("Équipé :", new_tool_key)
