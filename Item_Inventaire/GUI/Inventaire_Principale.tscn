@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnu6yk3okg6xw"]
+[gd_scene load_steps=6 format=3 uid="uid://cnu6yk3okg6xw"]
 
 [ext_resource type="Script" uid="uid://b154ca82c0th7" path="res://Item_Inventaire/Script/item_container.gd" id="1_t4m1p"]
+[ext_resource type="PackedScene" uid="uid://begmig8smmiwp" path="res://Item_Inventaire/item_dans_inventaire.tscn" id="2_0dqvg"]
 
 [sub_resource type="SystemFont" id="SystemFont_s3pgy"]
 font_names = PackedStringArray("Consolas")
@@ -27,6 +28,81 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 metadata/_tab_index = 0
+
+[node name="PanelContainer3" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(301, 424)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer3"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Control" type="Control" parent="PanelContainer3/MarginContainer"]
+custom_minimum_size = Vector2(278, 0)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer3/MarginContainer/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.7, 0.7)
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer3/MarginContainer/Control/PanelContainer" groups=["inventaire"]]
+custom_minimum_size = Vector2(80, 248)
+layout_mode = 2
+script = ExtResource("1_t4m1p")
+slot_vertical = 4
+
+[node name="Item" parent="PanelContainer3/MarginContainer/Control/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
+
+[node name="Item2" parent="PanelContainer3/MarginContainer/Control/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
+
+[node name="Item3" parent="PanelContainer3/MarginContainer/Control/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
+
+[node name="Item4" parent="PanelContainer3/MarginContainer/Control/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
+
+[node name="Control2" type="Control" parent="PanelContainer3/MarginContainer"]
+custom_minimum_size = Vector2(278, 80)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="PanelContainer" type="PanelContainer" parent="PanelContainer3/MarginContainer/Control2"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.7, 0.7)
+
+[node name="GridContainer" type="GridContainer" parent="PanelContainer3/MarginContainer/Control2/PanelContainer" groups=["inventaire"]]
+custom_minimum_size = Vector2(416, 80)
+layout_mode = 2
+columns = 5
+script = ExtResource("1_t4m1p")
+slot_vertical = 4
+
+[node name="Item" parent="PanelContainer3/MarginContainer/Control2/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
+
+[node name="Item2" parent="PanelContainer3/MarginContainer/Control2/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
+
+[node name="Item3" parent="PanelContainer3/MarginContainer/Control2/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
+
+[node name="Item4" parent="PanelContainer3/MarginContainer/Control2/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
+
+[node name="Item5" parent="PanelContainer3/MarginContainer/Control2/PanelContainer/GridContainer" instance=ExtResource("2_0dqvg")]
+layout_mode = 2
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 2
@@ -107,9 +183,9 @@ autowrap_mode = 3
 [node name="VSeparator" type="VSeparator" parent="Control"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.4
-anchor_right = 0.4
-anchor_bottom = 0.95
+anchor_left = 0.396825
+anchor_right = 0.419312
+anchor_bottom = 0.949657
 grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true

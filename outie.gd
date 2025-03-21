@@ -61,4 +61,4 @@ func change_tool():
 	var new_material = materials[current_material_index]
 
 	show_tool(new_tool, new_material)
-	print("Équipé :", new_tool, "en", new_material)
+	#print("Équipé :", new_tool, "en", new_material)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scènes/entiter/player_new.gd" id="1_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://hkupo7e8holj" path="res://Item_Inventaire/hotbar.tscn" id="4_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Player_Inventory.tscn" id="4_82oue"]
-[ext_resource type="PackedScene" uid="uid://dlcsuj3n023ik" path="res://Scènes/outiel.tscn" id="4_li6sa"]
+[ext_resource type="PackedScene" path="res://Scènes/outiel.tscn" id="4_li6sa"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wamnf"]
 resource_name = "Material"
@@ -1659,11 +1659,11 @@ mesh = SubResource("ArrayMesh_skx70")
 skin = SubResource("Skin_p2xqi")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="twistPivot/pesonage-v1/Armature/Skeleton3D"]
-transform = Transform3D(-0.969953, -0.133746, -0.203234, -0.156204, 0.982777, 0.098742, 0.186527, 0.127521, -0.974139, -1.12255, 1.94577, 4.55884)
+transform = Transform3D(-0.969953, -0.133746, -0.203233, -0.156204, 0.982777, 0.0987424, 0.186526, 0.127521, -0.974139, -1.12256, 1.94577, 4.55884)
 bone_name = "Os.001_R.002"
 bone_idx = 7
 
-[node name="Node3D" parent="twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("4_li6sa")]
+[node name="ItemHelder" parent="twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D" instance=ExtResource("4_li6sa")]
 transform = Transform3D(0.192878, -3.1665e-08, 1.53302, -9.26643e-08, 1.54511, 3.12551e-08, -1.53302, -4.47035e-08, 0.192878, -0.215091, 2.57005, -0.0392899)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="twistPivot/pesonage-v1"]

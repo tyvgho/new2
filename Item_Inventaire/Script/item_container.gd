@@ -26,7 +26,6 @@ func _set_inventory(value):
 	refresh_gui()
 
 func _on_item_clicked(item : InventoryItem, index : int, click_type : int = MOUSE_BUTTON_LEFT):
-	
 	if item.item == UniqueItem.empty_item and Global.holded_item == null:
 		empty_slot_clicked.emit(index)
 	else:
