@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://hkupo7e8holj"]
+[gd_scene load_steps=5 format=3 uid="uid://hkupo7e8holj"]
 
 [ext_resource type="Script" uid="uid://b154ca82c0th7" path="res://Item_Inventaire/Script/item_container.gd" id="1_a8i1s"]
 [ext_resource type="PackedScene" uid="uid://begmig8smmiwp" path="res://Item_Inventaire/item_dans_inventaire.tscn" id="1_bjf5h"]
+[ext_resource type="Script" path="res://Item_Inventaire/Script/hotbar.gd" id="1_lo50f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8i1s"]
 bg_color = Color(0, 0.6, 0.6, 0.341176)
@@ -17,6 +18,8 @@ offset_right = 305.0
 offset_bottom = 115.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_lo50f")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0

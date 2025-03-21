@@ -4,6 +4,8 @@ class_name UniqueItem extends Resource
 @export var name : String;
 @export var description : String;
 @export var max_quantity : int;
+@export var model_name : StringName;
+@export var attributes : Dictionary = {};
 
 static var empty_item = UniqueItem.new(null, "", "", 0);
 
