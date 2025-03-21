@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://cbmunrfvtr6i8" path="res://Scènes/entiter/player.tscn" id="1_h70av"]
 [ext_resource type="PackedScene" uid="uid://drojwwrhpxrw" path="res://Scènes/entiter/monste/mob.v1.tscn" id="3_qfbph"]
-[ext_resource type="PackedScene" uid="uid://mnwoluiyw7y1" path="res://Scènes/map/Objet/Arbre.tscn" id="5_5owvv"]
+[ext_resource type="PackedScene" uid="uid://mnwoluiyw7y1" path="res://Scènes/map/Objet/arbre/Arbre (2).tscn" id="5_5owvv"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8romr"]
 resource_name = "Matériau"

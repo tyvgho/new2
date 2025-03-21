@@ -15,15 +15,17 @@ var player_aute_bar := [
 
 var bois = preload("res://Item_Inventaire/Items/Bois.tres")
 var pierre = preload("res://Item_Inventaire/Items/Pierre.tres")
+var pioche_bois = preload("res://Item_Inventaire/Items/pioche_bois.tres")
 
 var player_main_object := 0
 var player_inventaire = {}  # Utilisation d'un Dictionary
 var inventaire_player = [
 	InventoryItem.new(bois, 10),
 	InventoryItem.new(pierre, 10),
-	InventoryItem.new(bois, 5),
-	InventoryItem.new(pierre, 1),
+	InventoryItem.new(bois, 0),
+	InventoryItem.new(pierre, -1),
 	InventoryItem.new(bois, 2),
+	InventoryItem.new(pioche_bois,1)
 ]
 var max_slots = 30
 var stack = 64  # Quantité max par stack

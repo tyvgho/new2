@@ -1,11 +1,15 @@
-[gd_scene load_steps=27 format=4 uid="uid://7qsw3binuyo8"]
+[gd_scene load_steps=31 format=4 uid="uid://7qsw3binuyo8"]
 
 [ext_resource type="Texture2D" uid="uid://bjtdmaj3bmwyc" path="res://icon.svg" id="1_c7sms"]
 [ext_resource type="PackedScene" uid="uid://b6i1f8138slxy" path="res://Scènes/map/Objet/phare.tscn" id="1_mflfi"]
 [ext_resource type="PackedScene" uid="uid://cbmunrfvtr6i8" path="res://Scènes/entiter/player.tscn" id="2_nslow"]
 [ext_resource type="Script" uid="uid://bt6xcbcxqab1d" path="res://Scènes/map/directional_light_3d.gd" id="2_oiomw"]
+[ext_resource type="PackedScene" uid="uid://5nk3cmsx2nak" path="res://Scènes/map/Objet/arbre/arbre2.tscn" id="3_vdb78"]
+[ext_resource type="PackedScene" uid="uid://devp582dab7xn" path="res://Scènes/map/Objet/arbre/arbre3.tscn" id="4_2qsrt"]
 [ext_resource type="PackedScene" uid="uid://dw23pqlemekxd" path="res://Scènes/map/Objet/Roche.tscn" id="4_n5jkb"]
-[ext_resource type="PackedScene" uid="uid://mnwoluiyw7y1" path="res://Scènes/map/Objet/Arbre.tscn" id="5_g04gp"]
+[ext_resource type="PackedScene" uid="uid://mnwoluiyw7y1" path="res://Scènes/map/Objet/arbre/Arbre (2).tscn" id="5_g04gp"]
+[ext_resource type="PackedScene" uid="uid://02tra0rbi20r" path="res://Scènes/map/Objet/arbre/arbre4.tscn" id="5_rf62y"]
+[ext_resource type="PackedScene" uid="uid://bfmt3yurp1hss" path="res://Scènes/map/Objet/arbre/Arbre 5.tscn" id="6_4b807"]
 [ext_resource type="PackedScene" uid="uid://bva28dqq2pfp5" path="res://Scènes/entiter/monste/cactus.tscn" id="8_7fsxe"]
 [ext_resource type="PackedScene" uid="uid://dhwkt7m8w28lb" path="res://Scènes/entiter/cerf.tscn" id="8_tu5uj"]
 [ext_resource type="PackedScene" uid="uid://drojwwrhpxrw" path="res://Scènes/entiter/monste/mob.v1.tscn" id="9_6v428"]
@@ -162,13 +166,24 @@ script = ExtResource("2_oiomw")
 
 [node name="resource" type="Node3D" parent="obejet"]
 
-[node name="arbre" parent="obejet/resource" instance=ExtResource("5_g04gp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.163348, 17.9386)
-objet_type = "arbre"
-
 [node name="pierre" parent="obejet/resource" instance=ExtResource("4_n5jkb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.980479, 0)
 objet_type = "pierre"
+
+[node name="StaticBody3D" parent="obejet/resource" instance=ExtResource("3_vdb78")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.105026, 13.9314)
+
+[node name="StaticBody3D2" parent="obejet/resource" instance=ExtResource("4_2qsrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.91799, 0, 0)
+
+[node name="StaticBody3D3" parent="obejet/resource" instance=ExtResource("5_rf62y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.5882, 0, 0)
+
+[node name="StaticBody3D4" parent="obejet/resource" instance=ExtResource("6_4b807")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.118587, -0.21915, -7.25747)
+
+[node name="StaticBody3D5" parent="obejet/resource" instance=ExtResource("5_g04gp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0268259, 0.632007, 9.59035)
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="obejet"]
 transform = Transform3D(-1.31134e-07, 0, 3, 0, 3, 0, -3, 0, -1.31134e-07, 1.56673, 1.58255, -15.6817)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=4 uid="uid://cbmunrfvtr6i8"]
+[gd_scene load_steps=27 format=4 uid="uid://cbmunrfvtr6i8"]
 
 [ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scènes/entiter/player_new.gd" id="1_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://hkupo7e8holj" path="res://Item_Inventaire/hotbar.tscn" id="4_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Player_Inventory.tscn" id="4_82oue"]
 [ext_resource type="PackedScene" uid="uid://dlcsuj3n023ik" path="res://Scènes/outiel.tscn" id="4_li6sa"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_82oue"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wamnf"]
 resource_name = "Material"
@@ -1519,6 +1521,11 @@ offset_bottom = 505.0
 
 [node name="Inventaire" parent="twistPivot/PichtPivot/Camera3D/UI" instance=ExtResource("4_82oue")]
 layout_mode = 1
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="twistPivot/PichtPivot"]
+transform = Transform3D(-0.992512, 0.000183351, -0.122146, -0.117985, -0.260258, 0.958303, -0.0316139, 0.965539, 0.258331, 0.126425, 0.456249, -0.189881)
+shape = SubResource("SphereShape3D_82oue")
+debug_shape_custom_color = Color(0.854902, 0, 0, 1)
 
 [node name="pesonage-v1" type="Node3D" parent="twistPivot"]
 transform = Transform3D(-0.141273, -0.000964318, 0.0118636, 2.32831e-10, 0.141308, 0.011486, -0.0119028, 0.0114454, -0.140809, 0.0394768, 0.664267, 0.00528862)

@@ -1,4 +1,4 @@
-extends StaticBody3D
+class_name Generator extends StaticBody3D
 
 @export_enum("pierre", "arbre") var objet_type: String
 @export var vie: int = 80  # Permet d'éditer la vie directement dans l'inspecteur
@@ -29,9 +29,3 @@ func déga(nb: int) -> void:
 	else:
 		# Détruit l'objet quand sa vie tombe à 0
 		queue_free()
-
-# Déclenché lorsqu'une zone (comme une arme) entre en collision
-func _on_body_entered(area: Area3D) -> void:
-	print(area.collision_layer)
-	if area.collision_layer == 8:  # Vérifie la couche de collision
-		déga(2)
