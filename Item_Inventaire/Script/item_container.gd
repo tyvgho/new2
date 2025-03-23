@@ -14,7 +14,7 @@ const item_slot = preload("res://Item_Inventaire/item_dans_inventaire.tscn")
 const empty_item = preload("res://Item_Inventaire/Autre/item_vide.tres")
 
 func _ready():
-	inventory = Global.inventaire_player
+	#inventory = Global.inventaire_player
 	print(total_slots,"<->",get_child_count(),"<->",inventory.size())
 
 	refresh_gui()
@@ -29,7 +29,7 @@ func _on_item_clicked(item : InventoryItem, index : int, click_type : int = MOUS
 	if item.item == UniqueItem.empty_item and Global.holded_item == null:
 		empty_slot_clicked.emit(index)
 	else:
-		Global.holded_item = set_item_at_pos_clever(Global.holded_item if Global.holded_item != null else InventoryItem.empty_item, index)
+		Global.holded_item = set_item_at_pos_clever(Global.holded_item if Global.holded_item != null else InventoryItem.empty_item, index, click_type)
 	(get_child(index) as ItemSlot).update_item()
 
 func refresh_gui():
@@ -48,7 +48,6 @@ func fullfil_slots(items : Array, max_slots: int):
 		for item in range(len(items)):
 			if items[item] == null:
 				items[item] = InventoryItem.new(UniqueItem.empty_item, 0)
-			
 
 func clear_inventory():
 	inventory.resize(total_slots)
@@ -64,18 +63,43 @@ func add_item_clever(item : InventoryItem):
 	for child in get_children():
 		child = (child as ItemSlot)
 		if (child.assign_item.item as UniqueItem) == (item.item as UniqueItem):
-			var max_quantity_delivered = max_quantity - child.assign_item.quantity
-			if max_quantity_delivered <= 0:
+			var max_quantity_to_deliver = max_quantity - child.assign_item.quantity
+			if max_quantity_to_deliver <= 0:
 				continue
-			elif max_quantity_delivered > 0 and max_quantity_delivered < quantity_remaining:
-				child.assign_item.quantity += max_quantity_delivered
-				quantity_remaining -= max_quantity_delivered
-			elif max_quantity_delivered > 0 and max_quantity_delivered >= quantity_remaining:
+			elif max_quantity_to_deliver > 0 and max_quantity_to_deliver < quantity_remaining:
+				child.assign_item.quantity += max_quantity_to_deliver
+				quantity_remaining -= max_quantity_to_deliver
+			elif max_quantity_to_deliver > 0 and max_quantity_to_deliver >= quantity_remaining:
 				child.assign_item.quantity += quantity_remaining
 				quantity_remaining = 0
 				return
 	#If item wasn't found, add it
 	add_item_dumb(item)
+
+func verify_item_in_inventory(item : InventoryItem):
+	var inv = []
+	for i in inventory:
+		if i.item == item.item:
+			inv.append(i)
+	return inv
+
+func remove_item_clever(item : InventoryItem, quantity : int):
+	# Looks in the inventory and try to remove the exact quantity from multiple slots until the remaining quantity to remove is 0 or there are no slot left
+	var inv = verify_item_in_inventory(item)
+	var quantity_remaining = quantity
+	while quantity_remaining > 0 and inv.size() > 0:
+		var slot = inv[0]
+		var max_quantity = (slot.item as UniqueItem).max_quantity
+		var max_quantity_to_deliver = max_quantity - slot.quantity
+		if max_quantity_to_deliver <= 0:
+			inv.remove_at(0)
+		elif max_quantity_to_deliver > 0 and max_quantity_to_deliver < quantity_remaining:
+			slot.quantity += max_quantity_to_deliver
+			quantity_remaining -= max_quantity_to_deliver
+		elif max_quantity_to_deliver > 0 and max_quantity_to_deliver >= quantity_remaining:
+			slot.quantity += quantity_remaining
+			quantity_remaining = 0
+	
 
 func add_item_dumb(item : InventoryItem):
 	# If item doesn't exist, add it
@@ -94,28 +118,68 @@ func set_item_at_pos(item : InventoryItem, index : int):
 	get_child(index).assign_item = item
 	refresh_gui()
 
-func set_item_at_pos_clever(item : InventoryItem, index : int):
+## Sets item at the given position and returns the item that is held (= Global.holded_item)
+func set_item_at_pos_clever(item : InventoryItem, index : int, _action : int = MOUSE_BUTTON_LEFT):
 	var quantity_remaining = item.quantity
 	var max_quantity = (item.item as UniqueItem).max_quantity
-	var slot = get_child(index)
+	var slot = (get_child(index) as ItemSlot)
+
 	if (slot.assign_item.item as UniqueItem) == (item.item as UniqueItem):
-		var max_quantity_delivered = max_quantity - slot.assign_item.quantity
-		if max_quantity_delivered <= 0:
-			return item
-		elif max_quantity_delivered > 0 and max_quantity_delivered < quantity_remaining:
-			slot.assign_item.quantity += max_quantity_delivered
-			quantity_remaining -= max_quantity_delivered
-			item.quantity -= max_quantity_delivered
-			return item
-		elif max_quantity_delivered > 0 and max_quantity_delivered >= quantity_remaining:
-			slot.assign_item.quantity += quantity_remaining
-			quantity_remaining = 0
-			return InventoryItem.empty_item
+		## Maximum quantity of the item in the slot that can be delivered (how much you can but minus how much remaining to be a stack)
+		var max_quantity_to_deliver = max_quantity - slot.assign_item.quantity
+		if _action == MOUSE_BUTTON_LEFT:
+			if max_quantity_to_deliver <= 0:
+				return item
+			elif max_quantity_to_deliver < quantity_remaining:
+				slot.assign_item.quantity += max_quantity_to_deliver
+				quantity_remaining -= max_quantity_to_deliver
+				item.quantity -= max_quantity_to_deliver
+				return item
+			elif max_quantity_to_deliver >= quantity_remaining:
+				slot.assign_item.quantity += quantity_remaining
+				quantity_remaining = 0
+				return InventoryItem.empty_item
+		elif _action == MOUSE_BUTTON_RIGHT:
+			if max_quantity_to_deliver <= 0:
+				return item
+			elif max_quantity_to_deliver > 0 and quantity_remaining > 0:
+				slot.assign_item.quantity += 1
+				quantity_remaining -= 1
+				item.quantity -= 1
+				return item
+
 	else:
-		if slot.assign_item == InventoryItem.empty_item:
-			slot.assign_item = item
+		# If empty slot, empty the hand to that slot
+		if slot.assign_item == InventoryItem.empty_item and item != InventoryItem.empty_item:
+			if _action == MOUSE_BUTTON_LEFT:
+				slot.assign_item = item
+				slot.assign_item.quantity = 1
+				item.quantity -= 1
+				return item
+			else:
+				slot.assign_item = item
 			return InventoryItem.empty_item
-		else:
-			var item_to_return = slot.assign_item
-			slot.assign_item = item
-			return item_to_return
+		
+		# If slot not empty but the hand is empty, pickup the item into the hand
+		elif slot.assign_item != InventoryItem.empty_item and item == InventoryItem.empty_item:
+			if _action == MOUSE_BUTTON_LEFT:
+				var item_to_return = slot.assign_item
+				slot.assign_item = item
+				return item_to_return
+			elif _action == MOUSE_BUTTON_RIGHT: # Pickup half of the slot's item
+				if slot.assign_item.quantity > 1:
+					var slot_half_quantity = int(slot.assign_item.quantity / 2)
+					var hand_half_quantity = slot.assign_item.quantity - slot_half_quantity
+					slot.assign_item.quantity = slot_half_quantity
+					item = slot.assign_item
+					item.quantity = hand_half_quantity
+				return item
+
+		# If slot not empty and hand not empty, swap
+		elif slot.assign_item != InventoryItem.empty_item and item != InventoryItem.empty_item:
+			if _action == MOUSE_BUTTON_LEFT:
+				var item_to_return = slot.assign_item
+				slot.assign_item = item
+				return item_to_return
+			elif _action == MOUSE_BUTTON_RIGHT:
+				return item

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scènes/entiter/player_new.gd" id="1_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://hkupo7e8holj" path="res://Item_Inventaire/hotbar.tscn" id="4_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Player_Inventory.tscn" id="4_82oue"]
-[ext_resource type="PackedScene" path="res://Scènes/outiel.tscn" id="4_li6sa"]
+[ext_resource type="PackedScene" uid="uid://dlcsuj3n023ik" path="res://Scènes/outiel.tscn" id="4_li6sa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_82oue"]
 
@@ -1512,7 +1512,6 @@ max_value = 20.0
 value = 20.0
 
 [node name="Hotbar" parent="twistPivot/PichtPivot/Camera3D/UI" instance=ExtResource("4_3hbnb")]
-visible = false
 layout_mode = 1
 offset_left = 358.0
 offset_top = 505.0

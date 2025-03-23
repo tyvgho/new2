@@ -98,7 +98,7 @@ shadow_enabled = true
 shadow_bias = 0.01
 script = ExtResource("1_ioo17")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." node_paths=PackedStringArray("balle", "loading", "player", "grass")]
+[node name="World" type="MeshInstance3D" parent="." node_paths=PackedStringArray("balle", "loading", "player", "grass")]
 skeleton = NodePath("")
 script = ExtResource("1_f3sb7")
 balle = NodePath("../RigidBody3D")
@@ -110,7 +110,7 @@ grass_randomness = 3.0
 size = 128
 noise = SubResource("FastNoiseLite_fj7yv")
 
-[node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="MeshInstance3D"]
+[node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="World"]
 multimesh = SubResource("MultiMesh_2o6r5")
 script = ExtResource("4_wse8f")
 texture_albedo = ExtResource("4_ioo17")

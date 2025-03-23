@@ -65,8 +65,7 @@ func update_item():
 	if assign_item == null:
 		item_name = str((assign_item.item as UniqueItem).name)
 		item_texture = (assign_item.item as UniqueItem).texture
-		item_quantity = assign_item.quantity
-
+		item_quantity = assign_item.quantitye
 
 """
 func _on_button_down() -> void:
@@ -80,6 +79,5 @@ func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed:
 			if get_parent() is InventoryGUI:
-				update_item()
 				(get_parent() as InventoryGUI).item_clicked.emit(assign_item, get_index(),event.button_index)
-				
+				update_item()

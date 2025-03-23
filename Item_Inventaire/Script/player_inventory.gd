@@ -3,7 +3,6 @@ class_name PlayerInventory extends Control
 
 var inventory = Global.inventaire_player : set = _set_inventory
 
-var total_slots = 5*3
 @export var holded_item_instance : Item_Preview = preload("res://Item_Inventaire/held_item.tscn").instantiate()
 @export var anim : AnimationPlayer
 

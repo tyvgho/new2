@@ -1,5 +1,6 @@
 class_name LoadingScreen extends Control
 
+@export var loading_text : String = "Loading..."
 @export var current : int = 0 : set = _on_current
 @export var total : int = 0 : set = _on_total
 
@@ -21,4 +22,4 @@ func _process(_delta: float) -> void:
 		$"VSplitContainer/ProgressBar".value = float(current/total)*100.0
 	else:
 		$"VSplitContainer/ProgressBar".visible = false
-	$"VSplitContainer/Label".text = "Loading ...  (" + str(current) + "/" + str(total) + ")"
+	$"VSplitContainer/Label".text = loading_text + "..." + "(" + str(current) + "/" + str(total) + ")"
