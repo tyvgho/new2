@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://d2t7x8crqhbwr" path="res://Scripts/mob.gd" id="1_vq08b"]
 [ext_resource type="PackedScene" uid="uid://o6oo1oam76f5" path="res://Scènes/entiter/projectille_launcher.tscn" id="2_7k3yg"]
 
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e0u1w"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_5x12m"]
@@ -390,12 +389,12 @@ tracks/6/keys = PackedFloat32Array(0, 1, -0.00383572, 0.000108787, -0.0351204, 0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ageu"]
 _data = {
-"Actions réservées]": SubResource("Animation_ql4w7"),
-"Actions réservées]_001": SubResource("Animation_y8m05"),
-"Actions réservées]_002": SubResource("Animation_hhbqq"),
-"Actions réservées]_003": SubResource("Animation_efmyh"),
-"rampe_001": SubResource("Animation_hqjl2"),
-"tire2": SubResource("Animation_fnlvh")
+&"Actions réservées]": SubResource("Animation_ql4w7"),
+&"Actions réservées]_001": SubResource("Animation_y8m05"),
+&"Actions réservées]_002": SubResource("Animation_hhbqq"),
+&"Actions réservées]_003": SubResource("Animation_efmyh"),
+&"rampe_001": SubResource("Animation_hqjl2"),
+&"tire2": SubResource("Animation_fnlvh")
 }
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
@@ -522,7 +521,7 @@ skin = SubResource("Skin_imnrt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_6ageu")
+&"": SubResource("AnimationLibrary_6ageu")
 }
 
 [connection signal="projectile_fired" from="." to="projectilleLauncher" method="_on_character_body_3d_projectile_fired"]

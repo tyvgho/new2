@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://d2t7x8crqhbwr" path="res://Scripts/mob.gd" id="1_haruw"]
 [ext_resource type="PackedScene" uid="uid://cyxdvxtasn3pr" path="res://Scènes/entiter/pereso_moche.tscn" id="2_b7saq"]
 
-
 [sub_resource type="ViewportTexture" id="ViewportTexture_nspre"]
 viewport_path = NodePath("Sprite3D/SubViewport")
 

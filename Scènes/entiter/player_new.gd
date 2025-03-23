@@ -7,6 +7,7 @@ var is_sprinting := false
 var can_open_inventory := true
 var can_move_camera := true
 var overrite_animation := false
+var a = 0
 
 @export_category("Stats")
 var health = 100
@@ -29,14 +30,17 @@ var inventaire_ouvert = false
 @export var sprint_camera_fov = 90
 var current_camera_fov = default_camera_fov
 
-@onready var constructoin = $twistPivot/PichtPivot/plasse_constructoin
+#@onready var constructoin = $twistPivot/PichtPivot/plasse_constructoin
+@onready var skeleton = $"twistPivot/pesonage-v1/Armature/Skeleton3D"
 @onready var twist_pivot = $twistPivot
 @onready var picht_pivot = $twistPivot/PichtPivot
 @onready var animation : AnimationPlayer = $"twistPivot/pesonage-v1/AnimationPlayer"
 @export var Inventaire_I : PlayerInventory
 @onready var timer = $Timer2
+var camera : Camera3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	camera = get_viewport().get_camera_3d()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,21 +63,25 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	$twistPivot.rotate_y(twist_input)
-	$twistPivot/PichtPivot.rotate_x(pitch_input)
-	$twistPivot/PichtPivot.rotation.x = clamp(
-		$twistPivot/PichtPivot.rotation.x,
-		-0.5,
-		0.5
-	)
+	a += pitch_input
+	a = clamp(a,-0.7,0.7)
+	rotate_os(a,"Os.003")
+	print(a)
+	#$twistPivot/PichtPivot.rotate_x(pitch_input)
+	#$twistPivot/PichtPivot.rotation.x = clamp(
+		#$twistPivot/PichtPivot.rotation.x,
+		#-0.5,
+		#0.5
+	#)
 	twist_input = 0.0
 	pitch_input = 0.0	
 		
 	if Input.is_action_just_pressed("vue"):
 		print(Global.player_inventaire)
-		if $twistPivot/PichtPivot/Camera3D.position == Vector3(0,1.6,3):
-			$twistPivot/PichtPivot/Camera3D.position = Vector3(0,0.6,0)
+		if camera.position == Vector3(0,1.6,3):
+			camera.position = Vector3(0,0.6,0)
 		else :
-			$twistPivot/PichtPivot/Camera3D.position = Vector3(0,1.6,3)
+			camera.position = Vector3(0,1.6,3)
 		
 	if Input.is_action_just_pressed("tire"):
 		if velocity == Vector3.ZERO:
@@ -97,11 +105,11 @@ func _unhandled_input(event: InputEvent) -> void:
 # 	if Global.player_vie < 0:
 # 		queue_free()
 
-func construction_process(_delta : float) :
-	if Input.is_action_just_pressed("molette_up"):
-		constructoin.position.z += 1
-	elif Input.is_action_just_pressed("molette_bas"):
-		constructoin.position.z -= 1
+#func construction_process(_delta : float) :
+	#if Input.is_action_just_pressed("molette_up"):
+		#constructoin.position.z += 1
+	#elif Input.is_action_just_pressed("molette_bas"):
+		#constructoin.position.z -= 1
 
 func _sprint_process(_delta : float):
 	if Input.is_action_pressed("sprint") and can_sprint:
@@ -132,3 +140,13 @@ func _inventaire_process(_delta : float):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			Inventaire_I.open_inventory()
 		inventaire_ouvert = not inventaire_ouvert
+
+
+func rotate_os(rotations,os):
+	var bone_name = os # Nom de l'os à bouger (remplace par le tien)
+	var bone_id = skeleton.find_bone(bone_name)  # Trouve l'ID de l'os
+	if bone_id != -1:
+		var rotation_offset = Quaternion.from_euler(Vector3(deg_to_rad(rotations)*-50, 0, 0))  # Rotation de 30° en Y
+		skeleton.set_bone_pose_rotation(bone_id, rotation_offset)
+	else:
+		print("Os non trouvé :", bone_name)
