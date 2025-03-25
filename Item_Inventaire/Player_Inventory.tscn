@@ -203,6 +203,7 @@ current_tab = 0
 layout_mode = 2
 
 [node name="Table de Craft" parent="PanelContainer/TabContainer" instance=ExtResource("3_bpfiy")]
+visible = false
 layout_mode = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

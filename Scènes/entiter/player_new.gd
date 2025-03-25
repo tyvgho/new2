@@ -19,6 +19,10 @@ var stamina = 100
 @export var sprint_speed = 12
 @export var normal_speed = 4
 @export var speed_jump = 10
+@export var player_Inventory : PlayerInventory
+@export var player_Hotbar : Hotbar
+
+@export_category("Other Settings")
 
 @export var mouse_sensitivity := 0.003
 var twist_input := 0.0
@@ -35,13 +39,15 @@ var current_camera_fov = default_camera_fov
 @onready var twist_pivot = $twistPivot
 @onready var picht_pivot = $twistPivot/PichtPivot
 @onready var animation : AnimationPlayer = $"twistPivot/pesonage-v1/AnimationPlayer"
-@export var Inventaire_I : PlayerInventory
+
 @onready var timer = $Timer2
 var camera : Camera3D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	camera = get_viewport().get_camera_3d()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	inventaire_ouvert = false
+	player_Inventory.close_inventory()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -59,9 +65,7 @@ func _process(delta: float) -> void:
 	elif not overrite_animation:
 		animation.play("imobile",0.5)
 	velocity = twist_pivot.basis * Vector3(input.x, velocity.y, input.z)
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 	$twistPivot.rotate_y(twist_input)
 	a += pitch_input
 	a = clamp(a,-0.7,0.7)
@@ -130,15 +134,21 @@ func force_animation(animation_to_play : StringName):
 	overrite_animation = false
 
 func _inventaire_process(_delta : float):
+	if can_open_inventory and not inventaire_ouvert:
+		if Input.is_action_just_pressed("molette_up"):
+			player_Hotbar.select_previous_item()
+		elif Input.is_action_just_pressed("molette_bas"):
+			player_Hotbar.select_next_item()
+
 	if Input.is_action_just_pressed("e") and can_open_inventory:
 		if inventaire_ouvert:
 			# Refermer l'inventaire
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-			Inventaire_I.close_inventory()
+			player_Inventory.close_inventory()
 		else:
 			# Ouvrir l'inventaire
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			Inventaire_I.open_inventory()
+			player_Inventory.open_inventory()
 		inventaire_ouvert = not inventaire_ouvert
 
 

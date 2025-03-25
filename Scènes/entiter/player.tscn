@@ -1463,11 +1463,10 @@ _data = {
 radius = 1.0
 height = 2.0
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("Inventaire_I")]
+[node name="player" type="CharacterBody3D"]
 collision_layer = 129
 collision_mask = 13
 script = ExtResource("1_3hbnb")
-Inventaire_I = NodePath("twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D2/Camera3D/UI/Inventaire")
 
 [node name="twistPivot" type="Node3D" parent="."]
 
@@ -1618,7 +1617,7 @@ mesh = SubResource("ArrayMesh_skx70")
 skin = SubResource("Skin_p2xqi")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="twistPivot/pesonage-v1/Armature/Skeleton3D"]
-transform = Transform3D(-0.998139, -0.0609816, -6.57327e-08, 0.0609816, -0.998139, 4.01706e-09, -6.58553e-08, 1.15508e-12, 1, -1.76252, 0.396369, 4.29911e-12)
+transform = Transform3D(-0.998139, -0.0609815, -6.57328e-08, 0.0609815, -0.998139, 4.01715e-09, -6.58554e-08, 1.12088e-12, 1, -1.76252, 0.396369, 4.19128e-12)
 bone_name = "Os.001_R.002"
 bone_idx = 7
 

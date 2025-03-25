@@ -34,7 +34,12 @@ const IDI_Survole = preload("res://Item_Inventaire/Autre/IDI_Survole.tres")
 		item_quantity = value
 		if label_quantity: # Evite les erreurs dans l'éditeur
 			label_quantity.text = str(item_quantity)
-			label_quantity.visible = (value > 1)
+			if item_quantity < 0:
+				label_quantity.modulate = Color.CORAL
+				label_quantity.visible = true
+			else:
+				label_quantity.modulate = Color.WHITE
+			label_quantity.visible = (value < 0 and value > 1)
 
 @export_node_path("TextureRect") var texture_np : NodePath = ^"./TextureBorder/TextureRect"
 @onready var texture_rect : TextureRect = get_node_or_null(texture_np)
@@ -42,10 +47,7 @@ const IDI_Survole = preload("res://Item_Inventaire/Autre/IDI_Survole.tres")
 @onready var label_quantity : Label = get_node_or_null(label_np)
 
 func _ready():
-	if assign_item != null:
-		item_name = (assign_item.item as UniqueItem).name
-		item_texture = (assign_item.item as UniqueItem).texture
-		item_quantity = assign_item.quantity
+	update_item()
 
 func _on_focus_entered() -> void:
 	$Background.set("theme_override_styles/panel", IDI_Survole)
@@ -62,17 +64,10 @@ func _on_mouse_entered() -> void:
 		$Background.set("theme_override_styles/panel", IDI_Hovered)
 
 func update_item():
-	if assign_item == null:
+	if assign_item != null:
 		item_name = str((assign_item.item as UniqueItem).name)
 		item_texture = (assign_item.item as UniqueItem).texture
-		item_quantity = assign_item.quantitye
-
-"""
-func _on_button_down() -> void:
-	print("Button Down")
-	if get_parent() is InventoryGUI:
-		(get_parent() as InventoryGUI).item_clicked.emit(assign_item, get_index())
-"""
+		item_quantity = assign_item.quantity
 
 # Know if a button is pressed with a mouse, emit signal to parent with the index of the button
 func _gui_input(event: InputEvent) -> void:

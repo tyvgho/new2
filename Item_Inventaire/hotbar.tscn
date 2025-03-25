@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://hkupo7e8holj"]
 
-[ext_resource type="Script" uid="uid://b154ca82c0th7" path="res://Item_Inventaire/Script/item_container.gd" id="1_a8i1s"]
+[ext_resource type="Script" uid="uid://b154ca82c0th7" path="res://Item_Inventaire/Script/Inventory_gui.gd" id="1_a8i1s"]
 [ext_resource type="PackedScene" uid="uid://begmig8smmiwp" path="res://Item_Inventaire/item_dans_inventaire.tscn" id="1_bjf5h"]
-[ext_resource type="Script" path="res://Item_Inventaire/Script/hotbar.gd" id="1_lo50f"]
+[ext_resource type="Script" uid="uid://de35aefck5d38" path="res://Item_Inventaire/Script/hotbar.gd" id="1_lo50f"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8i1s"]
 bg_color = Color(0, 0.6, 0.6, 0.341176)
@@ -38,6 +38,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 columns = 5
 script = ExtResource("1_a8i1s")
+slot_vertical = 1
 
 [node name="Slot1" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
 layout_mode = 2

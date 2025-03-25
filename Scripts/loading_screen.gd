@@ -19,7 +19,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if total != 0:
 		$"VSplitContainer/ProgressBar".visible = true
-		$"VSplitContainer/ProgressBar".value = float(current/total)*100.0
+		$"VSplitContainer/ProgressBar".value = float(current)/float(total)*100.0
 	else:
 		$"VSplitContainer/ProgressBar".visible = false
-	$"VSplitContainer/Label".text = loading_text + "..." + "(" + str(current) + "/" + str(total) + ")"
+	$"VSplitContainer/Label".text = loading_text + "(" + str(current) + "/" + str(total) + ")"

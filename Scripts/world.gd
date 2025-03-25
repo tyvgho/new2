@@ -73,9 +73,8 @@ func generate_terrain():
 
 	self.material_override = water_material
 	# Adapt UV for water and for the size of the terrain
+	@warning_ignore("integer_division")
 	self.material_override.set("uv1_scale", Vector2(1/size, 1/size))
-
-
 
 func load_scene():
 	print("Chargement de la scène")

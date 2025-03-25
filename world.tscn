@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=4 uid="uid://b5y5obsxc1nbf"]
+[gd_scene load_steps=23 format=4 uid="uid://b5y5obsxc1nbf"]
 
 [ext_resource type="Script" uid="uid://dpenyi8ftug1e" path="res://Scripts/world.gd" id="1_f3sb7"]
-[ext_resource type="Material" uid="uid://4tjr37ap822b" path="res://world_water.tres" id="1_fj7yv"]
 [ext_resource type="Script" uid="uid://bt6xcbcxqab1d" path="res://Scènes/map/directional_light_3d.gd" id="1_ioo17"]
 [ext_resource type="Shader" uid="uid://bi3o8elbtqoni" path="res://addons/simplegrasstextured/shaders/grass.gdshader" id="2_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://cbmunrfvtr6i8" path="res://Scènes/entiter/player.tscn" id="3_tlwt5"]
@@ -9,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b61a2v0f2iihu" path="res://Temp/PERFECTION2.png" id="4_ioo17"]
 [ext_resource type="Script" uid="uid://2juaclm8gc1n" path="res://addons/simplegrasstextured/grass.gd" id="4_wse8f"]
 [ext_resource type="PackedScene" uid="uid://yqsun10iqvll" path="res://Scènes/loading_screen.tscn" id="5_036b0"]
+[ext_resource type="Shader" uid="uid://cmy478p4p1ttj" path="res://Shaders/water.gdshader" id="6_ioo17"]
+
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gv5m4"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -24,7 +25,8 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_fj7yv"]
-noise_type = 3
+noise_type = 2
+frequency = 0.02
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ic0uy"]
 resource_local_to_scene = true
@@ -82,8 +84,19 @@ height = 0.2
 [sub_resource type="SphereShape3D" id="SphereShape3D_036b0"]
 radius = 0.1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wse8f"]
+render_priority = 0
+shader = ExtResource("6_ioo17")
+shader_parameter/uAlbedo = Color(0.356866, 0.498437, 0.897431, 1)
+shader_parameter/uNormalMix = 0.2
+shader_parameter/uWaveDirection = Vector2(1, 0)
+shader_parameter/uWaveDirection2 = Vector2(0, 1)
+shader_parameter/uTimeScale = 0.0015
+shader_parameter/uWaveScale = 1.6
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_fj7yv"]
-material = ExtResource("1_fj7yv")
+material = SubResource("ShaderMaterial_wse8f")
+size = Vector2(100, 100)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_ioo17"]
 
@@ -107,7 +120,7 @@ loading = NodePath("../Control")
 player = NodePath("../player")
 grass = NodePath("SimpleGrassTextured")
 grass_randomness = 3.0
-size = 128
+max_height = 50
 noise = SubResource("FastNoiseLite_fj7yv")
 
 [node name="SimpleGrassTextured" type="MultiMeshInstance3D" parent="World"]
@@ -134,10 +147,6 @@ mesh = SubResource("SphereMesh_aqk2v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_036b0")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.926187, 0.377065, 0, -0.377065, 0.926187, 1.39544, 2.603, 4.03843)
-visible = false
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_fj7yv")

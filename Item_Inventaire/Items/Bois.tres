@@ -9,4 +9,6 @@ texture = ExtResource("2_hs08e")
 name = "Bois"
 description = "Une ressource essentiels pour tous adepte de la menuiserie. S'obtient en découpant des arbres."
 max_quantity = 64
+model_name = &""
+attributes = {}
 metadata/_custom_type_script = "uid://iqvm0kkhmcmj"

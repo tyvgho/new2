@@ -76,16 +76,19 @@ func add_item_clever(item : InventoryItem):
 	#If item wasn't found, add it
 	add_item_dumb(item)
 
-func verify_item_in_inventory(item : InventoryItem):
-	var inv = []
-	for i in inventory:
-		if i.item == item.item:
-			inv.append(i)
-	return inv
+## Veryfies if the [item] exists in the [inventory]
+static func verify_item_in_inventory(item : UniqueItem, inventory : Array[InventoryItem]) -> Array:
+	var quantity = 0 # X
+	var slots = []
+	for i in range(inventory.size()):
+		if inventory[i].item == item:
+			quantity += inventory[i].quantity
+			slots.append(i)
+	return slots
 
 func remove_item_clever(item : InventoryItem, quantity : int):
 	# Looks in the inventory and try to remove the exact quantity from multiple slots until the remaining quantity to remove is 0 or there are no slot left
-	var inv = verify_item_in_inventory(item)
+	var inv = verify_item_in_inventory(item, inventory)
 	var quantity_remaining = quantity
 	while quantity_remaining > 0 and inv.size() > 0:
 		var slot = inv[0]
@@ -99,7 +102,6 @@ func remove_item_clever(item : InventoryItem, quantity : int):
 		elif max_quantity_to_deliver > 0 and max_quantity_to_deliver >= quantity_remaining:
 			slot.quantity += quantity_remaining
 			quantity_remaining = 0
-	
 
 func add_item_dumb(item : InventoryItem):
 	# If item doesn't exist, add it
