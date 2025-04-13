@@ -16,7 +16,7 @@ func _ready() -> void:
 		loote = {"name": "bois", "count": 5}  # Correction ici
 
 # Applique des dégâts à l'objet
-func déga(nb: int) -> void:
+func take_damage(nb: int) -> void:
 	print(loote)
 	vie -= nb
 	if vie > 0:

@@ -48,31 +48,11 @@ func _physics_process(delta: float) -> void:
 
 		velocity = Vector3(0,-3,0)
 		move_and_slide()
-	if Global.player_is_attacking == true and in_attacks_area_player == true :
-			damang(2)
 
-func damang(nb_damang):
+func take_damage(nb_damang):
 	$Sprite3D/SubViewport/ProgressBar.value = vie
 	vie -= nb_damang
 	if vie < 0:
 		queue_free()
 func attack():
 	is_attacking = true
-
-func _on_demange_area_entered(area: Area3D) -> void:
-	#if moob_type == "cactus":
-		#print("toucher")
-		#print(area.collision_layer)
-	if area.collision_layer == 8 :
-		damang(2)
-	if area.collision_layer == 4:
-		in_attacks_area_player = true
-
-
-func _on_demange_area_exited(area: Area3D) -> void:
-	if area.collision_layer == 4:
-		in_attacks_area_player == false
-
-
-func _on_timer_timeout() -> void:
-	can_attacking = true

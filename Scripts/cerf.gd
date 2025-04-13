@@ -61,7 +61,7 @@ func broutage() -> void:
 	
 
 
-func damang(nb_damang):
+func take_damage(nb_damang):
 	vie -= nb_damang
 	$Sprite3D/SubViewport/ProgressBar.value = vie  # Mettre à jour la barre de vie
 
@@ -74,15 +74,3 @@ func damang(nb_damang):
 		print("Loot créé à :", object_i.global_transform.origin, "Type :", loote[0], "Quantité :", loote[1])
 
 		queue_free()  # Supprimer le cerf
-
-func _on_demange_area_entered(area: Area3D) -> void:
-	#if moob_type == "cactus":
-	if area.collision_layer == 8 :
-		damang(2)
-	if area.collision_layer == 4:
-		in_attacks_area_player = true
-
-
-func _on_demange_area_exited(area: Area3D) -> void:
-	if area.collision_layer == 4:
-		in_attacks_area_player == false

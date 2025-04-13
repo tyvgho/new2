@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bva28dqq2pfp5"]
+[gd_scene load_steps=18 format=4 uid="uid://bva28dqq2pfp5"]
 
 [ext_resource type="Script" uid="uid://d2t7x8crqhbwr" path="res://Scripts/mob.gd" id="1_vq08b"]
 [ext_resource type="PackedScene" uid="uid://o6oo1oam76f5" path="res://Scènes/entiter/projectille_launcher.tscn" id="2_7k3yg"]
@@ -10,8 +10,6 @@
 [sub_resource type="Skin" id="Skin_ohjcl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxq8r"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5bmde"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_pmpcd"]
 viewport_path = NodePath("Sprite3D/SubViewport")
@@ -422,13 +420,6 @@ skeleton = NodePath("../projectilleLauncher")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Area3D" type="Area3D" parent="."]
-collision_mask = 12
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00676942, 0.0117823, 0.0064621)
-shape = SubResource("CapsuleShape3D_5bmde")
-
 [node name="Sprite3D" type="Sprite3D" parent="."]
 transform = Transform3D(0.450018, 0, 0, 0, 0.434684, -0.116473, 0, 0.116473, 0.434684, -0.06942, 1.14226, 0.0163236)
 modulate = Color(0, 0.705882, 0, 1)
@@ -526,5 +517,3 @@ libraries = {
 
 [connection signal="projectile_fired" from="." to="projectilleLauncher" method="_on_character_body_3d_projectile_fired"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-[connection signal="area_entered" from="Area3D" to="." method="_on_demange_area_entered"]
-[connection signal="area_exited" from="Area3D" to="." method="_on_demange_area_exited"]

@@ -21,6 +21,7 @@ var stamina = 100
 @export var speed_jump = 10
 @export var player_Inventory : PlayerInventory
 @export var player_Hotbar : Hotbar
+@export var attack_damage = 1
 
 @export_category("Other Settings")
 
@@ -39,6 +40,7 @@ var current_camera_fov = default_camera_fov
 @onready var twist_pivot = $twistPivot
 @onready var picht_pivot = $twistPivot/PichtPivot
 @onready var animation : AnimationPlayer = $"twistPivot/pesonage-v1/AnimationPlayer"
+@onready var shape_cast=$twistPivot/PichtPivot/ShapeCast3D
 
 @onready var timer = $Timer2
 var camera : Camera3D
@@ -90,6 +92,8 @@ func _process(delta: float) -> void:
 			force_animation(&"cours_frape")
 		else :
 			force_animation(&"marche_frape")
+		attack()
+		await animation.animation_finished
 		emit_signal("projectile_fired")
 	Global.player_potion = position
 	move_and_slide()
@@ -146,7 +150,14 @@ func _inventaire_process(_delta : float):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			player_Inventory.open_inventory()
 		inventaire_ouvert = not inventaire_ouvert
-
+func attack():
+	can_attack = false  # Désactive temporairement l'attaque
+	shape_cast.force_shapecast_update()  # Met à jour la détection
+	if shape_cast.is_colliding():
+		for i in range(shape_cast.get_collision_count()):
+			var collider = shape_cast.get_collider(i)
+			if collider.has_method("take_damage"):  # Vérifie si l'objet a une fonction pour prendre des dégâts
+				collider.take_damage(attack_damage)
 
 func rotate_os(rotations,os):
 	var bone_id = skeleton.find_bone(os)  # Trouve l'ID de l'os
