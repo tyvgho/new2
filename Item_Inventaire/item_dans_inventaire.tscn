@@ -10,6 +10,7 @@
 script = ExtResource("3_16x5t")
 item = ExtResource("2_47iff")
 quantity = 0
+current_attributes = null
 metadata/_custom_type_script = "uid://bh2uei0kr7gtu"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47iff"]
@@ -104,6 +105,7 @@ theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
 [node name="Label" type="Label" parent="Separator"]
+visible = false
 texture_filter = 1
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="UniqueItem" load_steps=4 format=3 uid="uid://bsw6rpqq0a1iq"]
+
+[ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/UniqueItem.gd" id="1_4nfoa"]
+
+[sub_resource type="Gradient" id="Gradient_4nfoa"]
+offsets = PackedFloat32Array(0, 0.440476, 0.565476, 0.636905, 1)
+colors = PackedColorArray(1, 0.168627, 1, 0.619608, 0.564706, 0.168627, 1, 1, 0.729412, 0.168627, 1, 1, 0.737255, 0.0784314, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2465k"]
+gradient = SubResource("Gradient_4nfoa")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[resource]
+script = ExtResource("1_4nfoa")
+texture = SubResource("GradientTexture2D_2465k")
+name = "Hollow Purple"
+description = "A Incantation of a mix between the Original clockwise Blue and the Reversal counterclockwise Red makes it the perfect tool of massive destruction"
+stackable = false
+max_quantity = 0
+item_id = &""
+flags = 0
+attributes = {}
+metadata/_custom_type_script = "uid://iqvm0kkhmcmj"

@@ -1,7 +1,7 @@
 @tool
 class_name Item_Preview extends Sprite2D
 
-@export var item : InventoryItem : set = _set_item
+@export var item : ItemStack : set = _set_item
 
 @onready var texture_rect : TextureRect = $TextureBorder/TextureRect
 @onready var label : Label = $Separator/Label

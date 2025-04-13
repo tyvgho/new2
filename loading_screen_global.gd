@@ -7,13 +7,9 @@ extends Control
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	LoadingScreen
-
-func show():
+func show_loading():
 	anim.play("showing")
+	move_to_front()
 
-func hide():
-	anim.play("hiding")
+func hide_loading():
+	anim.play_backwards("showing")

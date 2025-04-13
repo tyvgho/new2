@@ -7,42 +7,49 @@
 resource_name = "Screeeeen"
 script/source = "extends Control
 
-@export_file(\"tscn\") var scene_quentin: String = \"res://path_to_scene.tscn\"
-@export_file(\"tscn\") var scene_mathis: String
+@export_file(\"*.tscn\") var scene_quentin: String = \"res://path_to_scene.tscn\"
+@export_file(\"*.tscn\") var scene_mathis: String
 
 func _ready():
 	$\"VBoxContainer/Quentin\".pressed.connect(load_scene_async.bind(scene_quentin))
 	$\"VBoxContainer/Mathis\".pressed.connect(load_scene_async.bind(scene_mathis))
 	
+var load_status := ResourceLoader.ThreadLoadStatus.THREAD_LOAD_FAILED
 
 func load_scene_async(scene_path: String):
-	LoadingScreen.show()
-	LoadingScreen.value = 0.0
+	LoadingScreenGlobal.show_loading()
 	
-	var loader = ResourceLoader.load_interactive(scene_path)
-	if loader == null:
-		print(\"Failed to load scene: \" + scene_path)
-		LoadingScreen.hide()
-		return
+	LoadingScreenGlobal.loadingscreen.current = 0.0
+	LoadingScreenGlobal.loadingscreen.total = 100.0
+	LoadingScreenGlobal.loadingscreen.loading_text = \"Loading Level\"
 	
-	while loader.get_stage() < loader.get_stage_count():
-		var error = loader.poll()
-		if error != OK:
-			print(\"Error while loading scene: \" + str(error))
-			LoadingScreen.hide()
-			return
+	# Start threaded loading
+	ResourceLoader.load_threaded_request(scene_path)
+
+	# Wait for the resource to be fully loaded
+	while true:
+		var progress = []
+		load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
 		
-		var progress = float(loader.get_stage()) / float(loader.get_stage_count()) * 100.0
-		LoadingScreen.value = progress
-		await get_tree().process_frame
-	
-	var packed_scene = loader.get_resource()
+		if load_status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
+			LoadingScreenGlobal.loadingscreen.current = progress[0] * 100.0
+			await get_tree().process_frame  # Allow rendering updates
+		elif load_status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
+			break
+		else:
+			print(\"Failed to load scene: \" + scene_path)
+			LoadingScreenGlobal.hide_loading()
+			return
+
+	# Retrieve the loaded scene
+	var packed_scene = ResourceLoader.load_threaded_get(scene_path)
 	if packed_scene == null:
 		print(\"Failed to instantiate scene: \" + scene_path)
-		LoadingScreen.hide()
+		LoadingScreenGlobal.hide_loading()
 		return
-	
-	LoadingScreen.hide()
+
+	LoadingScreenGlobal.loadingscreen.loading_text = \"Finished Loading\"
+	LoadingScreenGlobal.hide_loading()
 	get_tree().change_scene_to_packed(packed_scene)
 "
 
@@ -64,6 +71,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_3xoar")
+scene_quentin = "uid://7qsw3binuyo8"
+scene_mathis = "uid://b5y5obsxc1nbf"
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1

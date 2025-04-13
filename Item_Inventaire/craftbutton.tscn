@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://wo7nph6283ix"]
+[gd_scene load_steps=4 format=3 uid="uid://wo7nph6283ix"]
 
+[ext_resource type="Texture2D" uid="uid://bfb1vx4qeuym4" path="res://Item_Inventaire/Textures/outie2D/pioche_mitirile.png" id="2_lwth3"]
 [ext_resource type="Script" uid="uid://dpig0ehu8my6m" path="res://Item_Inventaire/Script/craftbutton.gd" id="2_tixmw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tixmw"]
@@ -30,3 +31,15 @@ layout_mode = 0
 offset_right = 290.0
 offset_bottom = 40.0
 text = "Pioche en Mithril"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 40.0
+offset_bottom = 20.0
+grow_vertical = 2
+texture = ExtResource("2_lwth3")
+expand_mode = 4

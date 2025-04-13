@@ -1,13 +1,17 @@
-extends MeshInstance3D
+class_name WorldGenerator extends MeshInstance3D
 
 @export var balle : RigidBody3D
+@export var use_percentage_loading : bool = true
 @export var object_per_loading_refresh : int = 50
+@export_range(0.01, 1.0) var next_percentage_to_refresh : float = 0.1
 @export var loading : LoadingScreen
 @export var player : Player
+
 @export_category("Grass")
 @export var grass : Grass
 @export_range(0.0, 1.0) var density : float = 1.0
 @export_range(0.0, 3.0) var grass_randomness : float = 0.5
+
 @export_category("Trees")
 @export var trees : Array[PackedScene]
 @export var variation : float = 0.5
@@ -17,6 +21,7 @@ extends MeshInstance3D
 @export var size : int = 256
 @export var max_height : int = 20
 @export var noise_zoom : float = 1.0
+@export var terrain_gradient : Gradient
 @export var noise : FastNoiseLite = FastNoiseLite.new() :
 	set(value):
 		noise = value
@@ -27,6 +32,7 @@ var surface_tool = SurfaceTool.new()
 func _ready():
 	generate_terrain()
 	load_scene()
+	global_position.y = abs(get_aabb().size.y) - abs(get_aabb().size.y*0.3)
 
 func _process(_delta):
 	if Input.is_action_just_pressed("left_click"):
@@ -37,11 +43,19 @@ func _process(_delta):
 
 func generate_terrain():
 	# Clean previous collision by erasing child
+	
+	# Create a texture that will be modified to match the terrain height with the gradient
+	var surface_uv_image : Image = Image.create(512, 512, false, Image.FORMAT_RGBA8)
+	surface_uv_image.fill(Color(0, 0, 0, 0))
 
+	# Generate the heightmap
 	for child in get_children():
 		if child is StaticBody3D:
 			remove_child(child)
 			child.queue_free()
+
+	for i in range(0, 10):
+		print(terrain_gradient.sample(i / 10.0))
 
 	var heightmap = []
 	for x in range(size):
@@ -49,6 +63,8 @@ func generate_terrain():
 		for y in range(size):
 			var height = noise.get_noise_2d(x / noise_zoom, y / noise_zoom) * max_height
 			heightmap[x].append(height)
+			var color = terrain_gradient.sample(height / max_height)
+			surface_uv_image.set_pixel(x / size * 512, y / size * 512, color)
 
 	surface_tool.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for x in range(size - 1):
@@ -69,12 +85,14 @@ func generate_terrain():
 	self.mesh = surface_tool.commit()
 	create_trimesh_collision()
 	# Apply water texture
-	var water_material = load("res://world_water.tres")
+	#var water_material = load("res://world_water.tres")
+	
+	self.material_override = StandardMaterial3D.new()
+	self.material_override.albedo_texture = surface_uv_image
 
-	self.material_override = water_material
 	# Adapt UV for water and for the size of the terrain
 	@warning_ignore("integer_division")
-	self.material_override.set("uv1_scale", Vector2(1/size, 1/size))
+	self.material_override.set("uv1_scale", Vector2(1/size*512, 1/size*512))
 
 func load_scene():
 	print("Chargement de la scène")
@@ -96,6 +114,7 @@ func generate_grass(start_height : int, map_height : int, map_aabb : AABB, spaci
 	var object_count = 0
 	var next_update = object_count + object_per_loading_refresh
 	var max_object_count = int((map_aabb.size.x/spacing) * (map_aabb.size.z/spacing))
+	var current_loading_percentage = 0.0
 	if grass:
 		for x in range(0,map_aabb.size.x,spacing):
 			for z in range(0,map_aabb.size.z,spacing):
@@ -110,12 +129,21 @@ func generate_grass(start_height : int, map_height : int, map_aabb : AABB, spaci
 					#print("Grass: ", grass_position, grass_normal, Vector3.ONE, random_rotation)
 					grass.add_grass(grass_position, grass_normal, Vector3.ONE, random_rotation)
 				object_count += 1
-				if object_count >= next_update:
-					if loading:
-						loading.current = object_count
-						loading.total = max_object_count
-					next_update += object_per_loading_refresh
-					await get_tree().process_frame
+				if use_percentage_loading:
+					if is_zero_approx((float(object_count)/max_object_count) - (current_loading_percentage + next_percentage_to_refresh)):
+						current_loading_percentage += next_percentage_to_refresh
+						if loading:
+							loading.current = object_count
+							loading.total = max_object_count
+						next_update += object_per_loading_refresh
+						await get_tree().process_frame
+				else:
+					if object_count >= next_update:
+						if loading:
+							loading.current = object_count
+							loading.total = max_object_count
+						next_update += object_per_loading_refresh
+						await get_tree().process_frame
 		if loading:
 			loading.current = object_count
 			loading.total = max_object_count

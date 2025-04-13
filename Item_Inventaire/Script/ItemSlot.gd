@@ -5,13 +5,13 @@ var focused := false
 var hovered := false
 var holded := false
 
-const IDI_Normal = preload("res://Item_Inventaire/Autre/IDI_Normal.tres")
-const IDI_Hovered = preload("res://Item_Inventaire/Autre/IDI_Selectionnee.tres")
-const IDI_Survole = preload("res://Item_Inventaire/Autre/IDI_Survole.tres")
+var IDI_Normal = preload("res://Item_Inventaire/Autre/IDI_Normal.tres")
+var IDI_Hovered = preload("res://Item_Inventaire/Autre/IDI_Selectionnee.tres")
+var IDI_Survole = preload("res://Item_Inventaire/Autre/IDI_Survole.tres")
 
-@export var assign_item : InventoryItem :
+@export var assign_item : ItemStack :
 	set(value):
-		assign_item = (value as InventoryItem)
+		assign_item = (value as ItemStack)
 		if value != null:
 			item_name = str((assign_item.item as UniqueItem).name)
 			item_texture = (assign_item.item as UniqueItem).texture

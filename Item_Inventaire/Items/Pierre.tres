@@ -4,9 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://Item_Inventaire/Textures/pierre.png" id="2_10ubv"]
 
 [resource]
+resource_local_to_scene = false
+resource_name = ""
 script = ExtResource("1_oujvx")
 texture = ExtResource("2_10ubv")
 name = "Pierre"
 description = "Une simple pierre, caillou, roche. Un tas de nom qu'on lui donne mais qui est a la fin utilisé pour faire des outils ou élément primitifs."
+stackable = true
 max_quantity = 64
+item_id = &"stone"
+flags = 3
+attributes = {}
 metadata/_custom_type_script = "uid://iqvm0kkhmcmj"

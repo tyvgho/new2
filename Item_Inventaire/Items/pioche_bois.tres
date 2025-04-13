@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="UniqueItem" load_steps=3 format=3 uid="uid://c7xh8wfp76xld"]
+[gd_resource type="Resource" script_class="UniqueItem" load_steps=3 format=3 uid="uid://b1n4tq823pqpj"]
 
 [ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/UniqueItem.gd" id="1_ghdjs"]
 [ext_resource type="Texture2D" uid="uid://cg015yqo3haka" path="res://Item_Inventaire/Textures/outie2D/pioche_bois.png" id="2_ghdjs"]
@@ -8,5 +8,9 @@ script = ExtResource("1_ghdjs")
 texture = ExtResource("2_ghdjs")
 name = "Pioche en Bois"
 description = "ces une pioche en bois"
+stackable = false
 max_quantity = 1
+item_id = &"wooden_pickaxe"
+flags = 0
+attributes = {}
 metadata/_custom_type_script = "uid://iqvm0kkhmcmj"

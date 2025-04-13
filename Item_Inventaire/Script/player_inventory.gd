@@ -10,10 +10,15 @@ var inventory = Global.inventaire_player : set = _set_inventory
 func _ready() -> void:
 	add_child(holded_item_instance)
 	var inventory_grids = get_tree().get_nodes_in_group("inventaire")
+	if inventory_grids.is_empty():
+		return
 	for inv in inventory_grids:
-		(inv as InventoryGUI).item_clicked.connect(_on_item_clicked)
-		inv.inventory = inventory
-		inv.refresh_gui()
+		if inv is InventoryGUI:
+			inv.item_clicked.connect(_on_item_clicked)
+			inv.inventory = inventory
+			inv.refresh_gui()
+		else:
+			push_error("InventoryGUI not found")
 	#_set_inventory(inventory)
 
 func _set_inventory(value):
@@ -22,7 +27,7 @@ func _set_inventory(value):
 		inv.inventory = inventory
 		inv.refresh_gui()
 
-func _on_item_clicked(item : InventoryItem, _index : int, _click_type : int = MOUSE_BUTTON_LEFT):
+func _on_item_clicked(item : ItemStack, _index : int, _click_type : int = MOUSE_BUTTON_LEFT):
 	$"PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer/Label".text = item.item.name if item.item else ""
 	$"PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer/Label2".text = item.item.description if item.item else ""
 

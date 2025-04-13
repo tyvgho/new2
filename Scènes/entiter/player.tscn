@@ -1,6 +1,6 @@
 [gd_scene load_steps=27 format=4 uid="uid://cbmunrfvtr6i8"]
 
-[ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scènes/entiter/player_new.gd" id="1_3hbnb"]
+[ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scripts/player_new.gd" id="1_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://hkupo7e8holj" path="res://Item_Inventaire/hotbar.tscn" id="4_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Player_Inventory.tscn" id="4_82oue"]
 [ext_resource type="PackedScene" uid="uid://dlcsuj3n023ik" path="res://Scènes/outiel.tscn" id="4_li6sa"]
@@ -1463,10 +1463,12 @@ _data = {
 radius = 1.0
 height = 2.0
 
-[node name="player" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("player_Inventory", "player_Hotbar")]
 collision_layer = 129
 collision_mask = 13
 script = ExtResource("1_3hbnb")
+player_Inventory = NodePath("twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D2/Camera3D/UI/Inventaire")
+player_Hotbar = NodePath("twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D2/Camera3D/UI/Hotbar")
 
 [node name="twistPivot" type="Node3D" parent="."]
 

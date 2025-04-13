@@ -1,8 +1,37 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4cdrqdq1tttd"]
+[gd_scene load_steps=17 format=3 uid="uid://c4cdrqdq1tttd"]
 
 [ext_resource type="Script" uid="uid://b154ca82c0th7" path="res://Item_Inventaire/Script/Inventory_gui.gd" id="1_57bxm"]
 [ext_resource type="PackedScene" uid="uid://wo7nph6283ix" path="res://Item_Inventaire/craftbutton.tscn" id="1_vwotq"]
 [ext_resource type="Texture2D" uid="uid://0eghvaob0ly2" path="res://Item_Inventaire/Textures/outie2D/pioche_fer.png" id="2_2q6i8"]
+[ext_resource type="Script" uid="uid://bh2uei0kr7gtu" path="res://Item_Inventaire/Script/InventoryItem.gd" id="2_21ox8"]
+[ext_resource type="UniqueItem" uid="uid://dp4omostak08a" path="res://Item_Inventaire/Items/Bois.tres" id="3_pq2po"]
+[ext_resource type="UniqueItem" uid="uid://cvr7di7xcj2i3" path="res://Item_Inventaire/Items/Pierre.tres" id="4_45tg7"]
+[ext_resource type="Script" uid="uid://bp1cb1u3tb72g" path="res://Item_Inventaire/Script/crafting_recipe.gd" id="4_pq2po"]
+[ext_resource type="UniqueItem" uid="uid://bul6rowan5mps" path="res://Item_Inventaire/Items/pioche_mithril.tres" id="5_p57n3"]
+
+[sub_resource type="Resource" id="Resource_s1r2v"]
+script = ExtResource("2_21ox8")
+item = ExtResource("3_pq2po")
+quantity = 2
+metadata/_custom_type_script = "uid://bh2uei0kr7gtu"
+
+[sub_resource type="Resource" id="Resource_qf8xs"]
+script = ExtResource("2_21ox8")
+item = ExtResource("4_45tg7")
+quantity = 3
+metadata/_custom_type_script = "uid://bh2uei0kr7gtu"
+
+[sub_resource type="Resource" id="Resource_45tg7"]
+script = ExtResource("2_21ox8")
+item = ExtResource("5_p57n3")
+quantity = 0
+metadata/_custom_type_script = "uid://bh2uei0kr7gtu"
+
+[sub_resource type="Resource" id="Resource_p57n3"]
+script = ExtResource("4_pq2po")
+ingredients = Array[ExtResource("2_21ox8")]([SubResource("Resource_s1r2v"), SubResource("Resource_qf8xs")])
+result = SubResource("Resource_45tg7")
+metadata/_custom_type_script = "uid://bp1cb1u3tb72g"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tixmw"]
 bg_color = Color(1, 0.737255, 0, 1)
@@ -52,6 +81,7 @@ layout_mode = 2
 
 [node name="Button" parent="PanelContainer3/MarginContainer/VBoxContainer" instance=ExtResource("1_vwotq")]
 layout_mode = 2
+craft = SubResource("Resource_p57n3")
 
 [node name="Button2" type="Button" parent="PanelContainer3/MarginContainer/VBoxContainer"]
 texture_filter = 1

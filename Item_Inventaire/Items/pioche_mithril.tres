@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UniqueItem" load_steps=3 format=3 uid="uid://bul6rowan5mps"]
+
+[ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/UniqueItem.gd" id="1_a0bk7"]
+[ext_resource type="Texture2D" uid="uid://bfb1vx4qeuym4" path="res://Item_Inventaire/Textures/outie2D/pioche_mitirile.png" id="2_a0bk7"]
+
+[resource]
+resource_local_to_scene = false
+resource_name = ""
+script = ExtResource("1_a0bk7")
+texture = ExtResource("2_a0bk7")
+name = "Pioche en Mithril (1)"
+description = "c'est une pioche en mithril"
+stackable = false
+max_quantity = 1
+item_id = &"mithril_pickaxe"
+flags = 4
+attributes = {}
+metadata/_custom_type_script = "uid://iqvm0kkhmcmj"
