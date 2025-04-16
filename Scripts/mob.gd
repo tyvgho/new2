@@ -52,6 +52,8 @@ func _physics_process(delta: float) -> void:
 func take_damage(nb_damang):
 	$Sprite3D/SubViewport/ProgressBar.value = vie
 	vie -= nb_damang
+	velocity = Vector3(0,-3,0)
+	move_and_slide()
 	if vie < 0:
 		queue_free()
 func attack():

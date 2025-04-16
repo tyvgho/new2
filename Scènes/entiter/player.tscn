@@ -1692,4 +1692,12 @@ visible = false
 layers = 65536
 mesh = SubResource("SphereMesh_82oue")
 
+[node name="Area3D" type="Area3D" parent="."]
+collision_mask = 65
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.96046e-08, -1.78814e-07)
+shape = SubResource("CapsuleShape3D_5u6vl")
+
 [connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

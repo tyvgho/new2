@@ -166,3 +166,10 @@ func rotate_os(rotations,os):
 		skeleton.set_bone_pose_rotation(bone_id, rotation_offset)
 	else:
 		print("Os non trouvé :", os)
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	print(body)
+	var collider = body
+	if collider.has_method("recuper_item"):  # Vérifie si l'objet a une fonction pour prendre des dégâts
+		collider.recuper_item()
