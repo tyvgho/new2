@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs8x3hp20rfbl"]
+
+[ext_resource type="PackedScene" uid="uid://6i4t1fe6cvyl" path="res://Scènes/entiter/monste/bosse_cert.tscn" id="1_10fgt"]
+[ext_resource type="PackedScene" uid="uid://cbmunrfvtr6i8" path="res://Scènes/entiter/player.tscn" id="2_3vpth"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yvfb3"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6mro8"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_yvfb3")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(9.8903, 0, 0, 0, 9.8903, 0, 0, 0, 9.8903, 0, 0, 0)
+mesh = SubResource("PlaneMesh_6mro8")
+skeleton = NodePath("../CollisionShape3D")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_10fgt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28021, 3.98293)
+
+[node name="player" parent="." instance=ExtResource("2_3vpth")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.58116, -3.65724)

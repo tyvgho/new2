@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://7qsw3binuyo8"]
+[gd_scene load_steps=29 format=4 uid="uid://7qsw3binuyo8"]
 
 [ext_resource type="Texture2D" uid="uid://bjtdmaj3bmwyc" path="res://icon.svg" id="1_c7sms"]
 [ext_resource type="PackedScene" uid="uid://b6i1f8138slxy" path="res://Scènes/map/Objet/phare.tscn" id="1_mflfi"]
@@ -10,9 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://mnwoluiyw7y1" path="res://Scènes/map/Objet/arbre/Arbre (2).tscn" id="5_g04gp"]
 [ext_resource type="PackedScene" uid="uid://02tra0rbi20r" path="res://Scènes/map/Objet/arbre/arbre4.tscn" id="5_rf62y"]
 [ext_resource type="PackedScene" uid="uid://bfmt3yurp1hss" path="res://Scènes/map/Objet/arbre/Arbre 5.tscn" id="6_4b807"]
-[ext_resource type="PackedScene" uid="uid://bva28dqq2pfp5" path="res://Scènes/entiter/monste/cactus.tscn" id="8_7fsxe"]
-[ext_resource type="PackedScene" uid="uid://dhwkt7m8w28lb" path="res://Scènes/entiter/cerf.tscn" id="8_tu5uj"]
-[ext_resource type="PackedScene" uid="uid://drojwwrhpxrw" path="res://Scènes/entiter/monste/mob.v1.tscn" id="9_6v428"]
+[ext_resource type="PackedScene" uid="uid://6i4t1fe6cvyl" path="res://Scènes/entiter/monste/bosse_cert.tscn" id="14_2qsrt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uxrjt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -250,13 +248,5 @@ transform = Transform3D(27.4801, 0, 0, 0, 27.4801, 0, 0, 0, 27.4801, -805.191, 3
 [node name="player" parent="." instance=ExtResource("2_nslow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46377, 1.94748, -2.7528)
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("8_tu5uj")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -2.10098, 2.93674, 5.20383)
-
-[node name="CharacterBody3D2" parent="." instance=ExtResource("8_7fsxe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66426, 3.0989, 0)
-moob_type = "cactus"
-
-[node name="CharacterBody3D3" parent="." instance=ExtResource("9_6v428")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.0758, 36.4692)
-moob_type = "wendigo"
+[node name="CharacterBody3D" parent="." instance=ExtResource("14_2qsrt")]
+transform = Transform3D(2.43857, 0, 0, 0, 2.43857, 0, 0, 0, 2.43857, 22.2312, 13.0532, 0)

@@ -17,10 +17,8 @@ func _ready() -> void:
 
 # Applique des dégâts à l'objet
 func take_damage(nb: int) -> void:
-	print(loote)
 	vie -= nb
 	if vie > 0:
-		print("z")
 		# Crée un objet looté à chaque coup
 		loote["count"] = nb  # Ajuste la quantité lootée
 		var object_instance = OBJECT_SCENE.instantiate()

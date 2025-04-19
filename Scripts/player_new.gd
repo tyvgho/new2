@@ -6,12 +6,15 @@ var can_sprint := true
 var is_sprinting := false
 var can_open_inventory := true
 var can_move_camera := true
+var can_take_damang := true
 var overrite_animation := false
+var is_ejecter := false
+var direction_ejecter = Vector3.ZERO
 var a = 0
 
 @export_category("Stats")
 var health = 100
-@export var max_health = 100
+@export var max_health = 1000
 var stamina = 100
 @export var max_stamina = 100
 @export var armor = 0
@@ -41,7 +44,7 @@ var current_camera_fov = default_camera_fov
 @onready var picht_pivot = $twistPivot/PichtPivot
 @onready var animation : AnimationPlayer = $"twistPivot/pesonage-v1/AnimationPlayer"
 @onready var shape_cast=$twistPivot/PichtPivot/ShapeCast3D
-
+@onready var timer_a = $Timer
 @onready var timer = $Timer2
 var camera : Camera3D
 # Called when the node enters the scene tree for the first time.
@@ -96,18 +99,31 @@ func _process(delta: float) -> void:
 		await animation.animation_finished
 		emit_signal("projectile_fired")
 	Global.player_potion = position
+	if not is_ejecter:
+		move_and_slide()
+	else :
+		ejection(direction_ejecter)
+func ejection(direction):
+	velocity =direction*20+Vector3(0,20,0)
 	move_and_slide()
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_move_camera:
 		twist_input = - event.relative.x * mouse_sensitivity
 		pitch_input = - event.relative.y * mouse_sensitivity
 
-# func damage(nb):
-# 	Global.player_vie -= nb
-# 	$twistPivot/PichtPivot/Camera3D/Control/ProgressBar.value = Global.player_vie
-# 	if Global.player_vie < 0:
-# 		queue_free()
+func damage(nb,ejection):
+
+	if can_take_damang == true:
+		direction_ejecter = ejection
+		is_ejecter = true
+		timer.start(0.1)
+		timer_a.start(2)
+		can_take_damang = false
+		Global.player_vie -= nb
+		$"twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D2/Camera3D/UI/HP".value = Global.player_vie
+		if Global.player_vie <= 0:
+			queue_free()
+
 
 #func construction_process(_delta : float) :
 	#if Input.is_action_just_pressed("molette_up"):
@@ -173,3 +189,11 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	var collider = body
 	if collider.has_method("recuper_item"):  # Vérifie si l'objet a une fonction pour prendre des dégâts
 		collider.recuper_item()
+
+
+func invisibliliter() -> void:
+	can_take_damang = true
+
+
+func _on_timer_timeout() -> void:
+	is_ejecter = false
