@@ -23,9 +23,11 @@ func load_scene_async(scene_path: String):
 	LoadingScreenGlobal.loadingscreen.total = 100.0
 	LoadingScreenGlobal.loadingscreen.loading_text = \"Loading Level\"
 	
+	
 	# Start threaded loading
 	ResourceLoader.load_threaded_request(scene_path)
-
+	await get_tree().process_frame
+	
 	# Wait for the resource to be fully loaded
 	while true:
 		var progress = []
@@ -37,10 +39,10 @@ func load_scene_async(scene_path: String):
 		elif load_status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 			break
 		else:
-			print(\"Failed to load scene: \" + scene_path)
+			print(\"Failed to load scene ! : \" + scene_path)
 			LoadingScreenGlobal.hide_loading()
 			return
-
+		await get_tree().process_frame
 	# Retrieve the loaded scene
 	var packed_scene = ResourceLoader.load_threaded_get(scene_path)
 	if packed_scene == null:
@@ -50,6 +52,7 @@ func load_scene_async(scene_path: String):
 
 	LoadingScreenGlobal.loadingscreen.loading_text = \"Finished Loading\"
 	LoadingScreenGlobal.hide_loading()
+	await get_tree().create_timer(0.5).timeout
 	get_tree().change_scene_to_packed(packed_scene)
 "
 

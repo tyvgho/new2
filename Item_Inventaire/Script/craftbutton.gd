@@ -20,7 +20,6 @@ func _on_button_down():
 func _on_button_up():
 	progress.hide()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	$"TextureRect".texture = craft.result.item.texture

@@ -10,18 +10,18 @@ signal empty_slot_clicked(index : int)
 @onready var total_slots = slot_horizontal * slot_vertical
 @export var debug_mode : bool = true
 
-@export var inventory = [] : set = _set_inventory
+@export var inventory : Array[ItemStack] = [] : set = _set_inventory
 var item_slot = preload("res://Item_Inventaire/item_dans_inventaire.tscn")
 var empty_item = preload("res://Item_Inventaire/Autre/item_vide.tres")
 
 func _ready():
 	#inventory = Global.inventaire_player
-	print(total_slots,"<->",get_child_count(),"<->",inventory.size())
+	#print(total_slots,"<->",get_child_count(),"<->",inventory.size())
 
 	refresh_gui()
 	item_clicked.connect(_on_item_clicked)
 
-func _set_inventory(value):
+func _set_inventory(value : Array[ItemStack]):
 	inventory = value
 	fullfil_slots(inventory, total_slots)
 	refresh_gui()

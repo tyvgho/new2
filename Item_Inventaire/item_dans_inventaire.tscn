@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhh7wmwg7q3xj" path="res://Item_Inventaire/Script/ItemSlot.gd" id="1_06yv8"]
 [ext_resource type="Resource" uid="uid://cvr7di7xcj2i3" path="res://Item_Inventaire/Items/Pierre.tres" id="2_47iff"]
-[ext_resource type="Script" uid="uid://bh2uei0kr7gtu" path="res://Item_Inventaire/Script/InventoryItem.gd" id="3_16x5t"]
+[ext_resource type="Script" uid="uid://bh2uei0kr7gtu" path="res://Item_Inventaire/Script/ItemStack.gd" id="3_16x5t"]
 [ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://Item_Inventaire/Textures/pierre.png" id="4_1d7t0"]
 [ext_resource type="StyleBox" uid="uid://bmgi0l5lhj587" path="res://Item_Inventaire/Autre/IDI_Normal.tres" id="5_47iff"]
 
@@ -81,6 +81,7 @@ layout_mode = 2
 texture = ExtResource("4_1d7t0")
 
 [node name="ProgressBar" type="ProgressBar" parent="TextureBorder"]
+visible = false
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 size_flags_vertical = 8

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://fngxva8vtll2" path="res://Item_Inventaire/Script/Item_Preview.gd" id="1_mv4hs"]
 [ext_resource type="Resource" uid="uid://12s2yanbau30" path="res://Item_Inventaire/Items/Vide.tres" id="2_1t8x2"]
-[ext_resource type="Script" uid="uid://bh2uei0kr7gtu" path="res://Item_Inventaire/Script/InventoryItem.gd" id="3_shwom"]
+[ext_resource type="Script" uid="uid://bh2uei0kr7gtu" path="res://Item_Inventaire/Script/ItemStack.gd" id="3_shwom"]
 [ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://Item_Inventaire/Textures/bois.png" id="4_wnce7"]
 
 [sub_resource type="Resource" id="Resource_tbb7j"]

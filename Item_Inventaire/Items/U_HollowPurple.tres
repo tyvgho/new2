@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UniqueItem" load_steps=4 format=3 uid="uid://bsw6rpqq0a1iq"]
 
-[ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/UniqueItem.gd" id="1_4nfoa"]
+[ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/Script/UniqueItem.gd" id="1_4nfoa"]
 
 [sub_resource type="Gradient" id="Gradient_4nfoa"]
 offsets = PackedFloat32Array(0, 0.440476, 0.565476, 0.636905, 1)

@@ -7,19 +7,20 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8i1s"]
 bg_color = Color(0, 0.6, 0.6, 0.341176)
 
-[node name="Hotbar" type="Control"]
+[node name="Hotbar" type="Control" node_paths=PackedStringArray("container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 305.0
 offset_top = 115.0
-offset_right = 305.0
-offset_bottom = 115.0
+offset_right = -411.0
+offset_bottom = -433.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_lo50f")
+container = NodePath("PanelContainer/MarginContainer/InventoryGUI")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -34,33 +35,38 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="GridContainer" type="GridContainer" parent="PanelContainer/MarginContainer"]
+[node name="InventoryGUI" type="GridContainer" parent="PanelContainer/MarginContainer" groups=["hotbar"]]
 layout_mode = 2
 columns = 5
 script = ExtResource("1_a8i1s")
 slot_vertical = 1
 
-[node name="Slot1" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+[node name="Slot1" parent="PanelContainer/MarginContainer/InventoryGUI" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
 texture_np = NodePath("")
 label_np = NodePath("")
+progressbar_np = NodePath("TextureBorder/ProgressBar")
 
-[node name="Slot2" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+[node name="Slot2" parent="PanelContainer/MarginContainer/InventoryGUI" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
 texture_np = NodePath("")
 label_np = NodePath("")
+progressbar_np = NodePath("TextureBorder/ProgressBar")
 
-[node name="Slot3" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+[node name="Slot3" parent="PanelContainer/MarginContainer/InventoryGUI" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
 texture_np = NodePath("")
 label_np = NodePath("")
+progressbar_np = NodePath("TextureBorder/ProgressBar")
 
-[node name="Slot4" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+[node name="Slot4" parent="PanelContainer/MarginContainer/InventoryGUI" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
 texture_np = NodePath("")
 label_np = NodePath("")
+progressbar_np = NodePath("TextureBorder/ProgressBar")
 
-[node name="Slot5" parent="PanelContainer/MarginContainer/GridContainer" instance=ExtResource("1_bjf5h")]
+[node name="Slot5" parent="PanelContainer/MarginContainer/InventoryGUI" instance=ExtResource("1_bjf5h")]
 layout_mode = 2
 texture_np = NodePath("")
 label_np = NodePath("")
+progressbar_np = NodePath("TextureBorder/ProgressBar")

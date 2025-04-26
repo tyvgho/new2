@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="UniqueItem" load_steps=3 format=3 uid="uid://bvd5lmmchwq37"]
+
+[ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/Script/UniqueItem.gd" id="1_0ulfe"]
+[ext_resource type="Texture2D" uid="uid://xhyrlernqrla" path="res://Assets2/ak47-16x16-pixel.png" id="2_56p0f"]
+
+[resource]
+script = ExtResource("1_0ulfe")
+texture = ExtResource("2_56p0f")
+name = "AK-47"
+description = "Destructive Weapon."
+stackable = false
+max_quantity = 1
+item_id = &"ak_47"
+flags = 5
+attributes = {
+"\"mag\"": "\"no\""
+}
+metadata/_custom_type_script = "uid://iqvm0kkhmcmj"

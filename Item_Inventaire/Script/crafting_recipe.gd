@@ -4,9 +4,9 @@ class_name Recipe extends Resource
 @export var result : ItemStack
 
 func is_valid() -> bool:
-	if ingredients.is_empty():
+	if self.ingredients.is_empty():
 		return false
-	if result == null:
+	if self.result == null or self.result != ItemStack.get_empty_item():
 		return false
 	return true
 
@@ -20,5 +20,4 @@ func has_all_items(inventory_to_check : Array[ItemStack]) -> bool:
 			if slot.quantity < ingredient.quantity:
 				return false
 			aquisition.append(inventory_to_check[slot])
-		
 	return true

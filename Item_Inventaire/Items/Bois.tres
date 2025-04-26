@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="UniqueItem" load_steps=3 format=3 uid="uid://dp4omostak08a"]
 
-[ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/UniqueItem.gd" id="1_irwbr"]
+[ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/Script/UniqueItem.gd" id="1_irwbr"]
 [ext_resource type="Texture2D" uid="uid://c2fu4p4efjw0e" path="res://Item_Inventaire/Textures/bois.png" id="2_hs08e"]
 
 [resource]

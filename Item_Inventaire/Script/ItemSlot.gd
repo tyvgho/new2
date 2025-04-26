@@ -45,6 +45,8 @@ var IDI_Survole = preload("res://Item_Inventaire/Autre/IDI_Survole.tres")
 @onready var texture_rect : TextureRect = get_node_or_null(texture_np)
 @export_node_path("Label") var label_np : NodePath = ^"./Separator/Label"
 @onready var label_quantity : Label = get_node_or_null(label_np)
+@export_node_path("Label") var progressbar_np : NodePath = ^"./TextureBorder/ProgressBar"
+@onready var progressbar : ProgressBar = get_node_or_null(progressbar_np)
 
 func _ready():
 	update_item()
@@ -68,6 +70,11 @@ func update_item():
 		item_name = str((assign_item.item as UniqueItem).name)
 		item_texture = (assign_item.item as UniqueItem).texture
 		item_quantity = assign_item.quantity
+		progressbar.visible = (assign_item.item as UniqueItem).attributes.has("durability")
+		if progressbar.visible: 
+			progressbar.min_value = 0
+			progressbar.max_value = (assign_item.item as UniqueItem).attributes["max_durability"]
+			progressbar.value = (assign_item.item as UniqueItem).attributes["durability"]
 
 # Know if a button is pressed with a mouse, emit signal to parent with the index of the button
 func _gui_input(event: InputEvent) -> void:

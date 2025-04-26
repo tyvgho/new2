@@ -1,0 +1,136 @@
+[gd_scene load_steps=6 format=3 uid="uid://blbqadn0dhqty"]
+
+[ext_resource type="Texture2D" uid="uid://dfxyqligobvbm" path="res://Temp/sceenshot.png" id="1_oyqm6"]
+[ext_resource type="Texture2D" uid="uid://d77bi30d4q8q" path="res://Assets2/title.png" id="2_kpexm"]
+
+[sub_resource type="GDScript" id="GDScript_3xoar"]
+resource_name = "Screeeeen"
+script/source = "extends Control
+
+@export_file(\"*.tscn\") var scene_quentin: String = \"res://path_to_scene.tscn\"
+@export_file(\"*.tscn\") var scene_mathis: String
+
+func _ready():
+	$\"VBoxContainer/Quentin\".pressed.connect(load_scene_async.bind(scene_quentin))
+	$\"VBoxContainer/Mathis\".pressed.connect(load_scene_async.bind(scene_mathis))
+	
+var load_status := ResourceLoader.ThreadLoadStatus.THREAD_LOAD_FAILED
+
+func load_scene_async(scene_path: String):
+	LoadingScreenGlobal.show_loading()
+	
+	LoadingScreenGlobal.loadingscreen.current = 0.0
+	LoadingScreenGlobal.loadingscreen.total = 100.0
+	LoadingScreenGlobal.loadingscreen.loading_text = \"Loading Level\"
+	
+	
+	# Start threaded loading
+	ResourceLoader.load_threaded_request(scene_path)
+	await get_tree().process_frame
+	
+	# Wait for the resource to be fully loaded
+	while true:
+		var progress = []
+		load_status = ResourceLoader.load_threaded_get_status(scene_path, progress)
+		
+		if load_status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS:
+			LoadingScreenGlobal.loadingscreen.current = progress[0] * 100.0
+			await get_tree().process_frame  # Allow rendering updates
+		elif load_status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
+			#break
+		else:
+			print(\"Failed to load scene ! : \" + scene_path)
+			LoadingScreenGlobal.hide_loading()
+			return
+		await get_tree().process_frame
+	# Retrieve the loaded scene
+	var packed_scene = ResourceLoader.load_threaded_get(scene_path)
+	if packed_scene == null:
+		print(\"Failed to instantiate scene: \" + scene_path)
+		LoadingScreenGlobal.hide_loading()
+		return
+
+	LoadingScreenGlobal.loadingscreen.loading_text = \"Finished Loading\"
+	LoadingScreenGlobal.hide_loading()
+	await get_tree().create_timer(0.5).timeout
+	get_tree().change_scene_to_packed(packed_scene)
+"
+
+[sub_resource type="SystemFont" id="SystemFont_mom7w"]
+font_names = PackedStringArray("Arial")
+
+[sub_resource type="LabelSettings" id="LabelSettings_7lgly"]
+font = SubResource("SystemFont_mom7w")
+font_size = 150
+font_color = Color(1, 0.831373, 0.0509804, 1)
+outline_size = 45
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_3xoar")
+scene_quentin = "uid://7qsw3binuyo8"
+scene_mathis = "uid://b5y5obsxc1nbf"
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_oyqm6")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Quentin" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Join Quentin's World"
+
+[node name="Mathis" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+text = "Join Mathis' World"
+
+[node name="Title" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -381.0
+offset_top = -298.0
+offset_right = 190.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_kpexm")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 761.0
+offset_top = 36.0
+offset_right = 915.0
+offset_bottom = 254.0
+text = "2"
+label_settings = SubResource("LabelSettings_7lgly")

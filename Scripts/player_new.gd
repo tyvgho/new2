@@ -39,21 +39,29 @@ var inventaire_ouvert = false
 var current_camera_fov = default_camera_fov
 
 #@onready var constructoin = $twistPivot/PichtPivot/plasse_constructoin
-@onready var skeleton = $"twistPivot/pesonage-v1/Armature/Skeleton3D"
-@onready var twist_pivot = $twistPivot
-@onready var picht_pivot = $twistPivot/PichtPivot
-@onready var animation : AnimationPlayer = $"twistPivot/pesonage-v1/AnimationPlayer"
-@onready var shape_cast=$twistPivot/PichtPivot/ShapeCast3D
-@onready var timer_a = $Timer
-@onready var timer = $Timer2
+@onready var skeleton 	 : Skeleton3D 		= $"twistPivot/pesonage-v1/Armature/Skeleton3D"
+@onready var inventaire  : Control 			= $"twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D2/Camera3D/UI/Inventaire"
+@onready var item_helder : ItemHelder     = $"twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D/ItemHelder"
+@onready var hotbar 	 : Control 			= $"twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D2/Camera3D/UI/Hotbar"
+@onready var twist_pivot : Node3D 		   	= $"twistPivot"
+@onready var picht_pivot : Node3D 		   	= $"twistPivot/PichtPivot"
+@onready var animation   : AnimationPlayer 	= $"twistPivot/pesonage-v1/AnimationPlayer"
+@onready var shape_cast  : ShapeCast3D 	   	= $"twistPivot/PichtPivot/ShapeCast3D"
+@onready var timer_a 	 : Timer 		   	= $"Timer"
+@onready var timer 		 : Timer 		   	= $"Timer2"
 var camera : Camera3D
 # Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	camera = get_viewport().get_camera_3d()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	inventaire_ouvert = false
 	player_Inventory.close_inventory()
 	player_Inventory.visible = false
+
+func change_player_handheld_item(item):
+	Global.holded_item = item
+	item_helder.current_tool = item	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -98,14 +106,22 @@ func _process(delta: float) -> void:
 		attack()
 		await animation.animation_finished
 		emit_signal("projectile_fired")
+
+	if Input.is_action_just_pressed("Tab (Inventaire)"):
+		if Global.holded_item.item.name == "AK-47":
+			overrite_animation = true
+			get_tree().create_timer(1.5).timeout.connect(func(): overrite_animation = false)
+
 	Global.player_potion = position
 	if not is_ejecter:
 		move_and_slide()
 	else :
 		ejection(direction_ejecter)
+
 func ejection(direction):
 	velocity =direction*20+Vector3(0,20,0)
 	move_and_slide()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_move_camera:
 		twist_input = - event.relative.x * mouse_sensitivity

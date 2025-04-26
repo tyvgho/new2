@@ -28,6 +28,11 @@ var player_inventaire = {}  # Utilisation d'un Dictionary
 	ItemStack.new(bois, 2),
 	ItemStack.new(pioche_bois,1)
 ]
+
+@onready var player_hotbar = [
+	ItemStack.new(pioche_bois, 1),
+]
+
 var max_slots = 30
 var stack = 64  # Quantité max par stack
 var holded_item = null
