@@ -1,7 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://8tbl3ceyi8rt"]
 
 [ext_resource type="Script" uid="uid://dwtl6gk6ww4nn" path="res://Scènes/map/Table de craft.gd" id="1_b2myr"]
-[ext_resource type="PackedScene" uid="uid://cu1x3b20l71qe" path="res://Scènes/map/workbench.tscn" id="2_016ch"]
+[ext_resource type="PackedScene" uid="uid://cu1x3b20l71qe" path="res://Scènes/map/Objet/workbench.tscn" id="2_016ch"]
+
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b2myr"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)

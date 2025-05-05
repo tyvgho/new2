@@ -1,77 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://my65wxxg720s"]
+[gd_scene load_steps=2 format=3 uid="uid://my65wxxg720s"]
 
 [ext_resource type="Texture2D" uid="uid://fvhauo6tl5ly" path="res://Item_Inventaire/Textures/pierre.png" id="1_0fbet"]
-
-[sub_resource type="GDScript" id="GDScript_0fbet"]
-script/source = "extends ItemList
-
-var texture_pierre : Texture2D = load(\"res://iteme_inventair/pirre.png\")
-var texture_bois : Texture2D = load(\"res://iteme_inventair/bois.png\")
-var texture_table_craft : Texture2D = load(\"res://iteme_inventair/table_de_craft.png\")
-var texture_viande : Texture2D = load(\"res://iteme_inventair/viande.png\")
-
-var tout_les_items = [
-	Item.new(texture_pierre, \"Pierre\", 4),
-	Item.new(texture_bois, \"Bois\", 32),
-	Item.new(texture_table_craft, \"Table de craft\", 1),
-	Item.new(texture_viande, \"Viande\", 14)
-]
-
-
-class Item extends Resource:
-	var texture : Texture2D
-	var nom : String
-	var quantite : int
-	
-	func _init(texture : Texture2D, nom : String, quantite : int) -> void:
-		self.texture = texture
-		self.nom = nom
-		self.quantite = quantite
-	
-	func _to_string() -> String:
-		return \"[\" + str(self.nom) + \" : \" + str(self.quantite) + \"]\"
-		
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	clear()
-	for item in tout_les_items:
-		ajouter_item_danslaliste(item)
-
-	
-func ajouter_item_danslaliste(item : Item):
-	self.add_item(item.nom, item.texture, true)
-
-
-func _on_item_selected(index: int) -> void:
-	pass
-
-
-func _on_item_clicked(index: int, at_position: Vector2, mouse_button_index: int) -> void:
-	print(\"Item : \", tout_les_items[index])
-	
-	
-	
-	
-	
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class_name Item extends Resource:
-"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -138,7 +67,6 @@ item_1/text = "Pierre"
 item_1/icon = ExtResource("1_0fbet")
 item_2/text = "Bois"
 item_2/icon = ExtResource("1_0fbet")
-script = SubResource("GDScript_0fbet")
 
 [connection signal="item_clicked" from="MarginContainer/PanelContainer/MarginContainer2/PanelContainer/ItemList" to="MarginContainer/PanelContainer/MarginContainer2/PanelContainer/ItemList" method="_on_item_clicked"]
 [connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer2/PanelContainer/ItemList" to="MarginContainer/PanelContainer/MarginContainer2/PanelContainer/ItemList" method="_on_item_selected"]

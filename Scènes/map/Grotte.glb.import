@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b8sd2xyorkwu2"
-path="res://.godot/imported/Cactus.glb-a2edef84f15e98c8ba8f04ee39964740.scn"
+uid="uid://cbgxidlojpsee"
+path="res://.godot/imported/Grotte.glb-93e9d1e1f08cc59fbc7429ef4f66767a.scn"
 
 [deps]
 
-source_file="res://Cactus.glb"
-dest_files=["res://.godot/imported/Cactus.glb-a2edef84f15e98c8ba8f04ee39964740.scn"]
+source_file="res://Scènes/map/Grotte.glb"
+dest_files=["res://.godot/imported/Grotte.glb-93e9d1e1f08cc59fbc7429ef4f66767a.scn"]
 
 [params]
 

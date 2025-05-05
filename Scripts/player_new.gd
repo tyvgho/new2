@@ -61,7 +61,7 @@ func _ready() -> void:
 
 func change_player_handheld_item(item):
 	Global.holded_item = item
-	item_helder.current_tool = item	
+	item_helder.current_tool = item
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -87,8 +87,7 @@ func _process(delta: float) -> void:
 	a = clamp(a,-0.7,0.7)
 	rotate_os(a,&"Os.003")
 	twist_input = 0.0
-	pitch_input = 0.0	
-		
+	pitch_input = 0.0
 	if Input.is_action_just_pressed("vue"):
 		print(Global.player_inventaire)
 		if camera.position == Vector3(0,1.6,3):
@@ -173,6 +172,7 @@ func _inventaire_process(_delta : float):
 			player_Hotbar.select_next_item()
 
 	if Input.is_action_just_pressed("e") and can_open_inventory:
+		print(inventaire,player_Inventory,Global.inventaire_player)
 		if inventaire_ouvert:
 			# Refermer l'inventaire
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
