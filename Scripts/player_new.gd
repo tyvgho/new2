@@ -182,6 +182,9 @@ func _inventaire_process(_delta : float):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			player_Inventory.open_inventory()
 		inventaire_ouvert = not inventaire_ouvert
+
+
+
 func attack():
 	can_attack = false  # Désactive temporairement l'attaque
 	shape_cast.force_shapecast_update()  # Met à jour la détection
@@ -201,10 +204,11 @@ func rotate_os(rotations,os):
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print(body)
 	var collider = body
-	if collider.has_method("recuper_item"):  # Vérifie si l'objet a une fonction pour prendre des dégâts
-		collider.recuper_item()
+	if collider is ItemDrop :  # Vérifie si l'objet a une fonction pour prendre des dégâts
+		Global.inventaire_player.append((collider as ItemDrop).item)
+		print("item_recupéré",(collider as ItemDrop).item)
+		collider.queue_free()
 
 
 func invisibliliter() -> void:

@@ -1,10 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmkcitdcndmel"]
+[gd_scene load_steps=10 format=3 uid="uid://bmkcitdcndmel"]
 
 [ext_resource type="Script" uid="uid://cedg2if0q0tqk" path="res://Scripts/iteme_3D.gd" id="1_lp82r"]
 [ext_resource type="Script" uid="uid://berqsasp3nmcc" path="res://Scripts/arbre_mesh_change.gd" id="2_5ntsv"]
+[ext_resource type="Resource" uid="uid://dp4omostak08a" path="res://Item_Inventaire/Items/Bois.tres" id="2_jntch"]
+[ext_resource type="Script" uid="uid://bh2uei0kr7gtu" path="res://Item_Inventaire/Script/ItemStack.gd" id="3_kv60t"]
 [ext_resource type="ArrayMesh" uid="uid://mnpkoonu1g8u" path="res://model3D/pierre.tres" id="3_qhd34"]
 [ext_resource type="ArrayMesh" uid="uid://cjxrr1rlicxhr" path="res://model3D/Meshes/iteme_viande.tres" id="5_36hy1"]
 [ext_resource type="ArrayMesh" uid="uid://d1ogkji5cmgq3" path="res://model3D/Meshes/iteme_bois.tres" id="5_bf8cq"]
+
+[sub_resource type="Resource" id="Resource_kflbi"]
+script = ExtResource("3_kv60t")
+item = ExtResource("2_jntch")
+quantity = 1
+current_attributes = null
+metadata/_custom_type_script = "uid://bh2uei0kr7gtu"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ai5gd"]
 
@@ -12,6 +21,7 @@
 transform = Transform3D(0.363037, 0, 0, 0, 0.363037, 0, 0, 0, 0.363037, 0, 0, 0)
 collision_layer = 64
 script = ExtResource("1_lp82r")
+item = SubResource("Resource_kflbi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_ai5gd")

@@ -20,7 +20,7 @@ var pioche_bois := preload("res://Item_Inventaire/Items/pioche_bois.tres") as Un
 var player_main_object := 0
 var player_inventaire = {}  # Utilisation d'un Dictionary
 
-@onready var inventaire_player = [
+var inventaire_player : Array[ItemStack] = [
 	ItemStack.new(bois, 10),
 	ItemStack.new(pierre, 10),
 	ItemStack.new(bois, 0),
@@ -29,7 +29,7 @@ var player_inventaire = {}  # Utilisation d'un Dictionary
 	ItemStack.new(pioche_bois,1)
 ]
 
-@onready var player_hotbar = [
+var player_hotbar = [
 	ItemStack.new(pioche_bois, 1),
 ]
 

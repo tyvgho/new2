@@ -210,3 +210,6 @@ layout_mode = 2
 libraries = {
 &"": SubResource("AnimationLibrary_qovhq")
 }
+
+[editable path="PanelContainer/TabContainer/Inventory"]
+[editable path="PanelContainer/TabContainer/Table de Craft"]

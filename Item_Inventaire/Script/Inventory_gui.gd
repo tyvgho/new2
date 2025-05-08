@@ -22,6 +22,7 @@ func _ready():
 	item_clicked.connect(_on_item_clicked)
 
 func _set_inventory(value : Array[ItemStack]):
+	print("valeur",value)
 	inventory = value
 	fullfil_slots(inventory, total_slots)
 	refresh_gui()
@@ -46,6 +47,7 @@ func _on_item_clicked(item : ItemStack, index : int, click_type : int = MOUSE_BU
 	(get_child(index) as ItemSlot).update_item()
 
 func refresh_gui():
+	fullfil_slots(inventory,total_slots)
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
@@ -58,9 +60,9 @@ func refresh_gui():
 func fullfil_slots(items : Array, max_slots: int):
 	if items.size() != max_slots:
 		items.resize(max_slots)
-		for item in range(len(items)):
-			if items[item] == null:
-				items[item] = ItemStack.get_empty_item()
+	for item in range(len(items)):
+		if items[item] == null:
+			items[item] = ItemStack.get_empty_item()
 
 func clear_inventory():
 	inventory.resize(total_slots)
