@@ -1,7 +1,10 @@
 class_name Recipe extends Resource
 
+enum RECIPE_TYPE {CRAFTING, SMELTING, FORGING, ENCHANTING}
+
 @export var ingredients : Array[ItemStack]
 @export var result : ItemStack
+@export var type : RECIPE_TYPE
 
 func is_valid() -> bool:
 	if self.ingredients.is_empty():
@@ -21,3 +24,13 @@ func has_all_items(inventory_to_check : Array[ItemStack]) -> bool:
 				return false
 			aquisition.append(inventory_to_check[slot])
 	return true
+
+## Consume the items in the inventory following the recipe
+func consume_items(inventory_to_check : Array[ItemStack]):
+	if has_all_items(inventory_to_check):
+		for index in range(inventory_to_check).size():
+			var item = inventory_to_check[index]
+
+			if item.quantity >= aquisition[0].quantity:
+				item.quantity -= aquisition[0].quantity
+				aquisition.remove_at(0)

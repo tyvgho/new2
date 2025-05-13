@@ -107,9 +107,12 @@ func _process(delta: float) -> void:
 		emit_signal("projectile_fired")
 
 	if Input.is_action_just_pressed("Tab (Inventaire)"):
-		if Global.holded_item.item.name == "AK-47":
+		if Global.holded_item and Global.holded_item.item.name == "AK-47":
 			overrite_animation = true
+			animation.play("sortir_ak")
+			item_helder.current_tool = "ak_47"
 			get_tree().create_timer(1.5).timeout.connect(func(): overrite_animation = false)
+			
 
 	Global.player_potion = position
 	if not is_ejecter:
@@ -118,7 +121,7 @@ func _process(delta: float) -> void:
 		ejection(direction_ejecter)
 
 func ejection(direction):
-	velocity =direction*20+Vector3(0,20,0)
+	velocity = Vector3(direction.x, direction.y + 20,direction.z) * 20
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -182,6 +185,7 @@ func _inventaire_process(_delta : float):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			player_Inventory.open_inventory()
 		inventaire_ouvert = not inventaire_ouvert
+		
 func attack():
 	can_attack = false  # Désactive temporairement l'attaque
 	shape_cast.force_shapecast_update()  # Met à jour la détection

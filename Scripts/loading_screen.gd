@@ -14,13 +14,13 @@ func _on_total(value : int) -> void:
 func _ready() -> void:
 	pass # Replace with function body.
 
-func progressive_update(tree : SceneTree, value : int, maximum : int, update_when : int, last_update : int) -> int:
+func progressive_update(_tree : SceneTree, value : int, maximum : int, update_when : int, last_update : int) -> int:
 	current = value
 	total = maximum
 	if (value > last_update + update_when):
 		current = value
 		last_update = last_update + update_when
-		assert("Where is the tree ?")
+		assert(_tree != null,"Where is the tree ?")
 	elif (value >= maximum):
 		current = maximum
 		last_update = maximum
