@@ -107,12 +107,9 @@ func _process(delta: float) -> void:
 		emit_signal("projectile_fired")
 
 	if Input.is_action_just_pressed("Tab (Inventaire)"):
-		if Global.holded_item and Global.holded_item.item.name == "AK-47":
+		if Global.holded_item.item.name == "AK-47":
 			overrite_animation = true
-			animation.play("sortir_ak")
-			item_helder.current_tool = "ak_47"
 			get_tree().create_timer(1.5).timeout.connect(func(): overrite_animation = false)
-			
 
 	Global.player_potion = position
 	if not is_ejecter:
@@ -121,7 +118,7 @@ func _process(delta: float) -> void:
 		ejection(direction_ejecter)
 
 func ejection(direction):
-	velocity = Vector3(direction.x, direction.y + 20,direction.z) * 20
+	velocity =direction*20+Vector3(0,20,0)
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -185,7 +182,9 @@ func _inventaire_process(_delta : float):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			player_Inventory.open_inventory()
 		inventaire_ouvert = not inventaire_ouvert
-		
+
+
+
 func attack():
 	can_attack = false  # Désactive temporairement l'attaque
 	shape_cast.force_shapecast_update()  # Met à jour la détection
@@ -205,10 +204,11 @@ func rotate_os(rotations,os):
 
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
-	print(body)
 	var collider = body
-	if collider.has_method("recuper_item"):  # Vérifie si l'objet a une fonction pour prendre des dégâts
-		collider.recuper_item()
+	if collider is ItemDrop :  # Vérifie si l'objet a une fonction pour prendre des dégâts
+		Global.inventaire_player.append((collider as ItemDrop).item)
+		print("item_recupéré",(collider as ItemDrop).item)
+		collider.queue_free()
 
 
 func invisibliliter() -> void:

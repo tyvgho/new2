@@ -16,7 +16,8 @@ func _ready() -> void:
 	for inv in inventory_grids:
 		if inv is InventoryGUI:
 			inv.item_clicked.connect(_on_item_clicked)
-			inv.set_deferred("inventory", inventory)
+			inv.inventory = Global.inventaire_player
+			
 		else:
 			push_error("InventoryGUI not found")
 	#_set_inventory(inventory)
@@ -32,8 +33,10 @@ func _set_hotbar(value):
 		inv.set_deferred("inventory", hotbar)
 
 func _on_item_clicked(item : ItemStack, _index : int, _click_type : int = MOUSE_BUTTON_LEFT):
-	%"InvItemName".text = item.item.name if item.item else ""
-	$"InvItemDesc".text = item.item.description if item.item else ""
+	$PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer/InvItemName.text = item.item.name if item.item else ""
+	$PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer/InvItemDesc.text = item.item.description if item.item else ""
+	$"PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer/InvItemName".text = item.item.name if item.item else ""
+	$"PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer/InvItemDesc".text = item.item.description if item.item else "" 
 
 func _process(_delta):
 	if holded_item_instance:

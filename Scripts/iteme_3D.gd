@@ -6,6 +6,7 @@ var loote
 var quantiter = 0
 var nb = 0
 
+@export var item : ItemStack 
 @onready var apparence = $modelle_arbre
 
 func initialize(nouveau_nombre, new_position, new_type):
@@ -32,5 +33,5 @@ func _physics_process(delta: float) -> void:
 		set_physics_process(false)
 
 func recuper_item():
-	Global.player_inventair_give(loote)
+	Global.inventaire_player
 	queue_free()

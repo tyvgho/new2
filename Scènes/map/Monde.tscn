@@ -194,7 +194,7 @@ transform = Transform3D(1, 0, 3.55271e-15, 0, 1, 0, -3.55271e-15, 0, 1, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_w51hv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="obejet"]
-transform = Transform3D(-2.61435e-07, 0, 5.98093, 0, 5.98093, 0, -5.98093, 0, -2.61435e-07, 0.116745, 0.0718457, -0.125326)
+transform = Transform3D(-2.61435e-07, 0, 5.98093, 0, 5.98093, 0, -5.98093, 0, -2.61435e-07, 0.116745, 0.0718457, -0.11611)
 material_override = SubResource("StandardMaterial3D_nvcyc")
 mesh = SubResource("PlaneMesh_ok66r")
 skeleton = NodePath("../..")
