@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://7qsw3binuyo8"]
+[gd_scene load_steps=29 format=4 uid="uid://7qsw3binuyo8"]
 
 [ext_resource type="Texture2D" uid="uid://bjtdmaj3bmwyc" path="res://icon.svg" id="1_c7sms"]
 [ext_resource type="PackedScene" uid="uid://b6i1f8138slxy" path="res://Scènes/map/Objet/phare.tscn" id="1_mflfi"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://mnwoluiyw7y1" path="res://Scènes/map/Objet/arbre/Arbre (2).tscn" id="5_g04gp"]
 [ext_resource type="PackedScene" uid="uid://02tra0rbi20r" path="res://Scènes/map/Objet/arbre/arbre4.tscn" id="5_rf62y"]
 [ext_resource type="PackedScene" uid="uid://bfmt3yurp1hss" path="res://Scènes/map/Objet/arbre/Arbre 5.tscn" id="6_4b807"]
+[ext_resource type="PackedScene" uid="uid://dsulsn4hq4vde" path="res://Scènes/entiter/requin.tscn" id="11_slalg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uxrjt"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -246,3 +247,6 @@ transform = Transform3D(27.4801, 0, 0, 0, 27.4801, 0, 0, 0, 27.4801, -805.191, 3
 
 [node name="player" parent="." instance=ExtResource("2_nslow")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.46377, 1.94748, -2.7528)
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("11_slalg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)

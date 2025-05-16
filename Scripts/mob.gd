@@ -1,5 +1,5 @@
 extends CharacterBody3D
-@export_enum("wendigo","cactus") var moob_type : String
+@export_enum("wendigo","cactus","requin") var moob_type : String
 @export var spike_damage = 2
 var can_attacking := true
 var is_attacking := false
@@ -19,7 +19,7 @@ signal projectile_fired
 
 func  _ready() -> void:
 	$Sprite3D/SubViewport/ProgressBar.max_value = vie
-	if moob_type == "wendigo":
+	if moob_type == "wendigo" or moob_type == "requin":
 		print("a")
 		good_distance = 1
 	if moob_type == "cactus":
@@ -36,7 +36,10 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		if moob_type == "cactus":
 			animation.play("rampe_001")
+		elif moob_type == "requin":
+			animation.play("nage")
 	else :
+		
 		if moob_type =="cactus" and can_attacking == true:
 			can_attacking = false
 			animation.play("Actions réservées]")
@@ -44,6 +47,8 @@ func _physics_process(delta: float) -> void:
 			emit_signal("projectile_fired")
 			timer.start(3)
 			animation.play("Actions réservées]_001")
+		elif moob_type == "requin":
+			animation.play("mord")
 
 
 		velocity = Vector3(0,-3,0)
