@@ -21,8 +21,8 @@ func _on_button_up():
 	progress.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	$"TextureRect".texture = craft.result.item.texture
+func _process(_delta: float) -> void:
+	$TextureRect.texture = craft.result.item.texture
 	$"Button".text = craft.result.item.name
 
 	if craft.is_valid() and craft.has_all_items(connected_inventory):

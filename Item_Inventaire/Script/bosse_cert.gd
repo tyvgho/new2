@@ -71,7 +71,7 @@ func attaquer(nom_anim):
 	frape()
 
 # === DEPLACEMENT NORMAL ===
-func deplacer_vers_joueur(delta):
+func deplacer_vers_joueur(_delta):
 	anim.play("cours")
 	var direction = (position_joueur - global_position).normalized()
 	velocity = direction * vitesse

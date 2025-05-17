@@ -48,7 +48,7 @@ var current_camera_fov = default_camera_fov
 @onready var animation   : AnimationPlayer 	= $"twistPivot/pesonage-v1/AnimationPlayer"
 @onready var shape_cast  : ShapeCast3D 	   	= $"twistPivot/PichtPivot/ShapeCast3D"
 @onready var timer_a 	 : Timer 		   	= $"Timer"
-@onready var timer 		 : Timer 		   	= $"Timer2"
+@onready var timer_invinsi 		 : Timer 		   	= $"Timer2"
 var camera : Camera3D
 # Called when the node enters the scene tree for the first time.
 
@@ -67,7 +67,7 @@ func change_player_handheld_item(item):
 func _process(delta: float) -> void:
 	_sprint_process(delta)
 	_inventaire_process(delta)
-	
+
 	var input = Vector3.ZERO
 	input.x = Input.get_axis("move_left","move_right")*speed
 	input.z = Input.get_axis("move_forward","move_back")*speed
@@ -89,12 +89,11 @@ func _process(delta: float) -> void:
 	twist_input = 0.0
 	pitch_input = 0.0
 	if Input.is_action_just_pressed("vue"):
-		print(Global.player_inventaire)
 		if camera.position == Vector3(0,1.6,3):
 			camera.position = Vector3(0,0.6,0)
 		else :
 			camera.position = Vector3(0,1.6,3)
-		
+
 	if Input.is_action_just_pressed("tire"):
 		if velocity == Vector3.ZERO:
 			force_animation(&"frape")
@@ -112,14 +111,14 @@ func _process(delta: float) -> void:
 			get_tree().create_timer(1.5).timeout.connect(func(): overrite_animation = false)
 
 	Global.player_potion = position
-	if not is_ejecter:
-		move_and_slide()
-	else :
-		ejection(direction_ejecter)
-
-func ejection(direction):
-	velocity =direction*20+Vector3(0,20,0)
+	if is_ejecter:
+		
+		velocity += direction_ejecter*7
+		if is_on_floor():
+			velocity.y += speed_jump
 	move_and_slide()
+
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_move_camera:
@@ -131,8 +130,8 @@ func damage(nb,ejection):
 	if can_take_damang == true:
 		direction_ejecter = ejection
 		is_ejecter = true
-		timer.start(0.1)
-		timer_a.start(2)
+		timer_invinsi.start(1)
+		timer_a.start(1)
 		can_take_damang = false
 		Global.player_vie -= nb
 		$"twistPivot/pesonage-v1/Armature/Skeleton3D/BoneAttachment3D2/Camera3D/UI/HP".value = Global.player_vie

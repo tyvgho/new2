@@ -1,10 +1,9 @@
-[gd_scene load_steps=32 format=4 uid="uid://cbmunrfvtr6i8"]
+[gd_scene load_steps=31 format=4 uid="uid://cbmunrfvtr6i8"]
 
 [ext_resource type="Script" uid="uid://cawmkta2twm8a" path="res://Scripts/player_new.gd" id="1_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://hkupo7e8holj" path="res://Item_Inventaire/hotbar.tscn" id="4_3hbnb"]
 [ext_resource type="PackedScene" uid="uid://ttjcur0cb6dj" path="res://Item_Inventaire/Player_Inventory.tscn" id="4_82oue"]
 [ext_resource type="PackedScene" uid="uid://dlcsuj3n023ik" path="res://Scènes/outiel.tscn" id="4_li6sa"]
-[ext_resource type="Script" uid="uid://bp1cb1u3tb72g" path="res://Item_Inventaire/Script/crafting_recipe.gd" id="5_li6sa"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_82oue"]
 
@@ -12,6 +11,8 @@
 resource_name = "Material"
 cull_mode = 2
 albedo_color = Color(0.89715, 0.906359, 0.643533, 1)
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 0.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r5tbm"]
 resource_name = "Matériau.001"
@@ -49,6 +50,9 @@ resource_name = "Matériau.006"
 cull_mode = 2
 albedo_color = Color(0.607479, 0.90634, 0.867078, 1)
 roughness = 0.5
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 16.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_skx70"]
 resource_name = "pesonage-v1_Cube"
@@ -2207,7 +2211,7 @@ mesh = SubResource("ArrayMesh_skx70")
 skin = SubResource("Skin_p2xqi")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="twistPivot/pesonage-v1/Armature/Skeleton3D"]
-transform = Transform3D(-0.998139, -0.0609815, -2.04686e-07, 0.0609815, -0.998139, -1.73046e-07, -1.93752e-07, -1.85206e-07, 1, -1.76253, 0.39637, -9.30411e-07)
+transform = Transform3D(-0.998139, -0.0609815, -2.04686e-07, 0.0609815, -0.998139, -1.73047e-07, -1.93752e-07, -1.85207e-07, 1, -1.76253, 0.39637, -9.30412e-07)
 bone_name = "Os.001_R.002"
 bone_idx = 7
 
@@ -2270,10 +2274,6 @@ wait_time = 0.5
 [node name="PlayerCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.96046e-08, -1.78814e-07)
 shape = SubResource("CapsuleShape3D_5u6vl")
-
-[node name="Node3D" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0911705, 1.27928, -0.356332)
-script = ExtResource("5_li6sa")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.728805, 0)

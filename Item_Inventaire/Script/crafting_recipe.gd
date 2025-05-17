@@ -27,10 +27,21 @@ func has_all_items(inventory_to_check : Array[ItemStack]) -> bool:
 
 ## Consume the items in the inventory following the recipe
 func consume_items(inventory_to_check : Array[ItemStack]):
+	var aquisition = ingredients.duplicate()
+	var aquisition_uitems = ItemStack.get_items_in_itemstacks(aquisition)
+	var inventory_uitems = ItemStack.get_items_in_itemstacks(inventory_to_check)
 	if has_all_items(inventory_to_check):
-		for index in range(inventory_to_check).size():
-			var item = inventory_to_check[index]
-
-			if item.quantity >= aquisition[0].quantity:
-				item.quantity -= aquisition[0].quantity
-				aquisition.remove_at(0)
+		for inv_idx in range(inventory_uitems):
+			var inv_uitem = inventory_uitems[inv_idx]
+			for aqu_idx in range(aquisition_uitems):
+				var aqu_uitem = aquisition_uitems[inv_idx]
+				if inv_uitem == aqu_uitem:
+					if inventory_to_check[inv_idx].quantity < aquisition[aqu_idx].quantity:
+						aquisition[aqu_idx] -= inventory_to_check[inv_idx]
+						inventory_to_check[inv_idx] = ItemStack.get_empty_item()
+					else:
+						inventory_to_check[inv_idx] -= aquisition[aqu_idx] 
+						aquisition.remove_at(aqu_idx)
+						
+			
+			

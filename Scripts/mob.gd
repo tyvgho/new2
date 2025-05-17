@@ -12,23 +12,26 @@ var vie = 10
 var in_attacks_area_player = false
 var player_distance = Vector3.ZERO
 var good_distance = 0
+var last_direction
 
 signal projectile_fired
 @onready var timer = $Timer
 @onready var animation = $AnimationPlayer
+var shapecast : ShapeCast3D = null
 
 func  _ready() -> void:
 	$Sprite3D/SubViewport/ProgressBar.max_value = vie
 	if moob_type == "wendigo" or moob_type == "requin":
-		print("a")
+		shapecast = $ShapeCast3D
+		print(shapecast)
 		good_distance = 1
 	if moob_type == "cactus":
-		print("b")
 		good_distance = 5
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	player_position = Global.player_potion
 	player_distance = int(sqrt((player_position.x-position.x)**2+(player_position.z-position.z)**2))
+	print(player_distance)
 	look_at(player_position, Vector3.UP)
 	if player_distance > good_distance:
 		velocity = (player_position - global_transform.origin).normalized() * speed
@@ -38,6 +41,9 @@ func _physics_process(delta: float) -> void:
 			animation.play("rampe_001")
 		elif moob_type == "requin":
 			animation.play("nage")
+		elif moob_type == "wendigo":
+			animation.play("marche")
+		last_direction = velocity.normalized()
 	else :
 		
 		if moob_type =="cactus" and can_attacking == true:
@@ -49,6 +55,9 @@ func _physics_process(delta: float) -> void:
 			animation.play("Actions réservées]_001")
 		elif moob_type == "requin":
 			animation.play("mord")
+		elif moob_type == "wendigo":
+			animation.play("frape")
+			frape()
 
 
 		velocity = Vector3(0,-3,0)
@@ -63,3 +72,12 @@ func take_damage(nb_damang):
 		queue_free()
 func attack():
 	is_attacking = true
+func frape():
+	if shapecast:
+		if shapecast.is_colliding():
+			for i in range(shapecast.get_collision_count()):
+				
+				var collider = shapecast.get_collider(i)
+				if self != collider and Global.player_vie>0:
+					if collider.has_method("damage"):  # Vérifie si l'objet a une fonction pour prendre des dégâts
+						collider.damage(spike_damage,last_direction)
