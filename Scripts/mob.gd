@@ -13,7 +13,7 @@ var in_attacks_area_player = false
 var player_distance = Vector3.ZERO
 var good_distance = 0
 var last_direction
-
+var recul = 7
 signal projectile_fired
 @onready var timer = $Timer
 @onready var animation = $AnimationPlayer
@@ -23,7 +23,6 @@ func  _ready() -> void:
 	$Sprite3D/SubViewport/ProgressBar.max_value = vie
 	if moob_type == "wendigo" or moob_type == "requin":
 		shapecast = $ShapeCast3D
-		print(shapecast)
 		good_distance = 1
 	if moob_type == "cactus":
 		good_distance = 5
@@ -31,7 +30,6 @@ func  _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	player_position = Global.player_potion
 	player_distance = int(sqrt((player_position.x-position.x)**2+(player_position.z-position.z)**2))
-	print(player_distance)
 	look_at(player_position, Vector3.UP)
 	if player_distance > good_distance:
 		velocity = (player_position - global_transform.origin).normalized() * speed
@@ -80,4 +78,4 @@ func frape():
 				var collider = shapecast.get_collider(i)
 				if self != collider and Global.player_vie>0:
 					if collider.has_method("damage"):  # Vérifie si l'objet a une fonction pour prendre des dégâts
-						collider.damage(spike_damage,last_direction)
+						collider.damage(spike_damage,last_direction,10,recul)

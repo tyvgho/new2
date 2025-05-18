@@ -8,6 +8,7 @@ extends CharacterBody3D
 var vie = 50
 var position_joueur = Global.player_potion
 var attack_damage = 5
+var recul = 24
 # === TIMERS ===
 var temps_attente: float = 1
 var delai_prochaine_action: float = 0.0
@@ -133,7 +134,7 @@ func frape():
 			var collider = shape_cast.get_collider(i)
 			if self != collider and Global.player_vie>0:
 				if collider.has_method("damage"):  # Vérifie si l'objet a une fonction pour prendre des dégâts
-					collider.damage(attack_damage,direction_charge)
+					collider.damage(attack_damage,direction_charge,20,recul)
 func take_damage(nb_damang):
 	$Sprite3D/SubViewport/ProgressBar.value = vie
 	vie -= nb_damang

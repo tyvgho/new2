@@ -112,10 +112,8 @@ func _process(delta: float) -> void:
 
 	Global.player_potion = position
 	if is_ejecter:
-		
-		velocity += direction_ejecter*7
-		if is_on_floor():
-			velocity.y += speed_jump
+		velocity += direction_ejecter
+	
 	move_and_slide()
 
 
@@ -125,10 +123,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		twist_input = - event.relative.x * mouse_sensitivity
 		pitch_input = - event.relative.y * mouse_sensitivity
 
-func damage(nb,ejection):
+func damage(nb,ejection,up_ejection,puissen):
+	print(nb,ejection,up_ejection,puissen)
 
 	if can_take_damang == true:
-		direction_ejecter = ejection
+		velocity.y += up_ejection
+		direction_ejecter = ejection*puissen
+		direction_ejecter.y = 0
 		is_ejecter = true
 		timer_invinsi.start(1)
 		timer_a.start(1)
