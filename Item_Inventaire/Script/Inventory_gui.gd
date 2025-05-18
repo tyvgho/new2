@@ -23,8 +23,6 @@ func _ready():
 
 func _set_inventory(value : Array[ItemStack]):
 	print("valeur",value)
-	print("je suis la")
-	push_error("aaaaaa")
 	inventory = value
 	fullfil_slots(inventory, total_slots)
 	refresh_gui()
@@ -124,15 +122,15 @@ func remove_item_clever(item : ItemStack):
 			quantity_remaining = 0
 
 func add_item_dumb(item : ItemStack):
-	print_debug("oui",inventory)
-	# If item doesn't exist, add it
-	for slot in inventory:
-		slot = (slot as ItemStack)
-		if slot == ItemStack.get_empty_item():
-			slot = item
-			print_debug("casse trouver")
+	print_debug("chat", inventory)
+    # If item doesn't exist, add it
+	for i in range(inventory.size()):
+		if (inventory[i].item as UniqueItem).flags == 0: #quand on fait get_empty_item() sa génére un item vide avec un identifien spésifique
+			print_debug("case trouvée", inventory[i], item)
+			inventory[i] = item
+			refresh_gui()
 			return
-	print_debug("pas casse trouver")
+	print_debug("pas de case trouvée")
 
 func set_item_at_pos(item : ItemStack, index : int):
 	if index >= total_slots:

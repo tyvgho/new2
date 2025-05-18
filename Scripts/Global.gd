@@ -21,7 +21,7 @@ var viande := preload("res://Item_Inventaire/Items/viande.tres") as UniqueItem
 var player_main_object := 0
 
 var inventaire_player : Array[ItemStack] = [
-# 	ItemStack.new(bois, 10),
+ItemStack.new(bois, 10),
 # 	ItemStack.new(pierre, 10),
 # 	ItemStack.new(bois, 0),
 # 	ItemStack.new(pierre, -1),
