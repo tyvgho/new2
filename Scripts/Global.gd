@@ -16,6 +16,7 @@ var player_aute_bar := [
 var bois := preload("res://Item_Inventaire/Items/Bois.tres") as UniqueItem
 var pierre := preload("res://Item_Inventaire/Items/Pierre.tres") as UniqueItem
 var pioche_bois := preload("res://Item_Inventaire/Items/pioche_bois.tres") as UniqueItem
+var viande := preload("res://Item_Inventaire/Items/viande.tres") as UniqueItem
 
 var player_main_object := 0
 var player_inventaire = {}  # Utilisation d'un Dictionary
@@ -26,7 +27,8 @@ var inventaire_player : Array[ItemStack] = [
 	ItemStack.new(bois, 0),
 	ItemStack.new(pierre, -1),
 	ItemStack.new(bois, 2),
-	ItemStack.new(pioche_bois,1)
+	ItemStack.new(pioche_bois,1),
+	ItemStack.new(bois, 10)
 ]
 
 var player_hotbar = [

@@ -1,7 +1,6 @@
 [gd_scene load_steps=8 format=4 uid="uid://dw23pqlemekxd"]
 
-[ext_resource type="Script" path="res://Scripts/map_object.gd" id="1_eotlc"]
-
+[ext_resource type="Script" uid="uid://bin45y82v8e6j" path="res://Scripts/map_object.gd" id="1_eotlc"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kn7mo"]
 points = PackedVector3Array(0.406747, 0.0669218, 0.0111731, 0.300913, -0.0663938, 0.0111731, 0.250567, -0.0424193, -0.219494, 0.300913, 0.0669218, -0.270071, 0.250567, 0.176299, -0.219494, 0.300913, 0.200237, 0.0111731, 0.250567, 0.176299, 0.241917, 0.300913, 0.0669218, 0.292418, 0.250567, -0.0424193, 0.241917, 0.0205295, -0.116643, 0.0111731, 0.0205295, -0.0663938, -0.270071, 0.0205295, 0.0669218, -0.376078, 0.0205295, 0.200237, -0.270071, 0.0206051, 0.250559, 0.0111731, 0.0205295, 0.200237, 0.292418, 0.0205295, 0.0669218, 0.398576, 0.0205295, -0.0663938, 0.292418, -0.209432, -0.0424193, 0.241917, -0.259854, -0.0663938, 0.0111731, -0.209432, -0.0424193, -0.219494, -0.259854, 0.0669218, -0.270071, -0.209432, 0.176299, -0.219494, 0.0205295, 0.250559, 0.0111731, -0.209432, 0.176299, 0.241917, -0.259854, 0.0669218, 0.292418, -0.365537, 0.0669218, 0.0111731, -0.259854, 0.200237, 0.0111731)
@@ -129,5 +128,5 @@ skeleton = NodePath("")
 transform = Transform3D(3.41561, 0, 0, 0, 3.41561, 0, 0, 0, 3.41561, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_kn7mo")
 
-[connection signal="area_entered" from="Area3D" to="." method="new"]
 [connection signal="area_entered" from="Area3D" to="." method="_on_body_entered"]
+[connection signal="area_entered" from="Area3D" to="." method="new"]

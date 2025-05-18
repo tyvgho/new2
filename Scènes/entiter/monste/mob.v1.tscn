@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://drojwwrhpxrw"]
+[gd_scene load_steps=24 format=4 uid="uid://drojwwrhpxrw"]
 
 [ext_resource type="Script" uid="uid://d2t7x8crqhbwr" path="res://Scripts/mob.gd" id="1_haruw"]
 
@@ -221,38 +221,6 @@ bind/16/pose = Transform3D(-1.1166e-06, 1.77636e-15, -1, -2.60771e-08, -1, -1.90
 bind/17/name = &"Os_R.003"
 bind/17/bone = -1
 bind/17/pose = Transform3D(-8.75956e-07, -0.993884, -0.110431, 9.80501e-08, -0.110431, 0.993884, -1, 8.33693e-07, 9.26325e-08, -11.0565, -1.2285, -0.591729)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ofx56"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_fvkk0"]
-_surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
-"format": 34896613377,
-"index_count": 6,
-"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAP//AAD//wAAAAAAAAAAAAA=")
-}]
-blend_shape_mode = 0
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_7olhu"]
-resource_name = "Zombie_Plan"
-_surfaces = [{
-"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
-"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAA=="),
-"format": 34896613399,
-"index_count": 6,
-"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
-"material": SubResource("StandardMaterial3D_ofx56"),
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 4,
-"vertex_data": PackedByteArray("AAAAAP///7///wAAAAD/v///AAD///+/AAAAAAAA/7////9/////f////3////9/")
-}]
-blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_fvkk0")
 
 [sub_resource type="Animation" id="Animation_j2kv2"]
 resource_name = "cours"
@@ -1669,11 +1637,6 @@ bones/17/scale = Vector3(1, 1, 1)
 [node name="Cube" type="MeshInstance3D" parent="Armature/Skeleton3D"]
 mesh = SubResource("ArrayMesh_f1bew")
 skin = SubResource("Skin_8ak7c")
-
-[node name="Plan" type="MeshInstance3D" parent="."]
-transform = Transform3D(8.87502, 0, 0, 0, 8.87502, 0, 0, 0, 8.87502, 0, -11.7819, 0)
-mesh = SubResource("ArrayMesh_7olhu")
-skeleton = NodePath("")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

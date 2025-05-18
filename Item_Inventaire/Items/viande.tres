@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="UniqueItem" load_steps=3 format=3 uid="uid://c05lrq70apghd"]
+
+[ext_resource type="Script" uid="uid://iqvm0kkhmcmj" path="res://Item_Inventaire/Script/UniqueItem.gd" id="1_vp72g"]
+[ext_resource type="Texture2D" uid="uid://bmu130uea6acm" path="res://Item_Inventaire/Textures/viande.png" id="2_xgfba"]
+
+[resource]
+script = ExtResource("1_vp72g")
+texture = ExtResource("2_xgfba")
+name = "viande"
+description = "de la viande"
+stackable = true
+max_quantity = 64
+item_id = &"steak"
+flags = 0
+attributes = {}
+metadata/_custom_type_script = "uid://iqvm0kkhmcmj"

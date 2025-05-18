@@ -172,7 +172,7 @@ func _inventaire_process(_delta : float):
 			player_Hotbar.select_next_item()
 
 	if Input.is_action_just_pressed("e") and can_open_inventory:
-		print(inventaire,player_Inventory,Global.inventaire_player)
+		print(Global.inventaire_player)
 		if inventaire_ouvert:
 			# Refermer l'inventaire
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -205,10 +205,10 @@ func rotate_os(rotations,os):
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	var collider = body
-	if collider is ItemDrop :  # Vérifie si l'objet a une fonction pour prendre des dégâts
-		Global.inventaire_player.append((collider as ItemDrop).item)
-		print("item_recupéré",(collider as ItemDrop).item)
-		collider.queue_free()
+	if collider is ItemDrop:
+		# Appeler la méthode recuper_item de l'ItemDrop
+		collider.recuper_item()
+		print("item_recupéré", (collider as ItemDrop).item)
 
 
 func invisibliliter() -> void:
