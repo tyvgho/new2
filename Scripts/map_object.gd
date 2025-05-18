@@ -3,7 +3,7 @@ class_name Generator extends StaticBody3D
 @export_enum("pierre", "arbre") var objet_type: String
 @export var vie: int = 80  # Permet d'éditer la vie directement dans l'inspecteur
 
-var player_inventaire = Global.player_inventaire
+
 var loote = {"name":"", "count": 0}  # Initialisation correcte
 #const OBJECT_SCENE = preload("res://Scènes/entiter/itéme.tscn")
 @export var OBJECT_SCENE : PackedScene = load("res://Scènes/entiter/itéme.tscn")

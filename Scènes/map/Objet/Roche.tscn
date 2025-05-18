@@ -128,5 +128,5 @@ skeleton = NodePath("")
 transform = Transform3D(3.41561, 0, 0, 0, 3.41561, 0, 0, 0, 3.41561, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_kn7mo")
 
-[connection signal="area_entered" from="Area3D" to="." method="_on_body_entered"]
 [connection signal="area_entered" from="Area3D" to="." method="new"]
+[connection signal="area_entered" from="Area3D" to="." method="_on_body_entered"]

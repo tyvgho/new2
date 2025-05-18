@@ -23,6 +23,8 @@ func _ready():
 
 func _set_inventory(value : Array[ItemStack]):
 	print("valeur",value)
+	print("je suis la")
+	push_error("aaaaaa")
 	inventory = value
 	fullfil_slots(inventory, total_slots)
 	refresh_gui()
@@ -71,23 +73,26 @@ func clear_inventory():
 	refresh_gui()
 
 ## Equivalent of Shift+Click in Minecraft
-func add_item_clever(item : ItemStack):
+func add_item_clever(item : ItemStack,inve):
 	# Looks in the inventory for a slot to add the item to, first looks if item already exists
 	var quantity_remaining = item.quantity
 	var max_quantity = (item.item as UniqueItem).max_quantity
-	for child in get_children():
-		child = (child as ItemSlot)
-		if (child.assign_item.item as UniqueItem) == (item.item as UniqueItem):
-			var max_quantity_to_deliver = max_quantity - child.assign_item.quantity
+	for slot in inve:
+		slot = (slot as ItemStack )
+ 
+		if (slot.item as UniqueItem) == (item.item as UniqueItem):
+			var max_quantity_to_deliver = max_quantity - slot.quantity
 			if max_quantity_to_deliver <= 0:
 				continue
 			elif max_quantity_to_deliver > 0 and max_quantity_to_deliver < quantity_remaining:
-				child.assign_item.quantity += max_quantity_to_deliver
+				slot.quantity += max_quantity_to_deliver
 				quantity_remaining -= max_quantity_to_deliver
 			elif max_quantity_to_deliver > 0 and max_quantity_to_deliver >= quantity_remaining:
-				child.assign_item.quantity += quantity_remaining
+				slot.quantity += quantity_remaining
 				quantity_remaining = 0
+				refresh_gui()
 				return
+	
 	#If item wasn't found, add it
 	add_item_dumb(item)
 
@@ -101,10 +106,10 @@ static func verify_item_in_inventory(item : UniqueItem, _inventory : Array[ItemS
 			slots.append(i)
 	return slots
 
-func remove_item_clever(item : ItemStack, quantity : int):
+func remove_item_clever(item : ItemStack):
 	# Looks in the inventory and try to remove the exact quantity from multiple slots until the remaining quantity to remove is 0 or there are no slot left
 	var inv = verify_item_in_inventory(item.item, inventory)
-	var quantity_remaining = quantity
+	var quantity_remaining = item.quantity
 	while quantity_remaining > 0 and inv.size() > 0:
 		var slot = inv[0]
 		var max_quantity = (slot.item as UniqueItem).max_quantity
@@ -119,12 +124,15 @@ func remove_item_clever(item : ItemStack, quantity : int):
 			quantity_remaining = 0
 
 func add_item_dumb(item : ItemStack):
+	print_debug("oui",inventory)
 	# If item doesn't exist, add it
-	for child in get_children():
-		child = (child as ItemSlot)
-		if child.assign_item == null:
-			child.assign_item = item
-			break
+	for slot in inventory:
+		slot = (slot as ItemStack)
+		if slot == ItemStack.get_empty_item():
+			slot = item
+			print_debug("casse trouver")
+			return
+	print_debug("pas casse trouver")
 
 func set_item_at_pos(item : ItemStack, index : int):
 	if index >= total_slots:

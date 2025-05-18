@@ -39,8 +39,11 @@ func recuper_item():
 		for inv in inventory_gui:
 			if inv is InventoryGUI:
 				# Ajouter l'item à l'inventaire en utilisant add_item_clever
-				inv.add_item_clever(item)
-				print("Item ajouté à l'inventaire avec add_item_clever")
+				inv.add_item_clever(item,inv.inventory)
+				print("na")
+				for i in Global.inventaire_player:
+					print_debug(i.item.name,i.quantity,"")
+
 				break
 	
 	# Supprimer l'objet 3D après récupération

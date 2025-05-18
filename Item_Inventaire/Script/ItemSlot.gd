@@ -34,12 +34,13 @@ var IDI_Survole = preload("res://Item_Inventaire/Autre/IDI_Survole.tres")
 		item_quantity = value
 		if label_quantity: # Evite les erreurs dans l'éditeur
 			label_quantity.text = str(item_quantity)
-			if item_quantity < 0:
+			if item_quantity <= 0 :
 				label_quantity.modulate = Color.CORAL
-				label_quantity.visible = true
+				label_quantity.visible = false
 			else:
 				label_quantity.modulate = Color.WHITE
-			label_quantity.visible = (value < 0 and value > 1)
+				label_quantity.visible = true
+			# label_quantity.visible = (value < 0 and value > 1)
 
 @export_node_path("TextureRect") var texture_np : NodePath = ^"./TextureBorder/TextureRect"
 @onready var texture_rect : TextureRect = get_node_or_null(texture_np)
