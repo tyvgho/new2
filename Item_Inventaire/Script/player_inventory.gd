@@ -1,14 +1,21 @@
 ## Script qui gère l'inventaire du joueur et de HUD des éléments comme la table de craft
 class_name PlayerInventory extends Control
 
-var inventory = Global.inventaire_player : set = _set_inventory
+var inventory : Inventory
 var hotbar = Global.player_hotbar : set = _set_hotbar
+var inventory_sfx = AudioStreamPlayer.new()
+const inv_open_sfx = preload("res://Assets2/Zelda/Sys_Wind_Open_00.wav")
+const inv_close_sfx = preload("res://Assets2/Zelda/Sys_Wind_Close_00.wav")
 
 @export var holded_item_instance : Item_Preview = preload("res://Item_Inventaire/held_item.tscn").instantiate()
 @export var anim : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_child(inventory_sfx)
+	inventory_sfx.stream = inv_open_sfx
+	inventory_sfx.volume_db = -10
+
 	add_child(holded_item_instance)
 	var inventory_grids = get_tree().get_nodes_in_group("inventaire")
 	if inventory_grids.is_empty():
@@ -45,6 +52,13 @@ func _process(_delta):
 
 func open_inventory(_tab : int = 0):
 	anim.play("show")
+	inventory_sfx.stream = inv_open_sfx
+	inventory_sfx.play()
 
 func close_inventory():
 	anim.play("hide")
+	inventory_sfx.stream = inv_close_sfx
+	inventory_sfx.play()
+
+func pickup_item(item : ItemStack):
+	pass

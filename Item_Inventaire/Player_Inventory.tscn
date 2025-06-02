@@ -109,6 +109,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_pfl63"]
 resource_name = "show"
+length = 0.502
 step = 0.0166
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -129,10 +130,10 @@ tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0166667, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0166667, 0.25, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1.1, 1.1), Vector2(1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -153,7 +154,7 @@ tracks/3/path = NodePath(".:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4),
+"times": PackedFloat32Array(0, 0.483333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -197,14 +198,25 @@ grow_vertical = 2
 
 [node name="TabContainer" type="TabContainer" parent="PanelContainer"]
 layout_mode = 2
-current_tab = 0
+current_tab = 1
 
 [node name="Inventory" parent="PanelContainer/TabContainer" instance=ExtResource("2_p8sma")]
-layout_mode = 2
-
-[node name="Table de Craft" parent="PanelContainer/TabContainer" instance=ExtResource("3_bpfiy")]
 visible = false
 layout_mode = 2
+
+[node name="InvItemName" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer" index="0" groups=["item_title"]]
+
+[node name="InvItemDesc" parent="PanelContainer/TabContainer/Inventory/Control/PanelContainer2/MarginContainer/VBoxContainer" index="2" groups=["item_desc"]]
+
+[node name="Table de Craft" parent="PanelContainer/TabContainer" instance=ExtResource("3_bpfiy")]
+layout_mode = 2
+
+[node name="Button" parent="PanelContainer/TabContainer/Table de Craft/PanelContainer3/MarginContainer/VBoxContainer" index="0"]
+script = null
+
+[node name="InvItemName" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer" index="0" groups=["item_title"]]
+
+[node name="InvItemDesc" parent="PanelContainer/TabContainer/Table de Craft/Control/PanelContainer2/MarginContainer/VBoxContainer" index="2" groups=["item_title"]]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

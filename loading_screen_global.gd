@@ -9,8 +9,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func show_loading():
+	show()
 	anim.play("showing")
 	move_to_front()
 
 func hide_loading():
 	anim.play_backwards("showing")
+	anim.animation_finished.connect(hide)
